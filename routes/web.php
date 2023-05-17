@@ -41,6 +41,9 @@ Route::group(['prefix' => 'admin'], function () {
 
 
 Route::get('/migrate', function () {
+    Artisan::call('config:clear');
+    Artisan::call('cache:clear');
+    Artisan::call('route:clear');
     Artisan::call('voyager:install');
     return redirect('/');
 });
