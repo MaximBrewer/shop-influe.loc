@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use TCG\Voyager\Facades\Voyager;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,4 +37,10 @@ Route::get('/catalog', function () {
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
+});
+
+
+Route::get('/migrate', function () {
+    Artisan::call('migrate');
+    return redirect('/');
 });
