@@ -41,9 +41,6 @@ Route::group(['prefix' => 'admin'], function () {
 
 
 Route::get('/migrate', function () {
-    Artisan::call('config:clear');
-    Artisan::call('cache:clear');
-    Artisan::call('route:clear');
-    Artisan::call('db:seed --class=VoyagerDatabaseSeeder');
+    Artisan::call('migrate');
     return redirect('/');
 });
