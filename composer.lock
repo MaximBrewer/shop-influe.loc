@@ -5894,6 +5894,7 @@
                 "phpunit/phpunit": ">=8.0"
             },
             "type": "library",
+            
             "extra": {
                 "laravel": {
                     "providers": [
