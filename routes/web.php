@@ -44,6 +44,6 @@ Route::get('/migrate', function () {
     Artisan::call('config:clear');
     Artisan::call('cache:clear');
     Artisan::call('route:clear');
-    Artisan::call('voyager:install');
+    Artisan::call('db:seed --class=VoyagerDatabaseSeeder');
     return redirect('/');
 });
