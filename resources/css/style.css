@@ -677,6 +677,7 @@ header .header__bottom .header-bottom-inner .contact-info-wrapper .header-tel-wr
 }
 header .header__bottom .header-bottom-inner .contact-info-wrapper .header-tel {
   margin-right: 10px;
+  white-space: nowrap;
 }
 header .header__bottom .header-bottom-inner .contact-info-wrapper .order-callback a {
   text-decoration: underline;
@@ -879,13 +880,12 @@ header .header__bottom .header-bottom-inner .header-media-icons-wrapper .header-
 
 footer {
   background: var(--white-f8);
-  height: 543px;
   position: relative;
 }
 
 .footer__outer {
+  min-height: 543px;
   padding-top: 122px;
-  height: 100%;
   position: relative;
 }
 

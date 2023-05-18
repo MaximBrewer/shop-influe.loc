@@ -1,72 +1,71 @@
+
+import ChevronDown from "../../images/chevron-down.svg"
+import ArrowTop from "../../images/arrow-top.svg"
+import LogoVertical from "../../images/logo_vertical.svg"
+import Email from "../../images/email.svg"
+import Phone from "../../images/phone.svg"
+import { Link } from "@inertiajs/react"
+
 export default () => {
+
+    const { menus } = window.appdata
+
     return <footer>
-        <div class="container-outer">
-            <div class="footer__outer">
-                <div class="footer__inner">
-                    <div class="footer__logo-wrapper">
-                        <a href=""><img src="./assets/images/logo_vertical.svg" alt="./assets/images/logo_vertical.svg" /></a>
+        <div className="container-outer">
+            <div className="footer__outer">
+                <div className="footer__inner">
+                    <div className="footer__logo-wrapper">
+                        <a href=""><img src={LogoVertical} alt="" /></a>
                     </div>
-                    <ul class="footer__navbar">
-                        <li class="footer-navbar__item">
-                            <div class="footer-navbar-item__title fw-600-18-22">
+                    <ul className="footer__navbar">
+                        <li className="footer-navbar__item">
+                            <div className="footer-navbar-item__title fw-600-18-22">
                                 <p>Услуги</p>
                             </div>
-                            <ul class="footer-navbar-item__menu fw-400-18-22">
-                                <li>
-                                    <a href=""><p>Команда</p></a>
-                                </li>
-                                <li>
-                                    <a href=""><p>Партнеры</p></a>
-                                </li>
-                                <li>
-                                    <a href=""><p>Прайс</p></a>
-                                </li>
+                            <ul className="footer-navbar-item__menu fw-400-18-22">
+                                {menus.find(menu => menu.name === `services`).items.map((item, index) => <li key={index}>
+                                    <Link href={item.link}>{item.title}</Link>
+                                </li>)}
                             </ul>
                         </li>
-                        <li class="footer-navbar__item">
-                            <div class="footer-navbar-item__title fw-600-18-22">
+                        <li className="footer-navbar__item">
+                            <div className="footer-navbar-item__title fw-600-18-22">
                                 <p>Товары</p>
                             </div>
-                            <ul class="footer-navbar-item__menu fw-400-18-22">
-                                <li>
-                                    <a href=""><p>Каталог продукции</p></a>
-                                </li>
-                                <li>
-                                    <a href=""><p>Новинки</p></a>
-                                </li>
-                                <li>
-                                    <a href=""><p>Оплата и доставка</p></a>
-                                </li>
+                            <ul className="footer-navbar-item__menu fw-400-18-22">
+                                {menus.find(menu => menu.name === `products`).items.map((item, index) => <li key={index}>
+                                    <Link href={item.link}>{item.title}</Link>
+                                </li>)}
                             </ul>
                         </li>
-                        <li class="footer-navbar__item">
-                            <div class="footer-navbar-item__title fw-600-18-22">
+                        <li className="footer-navbar__item">
+                            <div className="footer-navbar-item__title fw-600-18-22">
                                 <p>Контакты</p>
                             </div>
-                            <div class="footer-contacts-wrapper">
-                                <div class="footer-contacts-tel-wrapper">
-                                    <div class="icon-wrapper center">
-                                        <img src="./assets/images/phone.svg" alt="" />
+                            <div className="footer-contacts-wrapper">
+                                <div className="footer-contacts-tel-wrapper">
+                                    <div className="icon-wrapper center">
+                                        <img src={Phone} alt="" />
                                     </div>
-                                    <div class="footer-contacts-details-wrapper">
-                                        <div class="footer-contacts-num-wrapper">
-                                            <div class="footer-num-wrapper">
+                                    <div className="footer-contacts-details-wrapper">
+                                        <div className="footer-contacts-num-wrapper">
+                                            <div className="footer-num-wrapper">
                                                 <p>+7 (777) 777 77 77</p>
                                             </div>
-                                            <div class="footer-num-chevron-wrapper center">
-                                                <img src="./assets/images/chevron-down.svg" alt="./assets/images/chevron-down.svg" />
+                                            <div className="footer-num-chevron-wrapper center">
+                                                <img src={ChevronDown} alt="" />
                                             </div>
                                         </div>
-                                        <div class="order-callback purple">
+                                        <div className="order-callback purple">
                                             <a href=""><p>Заказать обратный звонок</p></a>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="footer-contacts-email-wrapper">
-                                    <div class="icon-wrapper center">
-                                        <img src="./assets/images/email.svg" alt="./assets/images/email.svg" />
+                                <div className="footer-contacts-email-wrapper">
+                                    <div className="icon-wrapper center">
+                                        <img src={Email} alt="" />
                                     </div>
-                                    <div class="email-wrapper center fw-400-16-19">
+                                    <div className="email-wrapper center fw-400-16-19">
                                         <p>почта@почта.com</p>
                                     </div>
 
@@ -75,12 +74,12 @@ export default () => {
                         </li>
                     </ul>
                 </div>
-                <div class="footer-copy-wrapper center fw-400-14-17">
+                <div className="footer-copy-wrapper center fw-400-14-17">
                     <p>&copy; 2022</p>
                 </div>
-                <div class="go-top-wrapper">
-                    <div class="go-top-arrow-wrapper">
-                        <img src="./assets/images/arrow-top.svg" alt="./assets/images/arrow-top.svg" />
+                <div className="go-top-wrapper">
+                    <div className="go-top-arrow-wrapper">
+                        <img src={ArrowTop} alt="" />
                     </div>
                 </div>
             </div>

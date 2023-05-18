@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Artisan;
@@ -18,13 +20,14 @@ use TCG\Voyager\Facades\Voyager;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Home');
-});
+Route::get('/', HomeController::class);
 
-Route::get('/catalog', function () {
-    return Inertia::render('Catalog');
-});
+Route::get('/articles', [PostsController::class, 'index'])->name('articles');
+Route::get('/articles/{post}', [PostsController::class, 'show'])->name('post');
+
+// Route::get('/catalog', function () {
+//     return Inertia::render('Catalog');
+// });
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
