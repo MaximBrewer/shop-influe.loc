@@ -20,7 +20,7 @@ use TCG\Voyager\Facades\Voyager;
 |
 */
 
-Route::get('/', HomeController::class);
+Route::get('/', HomeController::class)->name('home');
 
 Route::get('/articles', [PostsController::class, 'index'])->name('articles');
 Route::get('/articles/{post}', [PostsController::class, 'show'])->name('post');
@@ -35,7 +35,7 @@ Route::get('/articles/{post}', [PostsController::class, 'show'])->name('post');
 //     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 // });
 
-// require __DIR__.'/auth.php';
+require __DIR__.'/auth.php';
 
 
 Route::group(['prefix' => 'admin'], function () {

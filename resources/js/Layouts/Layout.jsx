@@ -1,11 +1,12 @@
 import Footer from './Footer';
 import Header from './Header';
 
-export default ({ user, header, children }) => {
+export default (props) => {
+    const { children } = props
 
     return <>
-        <Header />
+        <Header {...props} />
         <main>{children}</main>
-        <Footer />
+        <Footer {...props} />
     </>;
 }

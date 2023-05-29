@@ -4,7 +4,8 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, useForm } from '@inertiajs/react';
 
-export default function ForgotPassword({ status }) {
+export default function ForgotPassword(props) {
+    const { status } = props
     const { data, setData, post, processing, errors } = useForm({
         email: '',
     });
@@ -16,7 +17,7 @@ export default function ForgotPassword({ status }) {
     };
 
     return (
-        <Layout>
+        <Layout {...props}>
             <Head title="Forgot Password" />
 
             <div className="mb-4 text-sm text-gray-600">

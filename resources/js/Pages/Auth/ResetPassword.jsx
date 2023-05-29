@@ -6,7 +6,9 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, useForm } from '@inertiajs/react';
 
-export default function ResetPassword({ token, email }) {
+export default function ResetPassword(props) {
+
+    const { token, email } = props
     const { data, setData, post, processing, errors, reset } = useForm({
         token: token,
         email: email,
@@ -27,7 +29,7 @@ export default function ResetPassword({ token, email }) {
     };
 
     return (
-        <Layout>
+        <Layout {...props}>
             <Head title="Reset Password" />
 
             <form onSubmit={submit}>

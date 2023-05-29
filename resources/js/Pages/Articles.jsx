@@ -5,8 +5,9 @@ import PromotionBlockImg from "../../images/promotion-block-img.png"
 import Slider from 'react-slick';
 import Paginate from '@/Components/Paginate';
 
-export default ({ auth, posts, pagetitle = `` }) => {
+export default (props) => {
 
+    const { pagetitle = ``, posts } = props
 
     var settings = {
         infinite: false,
@@ -15,8 +16,8 @@ export default ({ auth, posts, pagetitle = `` }) => {
         autoplay: true,
         autoplaySpeed: 800,
         arrows: true,
-        // prevArrow: '<div class="slick-arrow-wrapper arrow-left center"><ion-icon name="arrow-back-outline"></ion-icon></div>',
-        // nextArrow: '<div class="slick-arrow-wrapper arrow-right center"><ion-icon name="arrow-forward-outline"></ion-icon></div>',
+        // prevArrow: '<div className="slick-arrow-wrapper arrow-left center"><ion-icon name="arrow-back-outline"></ion-icon></div>',
+        // nextArrow: '<div className="slick-arrow-wrapper arrow-right center"><ion-icon name="arrow-forward-outline"></ion-icon></div>',
         dots: true,
         responsive: [{
             breakpoint: '600',
@@ -26,11 +27,9 @@ export default ({ auth, posts, pagetitle = `` }) => {
 
 
     return (
-        <Layout
-            user={auth.user}
-        >
+        <Layout {...props}>
             <Head title={pagetitle} />
-            <div class="container-outer">
+            <div className="container-outer">
                 <div className="articles-outer">
                     <div className="articles-inner">
                         {posts.data.map((post, pdx) => <div key={pdx} className={``}>

@@ -14,8 +14,8 @@ export default ({ auth, pagetitle = `` }) => {
         autoplay: true,
         autoplaySpeed: 800,
         arrows: true,
-        // prevArrow: '<div class="slick-arrow-wrapper arrow-left center"><ion-icon name="arrow-back-outline"></ion-icon></div>',
-        // nextArrow: '<div class="slick-arrow-wrapper arrow-right center"><ion-icon name="arrow-forward-outline"></ion-icon></div>',
+        // prevArrow: '<div className="slick-arrow-wrapper arrow-left center"><ion-icon name="arrow-back-outline"></ion-icon></div>',
+        // nextArrow: '<div className="slick-arrow-wrapper arrow-right center"><ion-icon name="arrow-forward-outline"></ion-icon></div>',
         dots: true,
         responsive: [{
             breakpoint: '600',

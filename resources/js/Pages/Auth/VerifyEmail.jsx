@@ -2,7 +2,9 @@ import Layout from '@/Layouts/Layout';
 import PrimaryButton from '@/Components/PrimaryButton';
 import { Head, Link, useForm } from '@inertiajs/react';
 
-export default function VerifyEmail({ status }) {
+export default function VerifyEmail(props) {
+
+    const { status } = props
     const { post, processing } = useForm({});
 
     const submit = (e) => {
@@ -12,7 +14,7 @@ export default function VerifyEmail({ status }) {
     };
 
     return (
-        <Layout>
+        <Layout {...props}>
             <Head title="Email Verification" />
 
             <div className="mb-4 text-sm text-gray-600">

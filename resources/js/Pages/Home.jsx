@@ -4,8 +4,9 @@ import { Head } from '@inertiajs/react';
 import PromotionBlockImg from "../../images/promotion-block-img.png"
 import Slider from 'react-slick';
 
-export default ({ auth, pagetitle = `` }) => {
+export default (props) => {
 
+    const { pagetitle = `` } = props
 
     var settings = {
         infinite: false,
@@ -14,8 +15,8 @@ export default ({ auth, pagetitle = `` }) => {
         autoplay: true,
         autoplaySpeed: 800,
         arrows: true,
-        // prevArrow: '<div class="slick-arrow-wrapper arrow-left center"><ion-icon name="arrow-back-outline"></ion-icon></div>',
-        // nextArrow: '<div class="slick-arrow-wrapper arrow-right center"><ion-icon name="arrow-forward-outline"></ion-icon></div>',
+        // prevArrow: '<div className="slick-arrow-wrapper arrow-left center"><ion-icon name="arrow-back-outline"></ion-icon></div>',
+        // nextArrow: '<div className="slick-arrow-wrapper arrow-right center"><ion-icon name="arrow-forward-outline"></ion-icon></div>',
         dots: true,
         responsive: [{
             breakpoint: '600',
@@ -25,9 +26,7 @@ export default ({ auth, pagetitle = `` }) => {
 
 
     return (
-        <Layout
-            user={auth.user}
-        >
+        <Layout {...props}>
             <Head title={pagetitle} />
             <div className="hero">
             </div>
