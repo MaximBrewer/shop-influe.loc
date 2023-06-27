@@ -1,10 +1,10 @@
 import Layout from '@/Layouts/Layout';
 import { Head } from '@inertiajs/react';
 
-export default ({ auth }) => {
+export default (props) => {
     return (
         <Layout
-            user={auth.user}
+            {...props}
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Dashboard</h2>}
         >
             <Head title="Dashboard" />
@@ -59,23 +59,23 @@ export default ({ auth }) => {
                                             <div className="catalogue-sidebar__dropdown">
                                                 <div className="catalogue-sidebar-dropdown__item">
                                                     <input type="radio" name="makasiny" id="makasiny" />
-                                                    <label className="catalogue-sidebar-dropdown-label" for="makasiny">Макасины</label>
+                                                    <label className="catalogue-sidebar-dropdown-label" htmlFor="makasiny">Макасины</label>
                                                 </div>
                                                 <div className="catalogue-sidebar-dropdown__item">
                                                     <input type="radio" name="botinki" id="botinki" />
-                                                    <label className="catalogue-sidebar-dropdown-label" for="botinki">Ботинки</label>
+                                                    <label className="catalogue-sidebar-dropdown-label" htmlFor="botinki">Ботинки</label>
                                                 </div>
                                                 <div className="catalogue-sidebar-dropdown__item">
                                                     <input type="radio" name="tufli" id="tufli" />
-                                                    <label className="catalogue-sidebar-dropdown-label" for="tufli">Туфли</label>
+                                                    <label className="catalogue-sidebar-dropdown-label" htmlFor="tufli">Туфли</label>
                                                 </div>
                                                 <div className="catalogue-sidebar-dropdown__item">
                                                     <input type="radio" name="krossovki" id="krossovki" />
-                                                    <label className="catalogue-sidebar-dropdown-label" for="krossovki">Кроссовки</label>
+                                                    <label className="catalogue-sidebar-dropdown-label" htmlFor="krossovki">Кроссовки</label>
                                                 </div>
                                                 <div className="catalogue-sidebar-dropdown__item">
                                                     <input type="radio" name="sapogi" id="sapogi" />
-                                                    <label className="catalogue-sidebar-dropdown-label" for="sapogi">Сапоги</label>
+                                                    <label className="catalogue-sidebar-dropdown-label" htmlFor="sapogi">Сапоги</label>
                                                 </div>
                                             </div>
                                         </li>
@@ -91,23 +91,23 @@ export default ({ auth }) => {
                                             <div className="catalogue-sidebar__dropdown">
                                                 <div className="catalogue-sidebar-dropdown__item">
                                                     <input type="radio" name="makasiny" id="makasiny" />
-                                                    <label className="catalogue-sidebar-dropdown-label" for="makasiny">Стелька 1</label>
+                                                    <label className="catalogue-sidebar-dropdown-label" htmlFor="makasiny">Стелька 1</label>
                                                 </div>
                                                 <div className="catalogue-sidebar-dropdown__item">
                                                     <input type="radio" name="botinki" id="botinki" />
-                                                    <label className="catalogue-sidebar-dropdown-label" for="botinki">Стелька 2</label>
+                                                    <label className="catalogue-sidebar-dropdown-label" htmlFor="botinki">Стелька 2</label>
                                                 </div>
                                                 <div className="catalogue-sidebar-dropdown__item">
                                                     <input type="radio" name="tufli" id="tufli" />
-                                                    <label className="catalogue-sidebar-dropdown-label" for="tufli">Стелька 3</label>
+                                                    <label className="catalogue-sidebar-dropdown-label" htmlFor="tufli">Стелька 3</label>
                                                 </div>
                                                 <div className="catalogue-sidebar-dropdown__item">
                                                     <input type="radio" name="krossovki" id="krossovki" />
-                                                    <label className="catalogue-sidebar-dropdown-label" for="krossovki">Стелька 4</label>
+                                                    <label className="catalogue-sidebar-dropdown-label" htmlFor="krossovki">Стелька 4</label>
                                                 </div>
                                                 <div className="catalogue-sidebar-dropdown__item">
                                                     <input type="radio" name="sapogi" id="sapogi" />
-                                                    <label className="catalogue-sidebar-dropdown-label" for="sapogi">Стелька 5</label>
+                                                    <label className="catalogue-sidebar-dropdown-label" htmlFor="sapogi">Стелька 5</label>
                                                 </div>
                                             </div>
                                         </li>
@@ -123,23 +123,23 @@ export default ({ auth }) => {
                                             <div className="catalogue-sidebar__dropdown">
                                                 <div className="catalogue-sidebar-dropdown__item">
                                                     <input type="radio" name="makasiny" id="makasiny" />
-                                                    <label className="catalogue-sidebar-dropdown-label" for="makasiny">Корсет 1</label>
+                                                    <label className="catalogue-sidebar-dropdown-label" htmlFor="makasiny">Корсет 1</label>
                                                 </div>
                                                 <div className="catalogue-sidebar-dropdown__item">
                                                     <input type="radio" name="botinki" id="botinki" />
-                                                    <label className="catalogue-sidebar-dropdown-label" for="botinki">Корсет 2</label>
+                                                    <label className="catalogue-sidebar-dropdown-label" htmlFor="botinki">Корсет 2</label>
                                                 </div>
                                                 <div className="catalogue-sidebar-dropdown__item">
                                                     <input type="radio" name="tufli" id="tufli" />
-                                                    <label className="catalogue-sidebar-dropdown-label" for="tufli">Корсет 3</label>
+                                                    <label className="catalogue-sidebar-dropdown-label" htmlFor="tufli">Корсет 3</label>
                                                 </div>
                                                 <div className="catalogue-sidebar-dropdown__item">
                                                     <input type="radio" name="krossovki" id="krossovki" />
-                                                    <label className="catalogue-sidebar-dropdown-label" for="krossovki">Корсет 4</label>
+                                                    <label className="catalogue-sidebar-dropdown-label" htmlFor="krossovki">Корсет 4</label>
                                                 </div>
                                                 <div className="catalogue-sidebar-dropdown__item">
                                                     <input type="radio" name="sapogi" id="sapogi" />
-                                                    <label className="catalogue-sidebar-dropdown-label" for="sapogi">Корсет 5</label>
+                                                    <label className="catalogue-sidebar-dropdown-label" htmlFor="sapogi">Корсет 5</label>
                                                 </div>
                                             </div>
                                         </li>
@@ -155,23 +155,23 @@ export default ({ auth }) => {
                                             <div className="catalogue-sidebar__dropdown">
                                                 <div className="catalogue-sidebar-dropdown__item">
                                                     <input type="radio" name="makasiny" id="makasiny" />
-                                                    <label className="catalogue-sidebar-dropdown-label" for="makasiny">Название 1</label>
+                                                    <label className="catalogue-sidebar-dropdown-label" htmlFor="makasiny">Название 1</label>
                                                 </div>
                                                 <div className="catalogue-sidebar-dropdown__item">
                                                     <input type="radio" name="botinki" id="botinki" />
-                                                    <label className="catalogue-sidebar-dropdown-label" for="botinki">Название 2</label>
+                                                    <label className="catalogue-sidebar-dropdown-label" htmlFor="botinki">Название 2</label>
                                                 </div>
                                                 <div className="catalogue-sidebar-dropdown__item">
                                                     <input type="radio" name="tufli" id="tufli" />
-                                                    <label className="catalogue-sidebar-dropdown-label" for="tufli">Название 3</label>
+                                                    <label className="catalogue-sidebar-dropdown-label" htmlFor="tufli">Название 3</label>
                                                 </div>
                                                 <div className="catalogue-sidebar-dropdown__item">
                                                     <input type="radio" name="krossovki" id="krossovki" />
-                                                    <label className="catalogue-sidebar-dropdown-label" for="krossovki">Название 4</label>
+                                                    <label className="catalogue-sidebar-dropdown-label" htmlFor="krossovki">Название 4</label>
                                                 </div>
                                                 <div className="catalogue-sidebar-dropdown__item">
                                                     <input type="radio" name="sapogi" id="sapogi" />
-                                                    <label className="catalogue-sidebar-dropdown-label" for="sapogi">Название 5</label>
+                                                    <label className="catalogue-sidebar-dropdown-label" htmlFor="sapogi">Название 5</label>
                                                 </div>
                                             </div>
                                         </li>
@@ -187,23 +187,23 @@ export default ({ auth }) => {
                                             <div className="catalogue-sidebar__dropdown">
                                                 <div className="catalogue-sidebar-dropdown__item">
                                                     <input type="radio" name="makasiny" id="makasiny" />
-                                                    <label className="catalogue-sidebar-dropdown-label" for="makasiny">Название 1</label>
+                                                    <label className="catalogue-sidebar-dropdown-label" htmlFor="makasiny">Название 1</label>
                                                 </div>
                                                 <div className="catalogue-sidebar-dropdown__item">
                                                     <input type="radio" name="botinki" id="botinki" />
-                                                    <label className="catalogue-sidebar-dropdown-label" for="botinki">Название 2</label>
+                                                    <label className="catalogue-sidebar-dropdown-label" htmlFor="botinki">Название 2</label>
                                                 </div>
                                                 <div className="catalogue-sidebar-dropdown__item">
                                                     <input type="radio" name="tufli" id="tufli" />
-                                                    <label className="catalogue-sidebar-dropdown-label" for="tufli">Название 3</label>
+                                                    <label className="catalogue-sidebar-dropdown-label" htmlFor="tufli">Название 3</label>
                                                 </div>
                                                 <div className="catalogue-sidebar-dropdown__item">
                                                     <input type="radio" name="krossovki" id="krossovki" />
-                                                    <label className="catalogue-sidebar-dropdown-label" for="krossovki">Название 4</label>
+                                                    <label className="catalogue-sidebar-dropdown-label" htmlFor="krossovki">Название 4</label>
                                                 </div>
                                                 <div className="catalogue-sidebar-dropdown__item">
                                                     <input type="radio" name="sapogi" id="sapogi" />
-                                                    <label className="catalogue-sidebar-dropdown-label" for="sapogi">Название 5</label>
+                                                    <label className="catalogue-sidebar-dropdown-label" htmlFor="sapogi">Название 5</label>
                                                 </div>
                                             </div>
                                         </li>
@@ -219,23 +219,23 @@ export default ({ auth }) => {
                                             <div className="catalogue-sidebar__dropdown">
                                                 <div className="catalogue-sidebar-dropdown__item">
                                                     <input type="radio" name="makasiny" id="makasiny" />
-                                                    <label className="catalogue-sidebar-dropdown-label" for="makasiny">Название 1</label>
+                                                    <label className="catalogue-sidebar-dropdown-label" htmlFor="makasiny">Название 1</label>
                                                 </div>
                                                 <div className="catalogue-sidebar-dropdown__item">
                                                     <input type="radio" name="botinki" id="botinki" />
-                                                    <label className="catalogue-sidebar-dropdown-label" for="botinki">Название 2</label>
+                                                    <label className="catalogue-sidebar-dropdown-label" htmlFor="botinki">Название 2</label>
                                                 </div>
                                                 <div className="catalogue-sidebar-dropdown__item">
                                                     <input type="radio" name="tufli" id="tufli" />
-                                                    <label className="catalogue-sidebar-dropdown-label" for="tufli">Название 3</label>
+                                                    <label className="catalogue-sidebar-dropdown-label" htmlFor="tufli">Название 3</label>
                                                 </div>
                                                 <div className="catalogue-sidebar-dropdown__item">
                                                     <input type="radio" name="krossovki" id="krossovki" />
-                                                    <label className="catalogue-sidebar-dropdown-label" for="krossovki">Название 4</label>
+                                                    <label className="catalogue-sidebar-dropdown-label" htmlFor="krossovki">Название 4</label>
                                                 </div>
                                                 <div className="catalogue-sidebar-dropdown__item">
                                                     <input type="radio" name="sapogi" id="sapogi" />
-                                                    <label className="catalogue-sidebar-dropdown-label" for="sapogi">Название 5</label>
+                                                    <label className="catalogue-sidebar-dropdown-label" htmlFor="sapogi">Название 5</label>
                                                 </div>
                                             </div>
                                         </li>
@@ -251,23 +251,23 @@ export default ({ auth }) => {
                                             <div className="catalogue-sidebar__dropdown">
                                                 <div className="catalogue-sidebar-dropdown__item">
                                                     <input type="radio" name="makasiny" id="makasiny" />
-                                                    <label className="catalogue-sidebar-dropdown-label" for="makasiny">Название 1</label>
+                                                    <label className="catalogue-sidebar-dropdown-label" htmlFor="makasiny">Название 1</label>
                                                 </div>
                                                 <div className="catalogue-sidebar-dropdown__item">
                                                     <input type="radio" name="botinki" id="botinki" />
-                                                    <label className="catalogue-sidebar-dropdown-label" for="botinki">Название 2</label>
+                                                    <label className="catalogue-sidebar-dropdown-label" htmlFor="botinki">Название 2</label>
                                                 </div>
                                                 <div className="catalogue-sidebar-dropdown__item">
                                                     <input type="radio" name="tufli" id="tufli" />
-                                                    <label className="catalogue-sidebar-dropdown-label" for="tufli">Название 3</label>
+                                                    <label className="catalogue-sidebar-dropdown-label" htmlFor="tufli">Название 3</label>
                                                 </div>
                                                 <div className="catalogue-sidebar-dropdown__item">
                                                     <input type="radio" name="krossovki" id="krossovki" />
-                                                    <label className="catalogue-sidebar-dropdown-label" for="krossovki">Название 4</label>
+                                                    <label className="catalogue-sidebar-dropdown-label" htmlFor="krossovki">Название 4</label>
                                                 </div>
                                                 <div className="catalogue-sidebar-dropdown__item">
                                                     <input type="radio" name="sapogi" id="sapogi" />
-                                                    <label className="catalogue-sidebar-dropdown-label" for="sapogi">Название 5</label>
+                                                    <label className="catalogue-sidebar-dropdown-label" htmlFor="sapogi">Название 5</label>
                                                 </div>
                                             </div>
                                         </li>

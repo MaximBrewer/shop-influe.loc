@@ -33,7 +33,7 @@ export default function ConfirmPassword(props) {
 
             <form onSubmit={submit}>
                 <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
+                    <InputLabel htmlhtmlFor="password" value="Password" />
 
                     <TextInput
                         id="password"

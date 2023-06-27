@@ -2,3 +2,6 @@
 @import "./slick-theme.css";
 @import "./style.css";
 @import "./mmenu.css";
+
+@tailwind components;
+@tailwind utilities;

@@ -6,9 +6,9 @@ import Email from "../../images/email.svg"
 import Phone from "../../images/phone.svg"
 import { Link } from "@inertiajs/react"
 
-export default () => {
+export default (props) => {
 
-    const { menus } = window.appdata
+    const { menus, email } = window.appdata
 
     return <footer>
         <div className="container-outer">
@@ -61,15 +61,14 @@ export default () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="footer-contacts-email-wrapper">
+                                <a className="footer-contacts-email-wrapper" target="_blank" href={`mailto:${email}`}>
                                     <div className="icon-wrapper center">
                                         <img src={Email} alt="" />
                                     </div>
                                     <div className="email-wrapper center fw-400-16-19">
-                                        <p>почта@почта.com</p>
+                                        <p>{email}</p>
                                     </div>
-
-                                </div>
+                                </a>
                             </div>
                         </li>
                     </ul>

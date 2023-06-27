@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Artisan;
@@ -25,6 +29,12 @@ Route::get('/', HomeController::class)->name('home');
 Route::get('/articles', [PostsController::class, 'index'])->name('articles');
 Route::get('/articles/{post}', [PostsController::class, 'show'])->name('post');
 
+Route::get('/contacts', ContactsController::class)->name('contacts');
+
+Route::get('/catalog', CatalogController::class)->name('catalog');
+Route::get('/catalog/{category}', CategoryController::class)->name('category');
+Route::get('/catalog/{category}/{product}', ProductController::class)->name('product');
+
 // Route::get('/catalog', function () {
 //     return Inertia::render('Catalog');
 // });
@@ -35,7 +45,7 @@ Route::get('/articles/{post}', [PostsController::class, 'show'])->name('post');
 //     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 // });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 
 Route::group(['prefix' => 'admin'], function () {

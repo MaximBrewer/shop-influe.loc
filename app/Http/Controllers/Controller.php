@@ -18,8 +18,10 @@ class Controller extends BaseController
     public function __construct()
     {
         $menus = ResourcesMenu::collection(Menu::whereNot('name', 'admin')->get());
+        $email = setting('contacts.email');
         View::share('appdata', compact(
-            'menus'
+            'menus',
+            'email'
         ));
     }
 
@@ -61,7 +63,6 @@ class Controller extends BaseController
         //     ];
         //     Session::put('favorites', $favorites);
         // }
-
         // Inertia::share('cart', new \App\Http\Resources\Cart($this->cart));
         // Inertia::share('favorites', [
         //     'trucks' => array_values((array)$favorites['trucks']),

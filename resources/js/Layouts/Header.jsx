@@ -5,15 +5,17 @@ import Phone from "../../images/phone.svg"
 import ChevronDown from "../../images/chevron-down.svg"
 import Whatsapp from "../../images/whatsapp.svg"
 import Insta from "../../images/insta.svg"
-import { Link } from "@inertiajs/react"
+import { Link, useForm } from "@inertiajs/react"
 import { useState } from "react"
-import { ArrowLeftOnRectangleIcon, XMarkIcon } from "@heroicons/react/24/solid"
+import { ArrowLeftOnRectangleIcon, ArrowRightOnRectangleIcon, XMarkIcon } from "@heroicons/react/24/solid"
 
 export default (props) => {
 
     const { menus } = window.appdata
     const { auth } = props
     const [mmenu, setMmenu] = useState(false)
+
+    const { post } = useForm({});
 
     return <>
         <header className="header">
@@ -25,7 +27,17 @@ export default (props) => {
                                 <Link href={item.link}>{item.title}</Link>
                             </li>)}
                         </ul>
-                        {auth.user ? <></> : <ul className="auth-navbar-list">
+                        {auth.user ? <ul className="auth-navbar-list">
+                            <li className="auth-navbar-list__item">
+                                <a className={`auth-navbar-link`} href="#" onClick={e => {
+                                    e.preventDefault();
+                                    post(route('logout'))
+                                }}>
+                                    <ArrowRightOnRectangleIcon className="logout-icon" />
+                                    <div className="auth-navbar-list__logout-label center">Выход</div>
+                                </a>
+                            </li>
+                        </ul> : <ul className="auth-navbar-list">
                             <li className="auth-navbar-list__item">
                                 <Link href={route('login')} className={`auth-navbar-link`}>
                                     <ArrowLeftOnRectangleIcon className="login-icon" />
