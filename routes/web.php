@@ -4,9 +4,11 @@ use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RefundController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +37,9 @@ Route::post('/contacts', [ContactsController::class, 'store'])->name('contacts.s
 Route::get('/catalog', CatalogController::class)->name('catalog');
 Route::get('/catalog/{category}', CategoryController::class)->name('category');
 Route::get('/catalog/{category}/{product}', ProductController::class)->name('product');
+
+Route::get('/payment', PaymentController::class)->name('payment');
+Route::get('/refund', RefundController::class)->name('refund');
 
 // Route::get('/catalog', function () {
 //     return Inertia::render('Catalog');

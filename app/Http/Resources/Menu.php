@@ -17,7 +17,7 @@ class Menu extends JsonResource
         $array = [
             'name' => $this->name
         ];
-        $array['items'] = MenuItem::collection($this->items);
+        $array['items'] = MenuItem::collection($this->items()->orderBy('order')->get());
         return $array;
     }
 }
