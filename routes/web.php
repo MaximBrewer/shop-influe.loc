@@ -57,3 +57,12 @@ Route::get('/migrate', function () {
     Artisan::call('migrate');
     return redirect('/');
 });
+
+
+
+Route::get('/clear', function () {
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('route:clear');
+    return redirect('/');
+});
