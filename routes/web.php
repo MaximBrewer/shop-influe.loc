@@ -30,6 +30,7 @@ Route::get('/articles', [PostsController::class, 'index'])->name('articles');
 Route::get('/articles/{post}', [PostsController::class, 'show'])->name('post');
 
 Route::get('/contacts', ContactsController::class)->name('contacts');
+Route::post('/contacts', [ContactsController::class, 'store'])->name('contacts.store');
 
 Route::get('/catalog', CatalogController::class)->name('catalog');
 Route::get('/catalog/{category}', CategoryController::class)->name('category');

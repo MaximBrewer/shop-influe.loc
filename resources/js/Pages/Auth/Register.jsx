@@ -6,6 +6,7 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
 import TopCategories from '@/Components/TopCategories';
+import Breadcrumbs from '@/Components/Breadcrumbs';
 
 export default function Register(props) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -30,7 +31,16 @@ export default function Register(props) {
     return (
         <Layout {...props}>
             <Head title="Register" />
-            <TopCategories />
+            <div className="catalogue-categories">
+                <div className="container-outer">
+                    <div className="catalogue-categories__outer">
+                        <div className="catalogue-categories__inner">
+                            {/* <TopCategories /> */}
+                            <Breadcrumbs {...props} />
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div className="registration-section">
                 <div className="container-outer">
                     <div className="registration-section__title catalogue-section__title center fw-700-45-55">
