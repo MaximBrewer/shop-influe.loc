@@ -35,8 +35,8 @@ Route::get('/contacts', ContactsController::class)->name('contacts');
 Route::post('/contacts', [ContactsController::class, 'store'])->name('contacts.store');
 
 Route::get('/catalog', CatalogController::class)->name('catalog');
-Route::get('/catalog/{category}', CategoryController::class)->name('category');
-Route::get('/catalog/{category}/{product}', ProductController::class)->name('product');
+Route::get('/catalog/{category}/{subcategory?}/{subsubcategory?}', CategoryController::class)->name('category');
+Route::get('/product/{product}', ProductController::class)->name('product');
 
 Route::get('/payment', PaymentController::class)->name('payment');
 Route::get('/refund', RefundController::class)->name('refund');

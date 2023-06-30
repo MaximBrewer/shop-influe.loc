@@ -1,72 +1,86 @@
+import Breadcrumbs from '@/Components/Breadcrumbs';
+import Paginate from '@/Components/Paginate';
+import ProductSlider from '@/Components/ProductSlider';
 import Layout from '@/Layouts/Layout';
-import PageTop from '@/Layouts/PageTop';
-import { Head } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
+import Slider from 'react-slick';
+import InStock from "../../images/in-stock-tick.svg"
+import Phone from "../../images/phone.svg"
+import MastercardLogo from "../../images/mastercard-logo.svg"
+import VisaLogo from "../../images/visa-logo.svg"
+import ScaleIcon from "../../images/scale-icon.svg"
+import Money from "../../images/money.svg"
+import Avatar from "../../images/avatar.svg"
+import CatalogueItemPhoto from "../../images/catalogue-item-photo.svg"
+import Cart from '@/Icons/Cart';
+import Heart from '@/Icons/Heart';
+
+
+
+
+
+
 
 export default (props) => {
+
+    const { pagetitle, product } = props
+
+    const price = '4444';
+    console.log(product.data)
+
     return (
-        <Layout
-            {...props}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Dashboard</h2>}
-        >
-            <Head title="Dashboard" />
-            <PageTop />
+        <Layout {...props} >
+            <Head title={pagetitle} />
+            <div className="catalogue-categories">
+                <div className="container-outer">
+                    <div className="catalogue-categories__outer">
+                        <div className="catalogue-categories__inner">
+                            {/* <TopCategories /> */}
+                            <Breadcrumbs {...props} />
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div className="product-description">
                 <div className="container-outer">
                     <div className="product-description__outer">
                         <div className="product-description__inner">
-                            <div className="product-slider-wrapper">
-                                <div className="product-slider">
-                                    <div className="product-slider__main-img slider-nav">
-                                        <img width="100%" height="100%" src="./assets/images/product-img.svg" alt="./assets/images/product-img.svg" />
-                                    </div>
-                                    <ul className="product-slider__nav slider-for">
-                                        <li className="product-slider__nav-item">
-                                            <img src="./assets/images/product-img.svg" alt="./assets/images/product-img.svg" />
-                                        </li>
-                                        <li className="product-slider__nav-item">
-                                            <img src="./assets/images/product-img.svg" alt="./assets/images/product-img.svg" />
-                                        </li>
-                                        <li className="product-slider__nav-item">
-                                            <img src="./assets/images/product-img.svg" alt="./assets/images/product-img.svg" />
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                            <ProductSlider {...props} />
                             <div className="product-description__purchase-details">
                                 <div className="product-title fw-700-35-42">
-                                    <p>Название обуви<br /> вторая строчка если длинное</p>
+                                    <p>{pagetitle}</p>
                                 </div>
                                 <div className="product-description__row-one">
                                     <div className="in-stock-label">
                                         <div className="in-stock-label__tick center">
-                                            <img src="./assets/images/in-stock-tick.svg" alt="./assets/images/in-stock-tick.svg" />
+                                            <img src={InStock} alt="" />
                                         </div>
                                         <div className="in-stock-label__txt fw-400-14-17">
                                             <p>В наличии</p>
                                         </div>
                                     </div>
                                     <div className="articul fw-400-14-17">
-                                        <p>Артикул:&nbsp;</p><span className="articul__code">00000000000000</span>
+                                        <p>Артикул:&nbsp;</p><span className="articul__code">{product.data.article}</span>
                                     </div>
                                 </div>
                                 <div className="product-description__card">
                                     <div className="product-description__card-inner">
                                         <div className="product-description__card-left">
-                                            <div className="product-description__card-brand-wrapper">
+                                            {/* <div className="product-description__card-brand-wrapper">
                                                 <div className="product-description__card-brand-label fw-700-14-17">
                                                     <p>Бренд</p>
                                                 </div>
                                                 <div className="product-description__card-brand-title fw-400-14-17">
                                                     <p>Название</p>
                                                 </div>
-                                            </div>
+                                            </div> */}
                                             <div className="product-description__card-size-wrapper">
                                                 <div className="product-description__card-size-label fw-700-14-17">
                                                     <p>Размер</p>
                                                 </div>
-                                                <div className="product-description__card-size-link fw-400-14-17">
+                                                {/* <div className="product-description__card-size-link fw-400-14-17">
                                                     <a href="">Подобрать размер</a>
-                                                </div>
+                                                </div> */}
                                             </div>
                                             <div className="product-description__card-size-flexbox">
                                                 <div className="product-description__product-size-item fw-400-12-14">
@@ -100,33 +114,33 @@ export default (props) => {
                                                     <p>41</p>
                                                 </div>
                                             </div>
-                                            <div className="product-description__card-purchase-label fw-700-14-17">
+                                            {/* <div className="product-description__card-purchase-label fw-700-14-17">
                                                 <p>Оплата</p>
                                             </div>
                                             <div className="product-description__card-purchase-flexbox">
                                                 <div className="product-description__card-purchase-item center">
-                                                    <img src="./assets/images/visa-logo.svg" alt="./assets/images/visa-logo.svg" />
+                                                    <img src={VisaLogo} alt="" />
                                                 </div>
                                                 <div className="product-description__card-purchase-item center">
-                                                    <img src="./assets/images/mastercard-logo.svg" alt="./assets/images/mastercard-logo.svg" />
+                                                    <img src={MastercardLogo} alt="" />
                                                 </div>
                                                 <div className="product-description__card-purchase-item center">
-                                                    <img src="./assets/images/money.svg" alt="./assets/images/money.svg" />
+                                                    <img src={Money} alt="" />
                                                 </div>
-                                            </div>
+                                            </div> */}
                                         </div>
                                         <div className="product-description__card-right">
-                                            <div className="product-description__card-delivery-wrapper">
+                                            {/* <div className="product-description__card-delivery-wrapper">
                                                 <div className="product-description__card-delivery-label fw-700-14-17">
                                                     <p>Доставка</p>
                                                 </div>
                                                 <div className="product-description__card-delivery-desc fw-400-14-17">
                                                     <p>Описание и условие доставки</p>
                                                 </div>
-                                            </div>
+                                            </div> */}
                                             <div className="btn-secondary product-description__btn-secondary">
                                                 <div className="product-description__btn-secondary-phone-icon-wrapper">
-                                                    <img src="./assets/images/phone.svg" alt="./assets/images/phone.svg" />
+                                                    <img src={Phone} alt="" />
                                                 </div>
                                                 <div className="product-description__btn-secondary-txt-wrapper fw-700-16-20">
                                                     <p>Заказать звонок</p>
@@ -137,24 +151,18 @@ export default (props) => {
                                 </div>
                                 <div className="product-description__line"></div>
                                 <div className="product-description__row-two">
-                                    <div className="catalogue__item-price fw-700-18-22 center">
-                                        <p>40 000 тг</p>
-                                    </div>
+                                    <div className="catalogue__item-price fw-700-18-22 center mr-4">{price}</div>
                                     <div className="purchase-btn-group product-description__purchase-btn-group center">
                                         <div className="btn-purchase product-description__btn-purchase">
-                                            <div className="btn-purchase__cart-icon">
-                                                <ion-icon name="cart-outline" className="cart-icon"></ion-icon>
-                                            </div>
-                                            <div className="btn-purchase__txt fw-700-16-20">
-                                                <p>Купить</p>
-                                            </div>
+                                            <Cart className={`w-5 h-5 mr-2`} />
+                                            <div className="btn-purchase__txt fw-700-16-20">Купить</div>
                                         </div>
                                         <div className="heart-icon-wrapper product-description__heart-icon-wrapper">
-                                            <ion-icon name="heart-outline"></ion-icon>
+                                            <Heart className={`w-4 h-4`} />
                                         </div>
-                                        <div className="product-description__scales-icon-wrapper scales-icon-wrapper">
-                                            <img src="./assets/images/scale-icon.svg" alt="./assets/images/scale-icon.svg" />
-                                        </div>
+                                        {/* <div className="product-description__scales-icon-wrapper scales-icon-wrapper">
+                                            <img src={ScaleIcon} alt="" />
+                                        </div> */}
                                     </div>
                                 </div>
                             </div>
@@ -166,10 +174,10 @@ export default (props) => {
             <div className="product-review-tab-wrapper product-review-tab-wrapper_mb34">
                 <div className="container-outer">
                     <div className="product-review-tab-wrapper__tab-line fw-700-20-24">
-                        <button className="tab-item product-active" onclick="openProductReview(event,'product-desc');">
+                        <button className="tab-item product-active">
                             Описание
                         </button>
-                        <button className="tab-item" onclick="openProductReview(event,'product-feedback');">
+                        <button className="tab-item">
                             Отзывы
                         </button>
                     </div>
@@ -210,7 +218,7 @@ export default (props) => {
                                         <li className="comment-wrapper__comment comment">
                                             <div className="comment__left">
                                                 <div className="comment__photo">
-                                                    <img src="./assets/images/avatar.svg" alt="./assets/images/avatar.svg" />
+                                                    <img src={Avatar} alt="" />
                                                 </div>
                                                 <div className="comment__content ">
                                                     <div className="comment__fullname fw-500-16-22">
@@ -249,7 +257,7 @@ export default (props) => {
                                         <li className="comment-wrapper__comment comment">
                                             <div className="comment__left">
                                                 <div className="comment__photo">
-                                                    <img src="./assets/images/avatar.svg" alt="./assets/images/avatar.svg" />
+                                                    <img src={Avatar} alt="" />
                                                 </div>
                                                 <div className="comment__content ">
                                                     <div className="comment__fullname fw-500-16-22">
@@ -288,7 +296,7 @@ export default (props) => {
                                         <li className="comment-wrapper__comment comment">
                                             <div className="comment__left">
                                                 <div className="comment__photo">
-                                                    <img src="./assets/images/avatar.svg" alt="./assets/images/avatar.svg" />
+                                                    <img src={Avatar} alt="" />
                                                 </div>
                                                 <div className="comment__content ">
                                                     <div className="comment__fullname fw-500-16-22">
@@ -327,7 +335,7 @@ export default (props) => {
                                         <li className="comment-wrapper__comment comment">
                                             <div className="comment__left">
                                                 <div className="comment__photo">
-                                                    <img src="./assets/images/avatar.svg" alt="./assets/images/avatar.svg" />
+                                                    <img src={Avatar} alt="" />
                                                 </div>
                                                 <div className="comment__content ">
                                                     <div className="comment__fullname fw-500-16-22">
@@ -366,7 +374,7 @@ export default (props) => {
                                         <li className="comment-wrapper__comment comment">
                                             <div className="comment__left">
                                                 <div className="comment__photo">
-                                                    <img src="./assets/images/avatar.svg" alt="./assets/images/avatar.svg" />
+                                                    <img src={Avatar} alt="" />
                                                 </div>
                                                 <div className="comment__content ">
                                                     <div className="comment__fullname fw-500-16-22">
@@ -424,7 +432,7 @@ export default (props) => {
                                 <li className="catalogue-item">
                                     <div className="catalogue__item-photo-wrapper">
                                         <div className="catalogue__item-photo">
-                                            <img width="100%" src="./assets/images/catalogue-item-photo.svg" alt="./assets/images/catalogue-item-photo.svg" />
+                                            <img width="100%" src={CatalogueItemPhoto} alt="" />
                                         </div>
                                     </div>
                                     <div className="catalogue__item-bottom">
@@ -472,7 +480,7 @@ export default (props) => {
                                 <li className="catalogue-item">
                                     <div className="catalogue__item-photo-wrapper">
                                         <div className="catalogue__item-photo">
-                                            <img width="100%" src="./assets/images/catalogue-item-photo.svg" alt="./assets/images/catalogue-item-photo.svg" />
+                                            <img width="100%" src={CatalogueItemPhoto} alt="" />
                                         </div>
                                     </div>
                                     <div className="catalogue__item-bottom">
@@ -520,7 +528,7 @@ export default (props) => {
                                 <li className="catalogue-item">
                                     <div className="catalogue__item-photo-wrapper">
                                         <div className="catalogue__item-photo">
-                                            <img width="100%" src="./assets/images/catalogue-item-photo.svg" alt="./assets/images/catalogue-item-photo.svg" />
+                                            <img width="100%" src={CatalogueItemPhoto} alt="" />
                                         </div>
                                     </div>
                                     <div className="catalogue__item-bottom">
@@ -568,7 +576,7 @@ export default (props) => {
                                 <li className="catalogue-item">
                                     <div className="catalogue__item-photo-wrapper">
                                         <div className="catalogue__item-photo">
-                                            <img width="100%" src="./assets/images/catalogue-item-photo.svg" alt="./assets/images/catalogue-item-photo.svg" />
+                                            <img width="100%" src={CatalogueItemPhoto} alt="" />
                                         </div>
                                     </div>
                                     <div className="catalogue__item-bottom">
@@ -616,7 +624,7 @@ export default (props) => {
                                 <li className="catalogue-item">
                                     <div className="catalogue__item-photo-wrapper">
                                         <div className="catalogue__item-photo">
-                                            <img width="100%" src="./assets/images/catalogue-item-photo.svg" alt="./assets/images/catalogue-item-photo.svg" />
+                                            <img width="100%" src={CatalogueItemPhoto} alt="" />
                                         </div>
                                     </div>
                                     <div className="catalogue__item-bottom">
@@ -664,7 +672,7 @@ export default (props) => {
                                 <li className="catalogue-item">
                                     <div className="catalogue__item-photo-wrapper">
                                         <div className="catalogue__item-photo">
-                                            <img width="100%" src="./assets/images/catalogue-item-photo.svg" alt="./assets/images/catalogue-item-photo.svg" />
+                                            <img width="100%" src={CatalogueItemPhoto} alt="" />
                                         </div>
                                     </div>
                                     <div className="catalogue__item-bottom">
@@ -712,7 +720,7 @@ export default (props) => {
                                 <li className="catalogue-item">
                                     <div className="catalogue__item-photo-wrapper">
                                         <div className="catalogue__item-photo">
-                                            <img width="100%" src="./assets/images/catalogue-item-photo.svg" alt="./assets/images/catalogue-item-photo.svg" />
+                                            <img width="100%" src={CatalogueItemPhoto} alt="" />
                                         </div>
                                     </div>
                                     <div className="catalogue__item-bottom">
@@ -760,7 +768,7 @@ export default (props) => {
                                 <li className="catalogue-item">
                                     <div className="catalogue__item-photo-wrapper">
                                         <div className="catalogue__item-photo">
-                                            <img width="100%" src="./assets/images/catalogue-item-photo.svg" alt="./assets/images/catalogue-item-photo.svg" />
+                                            <img width="100%" src={CatalogueItemPhoto} alt="" />
                                         </div>
                                     </div>
                                     <div className="catalogue__item-bottom">
