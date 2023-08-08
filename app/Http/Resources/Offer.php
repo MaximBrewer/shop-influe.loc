@@ -4,9 +4,8 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Facades\Lang;
 
-class Product extends JsonResource
+class Offer extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,9 +15,7 @@ class Product extends JsonResource
     public function toArray(Request $request): array
     {
         $arr = parent::toArray($request);
-        $arr['stock'] = 'Наличие';
-        $arr['offers'] = Offer::collection($this->offers);
-        $arr['reviews'] = 12 . ' ' . Lang::choice('отзыв|отзыва|отзывов', 12, [], 'ru');
+        $arr['specifications'] = Specification::collection($this->specifications);
         return $arr;
     }
 }

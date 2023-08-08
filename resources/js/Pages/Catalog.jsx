@@ -33,7 +33,7 @@ export default (props) => {
                                     <p>{pagetitle}</p>
                                 </div>
                                 <div className="catalogue-wrapper">
-                                    <ul className="catalogue-sidebar fw-700-16-20 min-h-[24rem] overflow-hidden">
+                                    <ul className="catalogue-sidebar fw-700-14-17 min-h-[24rem] overflow-hidden">
                                         {categories.data.map((category, cdx) => <li key={cdx} className={`catalogue-sidebar__item ${catId === category.id ? `active` : ``}`}>
                                             <div className="catalogue-sidebar__item-inner" onClick={e => setCatId(prev => prev === category.id ? null : category.id)}>
                                                 <div className="catalogue-sidebar__title overflow-hidden break-words mr-1">
@@ -61,7 +61,7 @@ export default (props) => {
                                                 category: category.slug
                                             })} className="catalogue-grid__item rounded-[1.25rem] overflow-hidden">
                                                 <div className="catalogue-item-img-wrapper pt-[66.66%] bg-no-repeat bg-center bg-cover" style={{ backgroundImage: `url('${category.image}')` }} />
-                                                <div className="catalogue-item-title center fw-600-22-27 text-center">
+                                                <div className="catalogue-item-title center fw-700-16-20 text-center">
                                                     <p>{category.name}</p>
                                                 </div>
                                             </Link>
