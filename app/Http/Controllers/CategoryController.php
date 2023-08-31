@@ -67,7 +67,7 @@ class CategoryController extends Controller
             'pagetitle' => $category->name,
             'category' => new ResourcesCategory($subcategory ?: $category),
             'total' => 'Показано ' . $products->count() . ' ' . Lang::choice('товар|товара|товаров', $products->count(), [], 'ru'),
-            'products' => ResourcesProduct::collection($products->paginate()),
+            'products' => ResourcesProduct::collection($products->paginate(12)),
             'breadcrumbs' => $breadcrumbs,
             // 'posts' => Post::paginate(6)
         ]);

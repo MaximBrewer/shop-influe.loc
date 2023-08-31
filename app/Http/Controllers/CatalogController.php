@@ -14,6 +14,7 @@ class CatalogController extends Controller
      */
     public function __invoke(Request $request)
     {
+        $topCategory = Category::whereNull('parent_id')->firstOrFail();
         return Inertia::render('Catalog', [
             'pagetitle' => __('Каталог'),
             'breadcrumbs' => [
@@ -25,7 +26,7 @@ class CatalogController extends Controller
                     'text' => 'Каталог'
                 ]
             ],
-            'categories' => ResourcesCategory::collection(Category::whereNull('parent_id')->with('children')->get())
+            'categories' => ResourcesCategory::collection(Category::where('parent_id', $topCategory->id)->with('children')->get())
         ]);
     }
 }

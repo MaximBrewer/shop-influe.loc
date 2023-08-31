@@ -15,7 +15,6 @@ class Specification extends JsonResource
     public function toArray(Request $request): array
     {
         $arr = parent::toArray($request);
-        $arr['specifications'] = Specification::collection($this->specifications);
         return $arr;
     }
 }

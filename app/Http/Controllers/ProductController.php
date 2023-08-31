@@ -48,12 +48,12 @@ class ProductController extends Controller
             }
         }
 
-        $breadcrumbs[] = [
-            'text' => $product->title
-        ];
+        // $breadcrumbs[] = [
+        //     'text' => $product->title
+        // ];
 
         return Inertia::render('Product', [
-            'pagetitle' => __('Product'),
+            'pagetitle' => $product->title,
             'breadcrumbs' => $breadcrumbs,
             'product' => new ResourcesProduct($product)
         ]);

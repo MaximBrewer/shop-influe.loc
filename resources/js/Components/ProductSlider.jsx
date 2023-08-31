@@ -35,7 +35,7 @@ export default (props) => {
         setNav2(slider2.current);
     }, []);
 
-    return images.length ? <div className="product-slider-wrapper">
+    return <div className="product-slider-wrapper">
         <div className="product-slider">
             <Slider {...settings} className="product-slider" ref={slider1}>
                 {images.map((image, idx) => <div key={idx} className="slick-slide p-4">
@@ -50,5 +50,5 @@ export default (props) => {
                 </div>)}
             </Slider> : ``}
         </div >
-    </div > : ``
+    </div>
 }

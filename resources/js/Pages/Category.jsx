@@ -7,7 +7,7 @@ export default (props) => {
 
     const { pagetitle, category, products, total } = props
 
-    console.log(category, products)
+    console.log(products)
 
     return (
         <Layout {...props} >
@@ -335,19 +335,24 @@ export default (props) => {
                         <div className="catalogue__grid">
                             <ul className="catalogue__grid-inner">
                                 {products.data.map((product, pdx) => <li key={pdx} className="catalogue__item">
-                                    {product.images.length ? <div className="catalogue__item-photo-wrapper">
+                                    <div className="catalogue__item-photo-wrapper">
                                         <Link className="catalogue__item-photo" href={route('product', {
                                             product: product.id
                                         })}>
-                                            <img src={product.images[0]} alt={product.name} className={`w-full`} />
+                                            {product.images.length
+                                                ? <div className='pt-[100%] bg-no-repeat bg-center bg-cover' style={{ backgroundImage: `url('${product.images[0]}')` }} />
+                                                : <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-full h-auto text-gray-300">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                                                </svg>
+                                            }
                                         </Link>
-                                    </div> : ``}
+                                    </div>
                                     <div className="catalogue__item-bottom">
                                         <div className="catalogue__item-bottom-inner">
                                             <Link className="catalogue__item-title fw-600-16-19" href={route('product', {
                                                 product: product.id
                                             })}>
-                                                <p>{product.name}</p>
+                                                <p>{product.title}</p>
                                             </Link>
                                             <div className="catalogue__item-rating">
                                                 <div className="catalogue__stars gap-px">
@@ -366,7 +371,7 @@ export default (props) => {
                                                 <p>{product.excerpt}</p>
                                             </div>
                                             {product.offers.length ? <div className="catalogue__item-price fw-700-18-22">
-                                                <p>{product.offers[0].prices[0].value} тг</p>
+                                                {product.offers[0].prices.length ? <p>{product.offers[0].prices.find(el => el.currency == 'тен' || el.currency == 'KZT').value} тг</p> : ``}
                                             </div> : ``}
                                             <div className="cart-icon-wrapper catalogue__cart-icon-wrapper">
                                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
