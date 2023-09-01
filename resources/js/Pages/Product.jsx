@@ -125,7 +125,7 @@ export default (props) => {
     }, [product])
 
     useEffect(() => {
-
+        console.log(specifications)
         let price = null;
         if (offer) {
             const f = {};
@@ -147,6 +147,7 @@ export default (props) => {
     }, [offer, specifications])
 
     useEffect(() => {
+        console.log(spFilter)
         let offers = [...product.data.offers];
         for (let s of specifications) {
             offers = offers.filter(el => s.values[spFilter[s.id]] && s.values[spFilter[s.id]].offers.indexOf(el.id) > -1)
