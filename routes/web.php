@@ -132,3 +132,9 @@ Route::get('/clear', function () {
     Artisan::call('route:clear');
     return redirect('/');
 });
+
+
+Route::get('/migrate', function () {
+    Artisan::call('migrate');
+    return redirect('/');
+});
