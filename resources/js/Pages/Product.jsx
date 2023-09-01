@@ -127,16 +127,16 @@ export default (props) => {
     useEffect(() => {
         let price = null;
         if (offer) {
-            const f = {};
-            for (let s of specifications) {
-                for (let vIndex in s.values) {
-                    let v = s.values[vIndex]
-                    if (v.offers.indexOf(offer.id) > -1) {
-                        f[s.id] = vIndex
-                    }
-                }
-            }
-            setSpFilter(f)
+            // const f = {};
+            // for (let s of specifications) {
+            //     for (let vIndex in s.values) {
+            //         let v = s.values[vIndex]
+            //         if (v.offers.indexOf(offer.id) > -1) {
+            //             f[s.id] = vIndex
+            //         }
+            //     }
+            // }
+            // setSpFilter(f)
             if (offer.prices.length) {
                 var priceIndex = offer.prices.findIndex(el => el.currency == 'тен' || el.currency == 'KZT');
                 if (priceIndex > -1) price = offer.prices[priceIndex].value
