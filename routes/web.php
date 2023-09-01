@@ -70,6 +70,7 @@ Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
+
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::post('/cart/subtract', [CartController::class, 'subtract'])->name('cart.subtract');
@@ -118,4 +119,16 @@ Route::middleware('auth')->group(function () {
         // Route::post('/avatar', [CabinetController::class, 'avatar'])->name('avatar');
         // Route::post('/logotip', [CabinetController::class, 'logotip'])->name('logotip');
     });
+});
+
+Route::get('/clear', function () {
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('route:clear');
+    return redirect('/');
+});
+
+Route::get('/migrate', function () {
+    Artisan::call('migrate');
+    return redirect('/');
 });
