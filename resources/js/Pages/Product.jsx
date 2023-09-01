@@ -2,7 +2,7 @@ import Breadcrumbs from '@/Components/Breadcrumbs';
 import Paginate from '@/Components/Paginate';
 import ProductSlider from '@/Components/ProductSlider';
 import Layout from '@/Layouts/Layout';
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, router, useForm } from '@inertiajs/react';
 import Slider from 'react-slick';
 import InStock from "../../images/in-stock-tick.svg"
 import Phone from "../../images/phone.svg"
@@ -15,18 +15,84 @@ import CatalogueItemPhoto from "../../images/catalogue-item-photo.svg"
 import Cart from '@/Icons/Cart';
 import Heart from '@/Icons/Heart';
 import { useEffect, useRef, useState } from 'react';
+import { useLayout } from '@/Contexts/LayoutContext';
+import parse from "html-react-parser"
+import ProductTizer from '@/Components/ProductTizer';
+import InputError from '@/Components/InputError';
+import Star from '@/Icons/Star';
 
 
 export default (props) => {
 
-    const { pagetitle, product } = props
+    const { pagetitle, product, auth, cart, favorites } = props
 
+    const { priceFormat, moment } = useLayout()
 
     const [price, setPrice] = useState(null)
     const [offer, setOffer] = useState(null)
+    const [tab, setTab] = useState(product.data.body ? 0 : 1)
 
     const [specifications, setSpecifications] = useState([])
     const [spFilter, setSpFilter] = useState({})
+
+    const add = (offer) => {
+        if (!offer) return;
+        router.post(route(`cart.add`), {
+            item: offer.id
+        }, {
+            preserveScroll: true
+        })
+    }
+
+    const deleteItem = (offer) => {
+        if (!offer) return;
+        router.post(route(`cart.delete`), {
+            item: offer.id
+        }, {
+            preserveScroll: true
+        })
+    }
+
+    const subtract = (offer) => {
+        if (!offer) return;
+        router.post(route(`cart.subtract`), {
+            item: offer.id
+        }, {
+            preserveScroll: true
+        })
+    }
+
+    const favorite = () => {
+        if (auth.user)
+            router.patch(route(`cabinet.favorite.toggle`), {
+                item: product.data.id
+            }, {
+                preserveScroll: true
+            })
+        else
+            router.patch(route(`favorite.toggle`), {
+                item: product.data.id
+            }, {
+                preserveScroll: true
+            })
+    }
+
+
+    const { data, setData, post, processing, errors, reset } = useForm({
+        product_id: product.data.id,
+        name: '',
+        email: '',
+        rate: 5,
+        text: ''
+    });
+
+    const submit = (e) => {
+        e.preventDefault();
+        post(route('reviews.store'), {
+            preserveScroll: true
+        });
+    };
+
 
     useEffect(() => {
         if (product.data.offers.length) {
@@ -59,7 +125,7 @@ export default (props) => {
     }, [product])
 
     useEffect(() => {
-        console.log(offer)
+
         let price = null;
         if (offer) {
             const f = {};
@@ -113,14 +179,12 @@ export default (props) => {
                                     <p>{pagetitle}</p>
                                 </div>
                                 <div className="product-description__row-one">
-                                    <div className="in-stock-label">
+                                    {offer ? <div className="in-stock-label">
                                         <div className="in-stock-label__tick center">
                                             <img src={InStock} alt="" />
                                         </div>
-                                        <div className="in-stock-label__txt fw-400-14-17">
-                                            <p>В наличии</p>
-                                        </div>
-                                    </div>
+                                        {offer.quantity ? <div className="in-stock-label__txt fw-400-14-17">В наличии</div> : <div className="in-stock-label__txt fw-400-14-17">Под заказ</div>}
+                                    </div> : ``}
                                     <div className="articul fw-400-14-17">
                                         <p>Артикул:&nbsp;</p><span className="articul__code">{product.data.article}</span>
                                     </div>
@@ -150,7 +214,7 @@ export default (props) => {
                                                         const spFilter = { ...prev }
                                                         spFilter[sp.id] = vdx
                                                         return spFilter
-                                                    })} className={`product-description__product-size-item fw-400-12-14 ${spFilter[sp.id] == vdx ? `bg-violet-900 text-white` : ``}`}>
+                                                    })} className={`product-description__product-size-item fw-400-12-14 ${spFilter[sp.id] == vdx ? `bg-primary-500 text-white` : ``}`}>
                                                         <p>{v.value}</p>
                                                     </div>)}
                                                 </div>
@@ -192,14 +256,25 @@ export default (props) => {
                                 </div>
                                 <div className="product-description__line"></div>
                                 <div className="product-description__row-two">
-                                    <div className="catalogue__item-price fw-700-18-22 center mr-4">{price && offer && offer.quantity ? price : `Нет предложения`}</div>
+                                    <div className="catalogue__item-price fw-700-18-22 center mr-4">{price && offer && offer.quantity ? priceFormat(price) : `Нет предложения`}</div>
                                     <div className="purchase-btn-group product-description__purchase-btn-group center">
-                                        <div className="btn-purchase product-description__btn-purchase">
-                                            <Cart className={`w-5 h-5 mr-2`} />
-                                            <div className="btn-purchase__txt fw-700-16-20">Купить</div>
-                                        </div>
-                                        <div className="heart-icon-wrapper product-description__heart-icon-wrapper">
-                                            <Heart className={`w-4 h-4`} />
+                                        {offer && offer.quantity ? <>
+                                            {cart.items.findIndex(el => el.offer.id == offer.id) < 0 ? <>
+                                                <div className="btn-purchase product-description__btn-purchase" onClick={() => add(offer)}>
+                                                    <Cart className={`w-5 h-5 mr-2`} />
+                                                    <div className="btn-purchase__txt fw-700-16-20">Купить</div>
+                                                </div>
+                                            </> : <Link href={route('cart.index')}>
+                                                <div className="btn-purchase product-description__btn-purchase">
+                                                    <Cart className={`w-5 h-5 mr-2`} />
+                                                    <div className="btn-purchase__txt fw-700-16-20">Перейти в корзину</div>
+                                                </div>
+                                            </Link>}
+                                        </> : ``}
+                                        <div className={`heart-icon-wrapper product-description__heart-icon-wrapper text-primary-500`} onClick={() => {
+                                            favorite()
+                                        }}>
+                                            <Heart className={`w-4 h-4`} filled={favorites.indexOf(product.data.id) > -1} />
                                         </div>
                                         {/* <div className="product-description__scales-icon-wrapper scales-icon-wrapper">
                                             <img src={ScaleIcon} alt="" />
@@ -211,31 +286,25 @@ export default (props) => {
                     </div>
                 </div>
             </div>
-
-            <div className="product-review-tab-wrapper product-review-tab-wrapper_mb34">
+            <div className="product-review-tab-wrapper pb-20">
                 <div className="container-outer">
                     <div className="product-review-tab-wrapper__tab-line fw-700-20-24">
-                        <button className="tab-item product-active">
-                            Описание
-                        </button>
-                        <button className="tab-item">
-                            Отзывы
-                        </button>
+                        {product.data.body ? <button className={`tab-item ${tab === 0 ? `product-active` : ``}`} onclick={e => setTab(0)}>Описание</button> : ``}
+                        <button className={`tab-item ${tab === 1 ? `product-active` : ``}`} onclick={e => setTab(0)}>Отзывы</button>
                     </div>
                     <div className="product-review-tab-wrapper__bottom-section">
                         <div className="product-review-tab-wrapper__bottom-section-inner">
                             <ul className="product-review-tab-wrapper__bottom-section-list">
-                                <ul id="product-desc" className="product-review-tab-wrapper__bottom-list-item">
+                                <ul className="product-review-tab-wrapper__bottom-list-item" style={{ display: tab === 0 ? `` : `none` }}>
                                     <li className="product-review-tab-wrapper__bottom-section-item">
                                         <div className="product-review-tab-wrapper__bottom-section-title fw-600-20-24">
                                             <p>Основное</p>
                                         </div>
                                         <div className="product-review-tab-wrapper__bottom-section-desc fw-400-16-19">
-                                            <p>Идейные соображения высшего порядка, а также реализация намеченных плановых заданий играет важную роль в формировании систем массового участия. Равным образом постоянное информационно-пропагандистское обеспечение нашей деятельности представляет собой интересный эксперимент проверки существенных финансовых и административных условий. Товарищи! консультация с широким активом играет важную роль в формировании существенных финансовых и административных условий. С другой стороны новая модель организационной деятельности позволяет выполнять важные задания по разработке форм развития. Разнообразный и богатый опыт новая модель организационной деятельности в значительной степени обуславливает создание новых предложений.
-                                            </p>
+                                            {parse(product.data.body ?? ``)}
                                         </div>
                                     </li>
-                                    <li className="product-review-tab-wrapper__bottom-section-item">
+                                    {/* <li className="product-review-tab-wrapper__bottom-section-item">
                                         <div className="product-review-tab-wrapper__bottom-section-title fw-600-20-24">
                                             <p>Характеристики</p>
                                         </div>
@@ -252,217 +321,86 @@ export default (props) => {
                                             <p>Идейные соображения высшего порядка, а также реализация намеченных плановых заданий играет важную роль в формировании систем массового участия. Равным образом постоянное информационно-пропагандистское обеспечение нашей деятельности представляет собой интересный эксперимент проверки существенных финансовых и административных условий. Товарищи! консультация с широким активом играет важную роль в формировании существенных финансовых и административных условий. С другой стороны новая модель организационной деятельности позволяет выполнять важные задания по разработке форм развития. Разнообразный и богатый опыт новая модель организационной деятельности в значительной степени обуславливает создание новых предложений.
                                             </p>
                                         </div>
-                                    </li>
+                                    </li> */}
                                 </ul>
-                                <div id="product-feedback" className="product-review-tab-wrapper__bottom-list-item" style={{ display: `none` }}>
+                                <div className="product-review-tab-wrapper__bottom-list-item" style={{ display: tab === 1 ? `` : `none` }}>
                                     <ul className="comment-wrapper product-review-tab-wrapper__comment-wrapper">
-                                        <li className="comment-wrapper__comment comment">
+                                        {product.data.reviews.map((review, rdx) => <li key={rdx} className="comment-wrapper__comment comment">
                                             <div className="comment__left">
                                                 <div className="comment__photo">
-                                                    <img src={Avatar} alt="" />
+                                                    <img src={review.avatar} alt="" />
                                                 </div>
                                                 <div className="comment__content ">
-                                                    <div className="comment__fullname fw-500-16-22">
-                                                        <p>Фамилия Имя</p>
-                                                    </div>
-                                                    <div className="comment__txt fw-400-16-19">
-                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
-                                                    </div>
-                                                    <div className="comment__date fw-500-14-20">
-                                                        <p>5 сен в 13:32</p>
-                                                    </div>
+                                                    <div className="comment__fullname fw-500-16-22">{review.name}</div>
+                                                    <div className="comment__txt fw-400-16-19">{review.text}</div>
+                                                    <div className="comment__date fw-500-14-20">{moment(review.created_at).format('DD.MM.YYYY HH:mm')}</div>
                                                 </div>
                                             </div>
                                             <div className="comment__right">
                                                 <div className="catalogue__item-rating">
                                                     <div className="catalogue__stars">
-                                                        <div className="catalogue__star-wrapper center">
-                                                            <i className="fa-solid fa-star catalogue__star"></i>
-                                                        </div>
-                                                        <div className="catalogue__star-wrapper center">
-                                                            <i className="fa-solid fa-star catalogue__star"></i>
-                                                        </div>
-                                                        <div className="catalogue__star-wrapper center">
-                                                            <i className="fa-solid fa-star catalogue__star"></i>
-                                                        </div>
-                                                        <div className="catalogue__star-wrapper center">
-                                                            <i className="fa-solid fa-star catalogue__star"></i>
-                                                        </div>
-                                                        <div className="catalogue__star-wrapper center">
-                                                            <i className="fa-solid fa-star catalogue__star"></i>
-                                                        </div>
+                                                        {[null, null, null, null, null].map((st, stdx) => <div key={stdx} className="catalogue__star-wrapper center">
+                                                            <Star className="w-4 h-4 shrink-0 text-yellow-400" />
+                                                        </div>)}
                                                     </div>
                                                 </div>
                                             </div>
-                                        </li>
-                                        <li className="comment-wrapper__comment comment">
-                                            <div className="comment__left">
-                                                <div className="comment__photo">
-                                                    <img src={Avatar} alt="" />
-                                                </div>
-                                                <div className="comment__content ">
-                                                    <div className="comment__fullname fw-500-16-22">
-                                                        <p>Фамилия Имя</p>
-                                                    </div>
-                                                    <div className="comment__txt fw-400-16-19">
-                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
-                                                    </div>
-                                                    <div className="comment__date fw-500-14-20">
-                                                        <p>5 сен в 13:32</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="comment__right">
-                                                <div className="catalogue__item-rating">
-                                                    <div className="catalogue__stars">
-                                                        <div className="catalogue__star-wrapper center">
-                                                            <i className="fa-solid fa-star catalogue__star"></i>
-                                                        </div>
-                                                        <div className="catalogue__star-wrapper center">
-                                                            <i className="fa-solid fa-star catalogue__star"></i>
-                                                        </div>
-                                                        <div className="catalogue__star-wrapper center">
-                                                            <i className="fa-solid fa-star catalogue__star"></i>
-                                                        </div>
-                                                        <div className="catalogue__star-wrapper center">
-                                                            <i className="fa-solid fa-star catalogue__star"></i>
-                                                        </div>
-                                                        <div className="catalogue__star-wrapper center">
-                                                            <i className="fa-solid fa-star catalogue__star"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li className="comment-wrapper__comment comment">
-                                            <div className="comment__left">
-                                                <div className="comment__photo">
-                                                    <img src={Avatar} alt="" />
-                                                </div>
-                                                <div className="comment__content ">
-                                                    <div className="comment__fullname fw-500-16-22">
-                                                        <p>Фамилия Имя</p>
-                                                    </div>
-                                                    <div className="comment__txt fw-400-16-19">
-                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
-                                                    </div>
-                                                    <div className="comment__date fw-500-14-20">
-                                                        <p>5 сен в 13:32</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="comment__right">
-                                                <div className="catalogue__item-rating">
-                                                    <div className="catalogue__stars">
-                                                        <div className="catalogue__star-wrapper center">
-                                                            <i className="fa-solid fa-star catalogue__star"></i>
-                                                        </div>
-                                                        <div className="catalogue__star-wrapper center">
-                                                            <i className="fa-solid fa-star catalogue__star"></i>
-                                                        </div>
-                                                        <div className="catalogue__star-wrapper center">
-                                                            <i className="fa-solid fa-star catalogue__star"></i>
-                                                        </div>
-                                                        <div className="catalogue__star-wrapper center">
-                                                            <i className="fa-solid fa-star catalogue__star"></i>
-                                                        </div>
-                                                        <div className="catalogue__star-wrapper center">
-                                                            <i className="fa-solid fa-star catalogue__star"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li className="comment-wrapper__comment comment">
-                                            <div className="comment__left">
-                                                <div className="comment__photo">
-                                                    <img src={Avatar} alt="" />
-                                                </div>
-                                                <div className="comment__content ">
-                                                    <div className="comment__fullname fw-500-16-22">
-                                                        <p>Фамилия Имя</p>
-                                                    </div>
-                                                    <div className="comment__txt fw-400-16-19">
-                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
-                                                    </div>
-                                                    <div className="comment__date fw-500-14-20">
-                                                        <p>5 сен в 13:32</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="comment__right">
-                                                <div className="catalogue__item-rating">
-                                                    <div className="catalogue__stars">
-                                                        <div className="catalogue__star-wrapper center">
-                                                            <i className="fa-solid fa-star catalogue__star"></i>
-                                                        </div>
-                                                        <div className="catalogue__star-wrapper center">
-                                                            <i className="fa-solid fa-star catalogue__star"></i>
-                                                        </div>
-                                                        <div className="catalogue__star-wrapper center">
-                                                            <i className="fa-solid fa-star catalogue__star"></i>
-                                                        </div>
-                                                        <div className="catalogue__star-wrapper center">
-                                                            <i className="fa-solid fa-star catalogue__star"></i>
-                                                        </div>
-                                                        <div className="catalogue__star-wrapper center">
-                                                            <i className="fa-solid fa-star catalogue__star"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li className="comment-wrapper__comment comment">
-                                            <div className="comment__left">
-                                                <div className="comment__photo">
-                                                    <img src={Avatar} alt="" />
-                                                </div>
-                                                <div className="comment__content ">
-                                                    <div className="comment__fullname fw-500-16-22">
-                                                        <p>Фамилия Имя</p>
-                                                    </div>
-                                                    <div className="comment__txt fw-400-16-19">
-                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
-                                                    </div>
-                                                    <div className="comment__date fw-500-14-20">
-                                                        <p>5 сен в 13:32</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="comment__right">
-                                                <div className="catalogue__item-rating">
-                                                    <div className="catalogue__stars">
-                                                        <div className="catalogue__star-wrapper center">
-                                                            <i className="fa-solid fa-star catalogue__star"></i>
-                                                        </div>
-                                                        <div className="catalogue__star-wrapper center">
-                                                            <i className="fa-solid fa-star catalogue__star"></i>
-                                                        </div>
-                                                        <div className="catalogue__star-wrapper center">
-                                                            <i className="fa-solid fa-star catalogue__star"></i>
-                                                        </div>
-                                                        <div className="catalogue__star-wrapper center">
-                                                            <i className="fa-solid fa-star catalogue__star"></i>
-                                                        </div>
-                                                        <div className="catalogue__star-wrapper center">
-                                                            <i className="fa-solid fa-star catalogue__star"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
+                                        </li>)}
                                     </ul>
-                                    <div className="product-feedback__btn-wrapper">
+                                    {/* <div className="product-feedback__btn-wrapper" onClick={e => addMoreReviews()}>
                                         <button className="btn-secondary">Показать еще</button>
-                                    </div>
-
+                                    </div> */}
                                 </div>
                             </ul>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="similar-products bg_aqua">
+            </div >
+            <form className="contact mb-20" onSubmit={submit}>
+                <div className="container-outer">
+                    <div className="contact__outer">
+                        <div className="contact__inner">
+                            <div className="grid grid-cols-2 gap-8 mb-8">
+                                <div>
+                                    <input
+                                        id="name"
+                                        type="text"
+                                        name="name"
+                                        value={data.name} className="contact__input input"
+                                        onChange={(e) => setData('name', e.target.value)}
+                                        placeholder={`Имя`}
+                                    />
+                                    <InputError message={errors.name} />
+                                </div>
+                                <div>
+                                    <input
+                                        id="email"
+                                        type="text"
+                                        name="email"
+                                        value={data.email} className="contact__input input"
+                                        onChange={(e) => setData('email', e.target.value)}
+                                        placeholder={`E-mail`}
+                                    />
+                                    <InputError message={errors.email} />
+                                </div>
+                            </div>
+                            <div className="contact__row fw-400-16-19">
+                                <textarea
+                                    id="text"
+                                    name="text"
+                                    value={data.text} className="contact__input input"
+                                    onChange={(e) => setData('text', e.target.value)}
+                                    placeholder="Отзыв" className="feedback-textarea" />
+                                <InputError message={errors.text} />
+                            </div>
+                            <div className="contact__row fw-400-16-19">
+                                <button className="btn-primary fw-700-16-20">Отправить</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            {product.data.similars.length ? <div className="similar-products bg_aqua">
                 <div className="container-outer">
                     <div className="similar-products__outer">
                         <div className="similar-products__inner">
@@ -470,54 +408,9 @@ export default (props) => {
                                 <p>Похожие товары</p>
                             </div>
                             <ul className="similar-products-slick">
-                                <li className="catalogue-item">
-                                    <div className="catalogue__item-photo-wrapper">
-                                        <div className="catalogue__item-photo">
-                                            <img width="100%" src={CatalogueItemPhoto} alt="" />
-                                        </div>
-                                    </div>
-                                    <div className="catalogue__item-bottom">
-                                        <div className="catalogue__item-bottom-inner">
-                                            <div className="catalogue__item-title fw-600-16-19">
-                                                <p>Наименование</p>
-                                            </div>
-                                            <div className="catalogue__item-rating">
-                                                <div className="catalogue__stars">
-                                                    <div className="catalogue__star-wrapper center">
-                                                        <i className="fa-solid fa-star catalogue__star"></i>
-                                                    </div>
-                                                    <div className="catalogue__star-wrapper center">
-                                                        <i className="fa-solid fa-star catalogue__star"></i>
-                                                    </div>
-                                                    <div className="catalogue__star-wrapper center">
-                                                        <i className="fa-solid fa-star catalogue__star"></i>
-                                                    </div>
-                                                    <div className="catalogue__star-wrapper center">
-                                                        <i className="fa-solid fa-star catalogue__star"></i>
-                                                    </div>
-                                                    <div className="catalogue__star-wrapper center">
-                                                        <i className="fa-solid fa-star catalogue__star"></i>
-                                                    </div>
-                                                </div>
-                                                <div className="catalogue__feedback-label fw-500-12-18">
-                                                    <p>1360 отзывов</p>
-                                                </div>
-                                            </div>
-                                            <div className="catalogue__in-stock-label fw-400-14-17">
-                                                <p>Наличие</p>
-                                            </div>
-                                            <div className="catalogue__short-desc-label fw-400-16-19">
-                                                <p>Краткое описание</p>
-                                            </div>
-                                            <div className="catalogue__item-price fw-700-18-22 ">
-                                                <p>40 000 тг</p>
-                                            </div>
-                                            <div className="cart-icon-wrapper catalogue__cart-icon-wrapper">
-                                                <ion-icon name="cart-outline" className="cart-icon"></ion-icon>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
+                                {product.data.similars.map((item) => <li key={item.id} className="catalogue-item">
+                                    <ProductTizer item={item} />
+                                </li>)}
                             </ul>
                             <div className="similar-products__btn-wrapper">
                                 <button className="btn-primary similar-products__btn-primary fw-400-18-30">Посмотреть все</button>
@@ -525,7 +418,7 @@ export default (props) => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> : ``}
         </Layout>
     );
 }

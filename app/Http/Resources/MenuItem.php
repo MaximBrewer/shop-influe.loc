@@ -17,7 +17,8 @@ class MenuItem extends JsonResource
         $array = [
             'title' => $this->title,
             'link' => $this->link(),
-            'target' => $this->target
+            'target' => $this->target,
+            'children' => self::collection($this->children()->with('children')->get()),
         ];
         return $array;
     }

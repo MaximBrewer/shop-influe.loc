@@ -1,26 +1,67 @@
 import Layout from '@/Layouts/Layout';
-import { Head } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 
-import PromotionBlockImg from "../../images/promotion-block-img.png"
+import Main1Img from "@/../images/img-main-1.jpg"
 import Slider from 'react-slick';
+import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/solid';
+import NoPhoto from '@/Icons/NoPhoto';
+import Cart2 from '@/Icons/Cart2';
+import Star from '@/Icons/Star';
+import ProductTizer from '@/Components/ProductTizer';
+
+
+function PrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+        <div
+            className={`${className} slick-arrow-purple similar-products-slick__arrow-left center`}
+            onClick={onClick}
+        >
+            <ArrowLeftIcon className="w-6 h-6 shrink-0" />
+        </div>
+    );
+}
+
+function NextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+        <div
+            className={`${className} slick-arrow-purple similar-products-slick__arrow-right center`}
+            onClick={onClick}
+        >
+            <ArrowRightIcon className="w-6 h-6 shrink-0" />
+        </div>
+    );
+}
 
 export default (props) => {
 
-    const { pagetitle = `` } = props
+    const { pagetitle, products } = props
 
     var settings = {
         infinite: false,
-        slidesToShow: 1,
+        slidesToShow: 4,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 800,
-        arrows: true,
-        // prevArrow: '<div className="slick-arrow-wrapper arrow-left center"><ion-icon name="arrow-back-outline"></ion-icon></div>',
-        // nextArrow: '<div className="slick-arrow-wrapper arrow-right center"><ion-icon name="arrow-forward-outline"></ion-icon></div>',
+        autoplaySpeed: 1200,
+        prevArrow: <PrevArrow />,
+        nextArrow: <NextArrow />,
         dots: true,
         responsive: [{
-            breakpoint: '600',
-            variableWidth: true
+            breakpoint: 992,
+            settings: {
+                slidesToShow: 3
+            }
+        }, {
+            breakpoint: 768,
+            settings: {
+                slidesToShow: 2
+            }
+        }, {
+            breakpoint: 460,
+            settings: {
+                slidesToShow: 1
+            }
         }]
     };
 
@@ -28,109 +69,32 @@ export default (props) => {
     return (
         <Layout {...props}>
             <Head title={pagetitle} />
-            <div className="hero">
-            </div>
-            <div className="promotion-wrapper">
+            <div className="main-block">
+                <div className="main-bg">
+                    <img src={Main1Img} alt="Хруст в коленях – норма или повод обратиться к врачу?" />
+                </div>
                 <div className="container-outer">
-                    <div className="promotion__outer">
-                        <div className="promotion__inner">
-                            <div className="promotion-title fw-700-36-50">
-                                <p>Акционные товары</p>
-                            </div>
-                            <div className="promotion-main-wrapper center">
-                                <div className="promotion-main__left">
-                                    <Slider {...settings} className="promotion-goods-slick">
-                                        <div className="promotion-goods__item">
-                                            <div className="promotion-goods__title fw-700-26-35">
-                                                <p>Название товара</p>
-                                            </div>
-                                            <div className="promotion-goods__desc fw-400-15-25">
-                                                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-                                            </div>
-                                            <div className="promotion-prices-wrapper">
-                                                <div className="promotion-price-main fw-700-48-72">
-                                                    <p>25 000 тг</p>
-                                                </div>
-                                                <div className="promotion-price-discount fw-400-24-36 center">
-                                                    <p><s>40 000 тг</s></p>
-                                                </div>
-                                            </div>
-                                            <div className="promotion-btn-group-wrapper">
-                                                <button className="btn-primary fw-400-18-30">В корзину</button>
-                                                <button className="btn-secondary fw-400-18-30">Подробнее</button>
-                                            </div>
-                                        </div>
-                                        <div className="promotion-goods__item">
-                                            <div className="promotion-goods__title fw-700-26-35">
-                                                <p>Тренажер для спины</p>
-                                            </div>
-                                            <div className="promotion-goods__desc fw-400-15-25">
-                                                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-                                            </div>
-                                            <div className="promotion-prices-wrapper">
-                                                <div className="promotion-price-main fw-700-48-72">
-                                                    <p>120 000 тг</p>
-                                                </div>
-                                                <div className="promotion-price-discount fw-400-24-36 center">
-                                                    <p><s>165 400 тг</s></p>
-                                                </div>
-                                            </div>
-                                            <div className="promotion-btn-group-wrapper">
-                                                <button className="btn-primary fw-400-18-30">В корзину</button>
-                                                <button className="btn-secondary fw-400-18-30">Подробнее</button>
-                                            </div>
-                                        </div>
-                                        <div className="promotion-goods__item">
-                                            <div className="promotion-goods__title fw-700-26-35">
-                                                <p>Система подогрева Omron</p>
-                                            </div>
-                                            <div className="promotion-goods__desc fw-400-15-25">
-                                                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-                                            </div>
-                                            <div className="promotion-prices-wrapper">
-                                                <div className="promotion-price-main fw-700-48-72">
-                                                    <p>80 000 тг</p>
-                                                </div>
-                                                <div className="promotion-price-discount fw-400-24-36 center">
-                                                    <p><s>105 600 тг</s></p>
-                                                </div>
-                                            </div>
-                                            <div className="promotion-btn-group-wrapper">
-                                                <button className="btn-primary fw-400-18-30">В корзину</button>
-                                                <button className="btn-secondary fw-400-18-30">Подробнее</button>
-                                            </div>
-                                        </div>
-                                        <div className="promotion-goods__item">
-                                            <div className="promotion-goods__title fw-700-26-35">
-                                                <p>Чайник (+ фильтр)</p>
-                                            </div>
-                                            <div className="promotion-goods__desc fw-400-15-25">
-                                                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-                                            </div>
-                                            <div className="promotion-prices-wrapper">
-                                                <div className="promotion-price-main fw-700-48-72">
-                                                    <p>32 000 тг</p>
-                                                </div>
-                                                <div className="promotion-price-discount fw-400-24-36 center">
-                                                    <p><s>45 000 тг</s></p>
-                                                </div>
-                                            </div>
-                                            <div className="promotion-btn-group-wrapper">
-                                                <button className="btn-primary fw-400-18-30">В корзину</button>
-                                                <button className="btn-secondary fw-400-18-30">Подробнее</button>
-                                            </div>
-                                        </div>
-                                    </Slider>
-                                </div>
-                                <div className="promotion-main__right">
-                                    <img src={PromotionBlockImg} alt="" />
-                                </div>
-
+                    <div className="main-content">
+                        <h1 className="main-title xl:w-2/3">Хруст в коленях – норма или повод обратиться к врачу?</h1>
+                        <Link href={route('catalog')}><button className="btn-primary fw-700-16-20 py-4 px-6 mt-7">Посмотреть каталог</button></Link>
+                    </div>
+                </div>
+            </div>
+            <div className="similar-products">
+                <div className="container-outer">
+                    <div className="similar-products__outer">
+                        <div className="similar-products__inner">
+                            <div className="similar-products-title-label similar-products__similar-products-title-label fw-700-45-55">Акционные товары</div>
+                            <Slider {...settings} className="similar-products-slick-main">
+                                {products.data.map((item, index) => <li key={index} className="catalogue-item slick-slide">
+                                    <ProductTizer item={item} />
+                                </li>)}
+                            </Slider>
+                            <div className="similar-products__btn-wrapper">
+                                <button className="btn-primary similar-products__btn-primary fw-400-18-30">Посмотреть все</button>
                             </div>
                         </div>
-
                     </div>
-
                 </div>
             </div>
             <div className="bottom-banner">

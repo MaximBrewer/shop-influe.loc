@@ -1,54 +1,58 @@
 
-import Logo from "../../images/logo.svg"
-import Search from "../../images/search.svg"
-import Phone from "../../images/phone.svg"
-import ChevronDown from "../../images/chevron-down.svg"
-import Whatsapp from "../../images/whatsapp.svg"
-import Insta from "../../images/insta.svg"
-import { Link, useForm } from "@inertiajs/react"
-import { useState } from "react"
-import { ArrowLeftOnRectangleIcon, ArrowRightOnRectangleIcon, XMarkIcon } from "@heroicons/react/24/solid"
+import Logo from "@/../images/logo.svg"
+import { Link, useForm, usePage } from "@inertiajs/react"
+import { useEffect, useRef, useState } from "react"
+import Cart from "@/Icons/Cart"
+import ChevronDown from "@/Icons/ChevronDown"
+import LogIn from "@/Icons/LogIn"
+import LogOut from "@/Icons/LogOut"
+import ChevronDown2 from "@/Icons/ChevronDown2"
+import Phone from "@/Icons/Phone"
+import Lens from "@/Icons/Lens"
+import XIcon from "@/Icons/XIcon"
+import CatalogMenu from "./CatalogMenu"
+import MenuItem from "./MenuItem"
+
 
 export default (props) => {
 
-    const { menus } = window.appdata
+    const { menus, headerphone } = window.appdata
     const { auth } = props
+
     const [mmenu, setMmenu] = useState(false)
+
+    const [catalogMenu, setCatalogMenu] = useState(false)
+
+    const catalogMenuRef = useRef(null)
+    const catalogButtonRef = useRef(null)
 
     const { post } = useForm({});
 
-    return <>
-        <header className="header">
-            <div className="header__top fw-300-16-19">
-                <div className="container-outer">
-                    <nav className="header__navbar center">
-                        <ul className="navbar-list">
-                            {menus.find(menu => menu.name === `top`).items.map((item, index) => <li key={index} className={`navbar-list__item center`}>
-                                <Link href={item.link}>{item.title}</Link>
-                            </li>)}
-                        </ul>
-                        {auth.user ? <ul className="auth-navbar-list">
-                            <li className="auth-navbar-list__item">
-                                <a className={`auth-navbar-link`} href="#" onClick={e => {
-                                    e.preventDefault();
-                                    post(route('logout'))
-                                }}>
-                                    <ArrowRightOnRectangleIcon className="logout-icon" />
-                                    <div className="auth-navbar-list__logout-label center">Выход</div>
-                                </a>
-                            </li>
-                        </ul> : <ul className="auth-navbar-list">
-                            <li className="auth-navbar-list__item">
-                                <Link href={route('login')} className={`auth-navbar-link`}>
-                                    <ArrowLeftOnRectangleIcon className="login-icon" />
-                                    <div className="auth-navbar-list__login-label center">Вход</div>
-                                </Link>
-                            </li>
-                            <li className="auth-navbar-list__item center">
-                                <Link href={route('register')} className={`auth-navbar-link`}>Регистрация</Link>
-                            </li>
-                        </ul>}
-                    </nav>
+    const { cart } = usePage().props
+
+    useEffect(() => {
+
+    }, []);
+
+    const checkClick = (e) => {
+        (catalogMenuRef.current && catalogMenuRef.current.contains(e.target))
+            || (catalogButtonRef.current && catalogButtonRef.current.contains(e.target))
+            || setCatalogMenu(false)
+    }
+
+    useEffect(() => {
+        document.addEventListener('click', checkClick)
+        return () => {
+            document.removeEventListener('click', checkClick)
+        }
+    })
+
+    return <header className="header">
+        <div className="header__top fw-300-16-19">
+            <div className="container-outer">
+
+                <div className="flex items-center justify-between">
+
                     <a href={`#`} onClick={e => {
                         e.preventDefault();
                         setMmenu(true)
@@ -57,33 +61,83 @@ export default (props) => {
                         <span className="menu-line line-two"></span>
                         <span className="menu-line line-three"></span>
                     </a>
+                    <nav className="header__navbar center">
+                        <ul className="navbar-list">
+                            {menus.find(menu => menu.name === `top`).items.map((item, index) => <MenuItem key={index} item={item} />)}
+                        </ul>
+                    </nav>
+                    <div className="flex items-center">
+                        {cart ? <div className="header__navbar basket-navbar">
+                            <ul className="navbar-list">
+                                <li className="navbar-list__item center">
+                                    <Link href={route('cart.index')} className="inline-flex items-center">
+                                        <Cart className="w-5 h-5 shrink-0 mr-2.5" />
+                                        <span className="hidden md:block">Корзина</span>
+                                    </Link>
+                                    {cart.items.length ? <div className="basket-count">{cart.items.length}</div> : ``}
+                                </li>
+                            </ul>
+                        </div> : ``}
+                        <div className="header__navbar auth-navbar">
+                            <div className="flex items-center gap-1">
+                                {auth.user ? <LogOut className="w-5 h-5 shrink-0" /> : <LogIn className="w-5 h-5 shrink-0" />}
+                                <ul className="auth-navbar-list">
+                                    {auth.user ? <>
+                                        <li className="auth-navbar-list__item">
+                                            <a className={`auth-navbar-link`} href="#" onClick={e => {
+                                                e.preventDefault();
+                                                post(route('logout'))
+                                            }}>
+                                                <div className="auth-navbar-list__logout-label center">Выход</div>
+                                            </a>
+                                        </li>
+                                    </> : <>
+                                        <li className="auth-navbar-list__item">
+                                            <Link href={route('login')} className={`auth-navbar-link`}>
+                                                <div className="auth-navbar-list__login-label center">Вход</div>
+                                            </Link>
+                                        </li>
+                                        <li className="auth-navbar-list__item center">
+                                            <Link href={route('register')} className={`auth-navbar-link`}>Регистрация</Link>
+                                        </li>
+                                    </>}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div className="header__bottom">
-                <div className="container-lower">
-                    <div className="header-bottom-inner">
+        </div>
+        <div className="header__bottom">
+            <div className="container-outer">
+                <div className="header-bottom-inner">
+                    <div className="header-bottom-left">
                         <div className="logo">
                             <Link href={route('home')}><img className="logo" src={Logo} alt="Логотип" /></Link>
                         </div>
+                    </div>
+                    <div className="flex gap-6 items-center justify-between">
+                        <button className="catalogue-btn" type="button" ref={catalogButtonRef} onClick={e => setCatalogMenu(prev => !prev)}>
+                            <i className="ic-catalogue-btn"></i>
+                            <span>Каталог</span>
+                        </button>
                         <div className="search-wrapper header-bottom__search-wrapper fw-400-16-19">
-                            <input className="search-input" type="text" name="search" id="search" placeholder="Поиск" />
+                            <input className="search-input" type="text" name="search" placeholder="Поиск" />
                             <div className="search-icon-wrapper center">
-                                <img width="15px" height="15px" src={Search} alt="" />
+                                <Lens className="w-3.5 h-3.5 shrink-0" />
                             </div>
                         </div>
                         <div className="contact-info-wrapper header-bottom__contact-info-wrapper">
                             <div className="contact-info__left">
                                 <div className="header-phone-icon-wrapper center">
-                                    <img src={Phone} alt="" />
+                                    <Phone className="w-3 h-4 shrink-0" />
                                 </div>
                             </div>
                             <div className="contact-info__right">
                                 <div className="header-tel-wrapper">
-                                    <div className="header-tel black fw-400-16-19">
-                                        <p>+7(777) 777 77 77</p>
-                                    </div>
+                                    <div className="header-tel black fw-400-16-19">{headerphone}</div>
                                     <div className="header-tel-chevron-icon center">
-                                        <img src={ChevronDown} alt="" />
+                                        <ChevronDown2 className="w-2.5 h-2.5 shrink-0" />
                                     </div>
                                 </div>
                                 <div className="order-callback purple fw-700-14-17">
@@ -91,44 +145,46 @@ export default (props) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="header-media-icons-wrapper">
-                            <div className="header-whatsapp center">
-                                <a href="">
-                                    <img className="whatsapp" src={Whatsapp} alt="" />
-                                </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {catalogMenu ? <CatalogMenu catalogMenuRef={catalogMenuRef} /> : ``}
+        <div className={`header__mobile ${mmenu ? `is-active` : ``}`}>
+            <div className="container-outer">
+                <div className="menu-close" onClick={e => setMmenu(false)}>
+                    <XIcon className="w-6 h-6 shrink-0" />
+                </div>
+                <ul className="navbar-list">
+                    {menus.find(menu => menu.name === `top`).items.map((item, index) => <MenuItem key={index} item={item} mobile={true} />)}
+                </ul>
+                <div className="search-wrapper header-bottom__search-wrapper fw-400-16-19">
+                    <input className="search-input" type="text" name="search" placeholder="Поиск" />
+                    <div className="search-icon-wrapper center">
+                        <Lens className="w-3.5 h-3.5 shrink-0" />
+                    </div>
+                </div>
+                <div className="contact-info-wrapper header-bottom__contact-info-wrapper">
+                    <div className="contact-info__left">
+                        <div className="header-phone-icon-wrapper center">
+                            <Phone className="w-3 h-4 shrink-0" />
+                        </div>
+                    </div>
+                    <div className="contact-info__right">
+                        <div className="header-tel-wrapper">
+                            <div className="header-tel black fw-400-16-19">
+                                <p>{headerphone}</p>
                             </div>
-                            <div className="header-insta center">
-                                <a href="">
-                                    <img className="insta" src={Insta} alt="" />
-                                </a>
+                            <div className="header-tel-chevron-icon center">
+                                <ChevronDown2 className="w-2.5 h-2.5 shrink-0" />
                             </div>
+                        </div>
+                        <div className="order-callback purple fw-700-14-17">
+                            <a href="">Заказать обратный звонок</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </header>
-        {mmenu ? <div className={`mobile-menu-wrapper`} onClick={e => setMmenu(false)} >
-            <div className={`mobile-menu-inner`} style={{ transform: `translateX(0)` }} onClick={e => e.stopPropagation()}>
-                <XMarkIcon className={`close-icon`} onClick={e => setMmenu(false)}></XMarkIcon>
-                <div>
-                    <ul className="navbar-list">
-                        {menus.find(menu => menu.name === `top`).items.map((item, index) => <li key={index} className={`navbar-list__item center`}>
-                            <Link href={item.link}>{item.title}</Link>
-                        </li>)}
-                    </ul>
-                    {auth.user ? <></> : <ul className="auth-navbar-list">
-                        <li className="auth-navbar-list__item">
-                            <Link href={route('login')} className={`auth-navbar-link`}>
-                                <ArrowLeftOnRectangleIcon className="login-icon" />
-                                <div className="auth-navbar-list__login-label center">Вход</div>
-                            </Link>
-                        </li>
-                        <li className="auth-navbar-list__item center">
-                            <Link href={route('register')} className={`auth-navbar-link`}>Регистрация</Link>
-                        </li>
-                    </ul>}
-                </div>
-            </div>
-        </div> : ``}
-    </>
+        </div>
+    </header >
 }

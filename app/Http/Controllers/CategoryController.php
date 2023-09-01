@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\Category as ResourcesCategory;
 use App\Http\Resources\Product as ResourcesProduct;
+use App\Http\Resources\Specification as ResourcesSpecification;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Specification;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
@@ -63,12 +65,18 @@ class CategoryController extends Controller
             ];
         }
 
+        $specifications = ResourcesSpecification::collection(Specification::all());
+
+        $category = $subcategory ?: $category;
+
         return Inertia::render('Category', [
             'pagetitle' => $category->name,
-            'category' => new ResourcesCategory($subcategory ?: $category),
+            'category' => new ResourcesCategory($category),
+            'categories' => ResourcesCategory::collection($category->children),
             'total' => 'Показано ' . $products->count() . ' ' . Lang::choice('товар|товара|товаров', $products->count(), [], 'ru'),
             'products' => ResourcesProduct::collection($products->paginate(12)),
             'breadcrumbs' => $breadcrumbs,
+            'specifications' => $specifications,
             // 'posts' => Post::paginate(6)
         ]);
     }

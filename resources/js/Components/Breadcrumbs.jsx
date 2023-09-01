@@ -8,9 +8,10 @@ export default (props) => {
             route: `home`,
             text: `Главная`
         }
-    ] } = props
+    ], cabinet = false } = props
 
-    return <div className="catalogue-breadcrumb-wrapper fw-400-18-22 flex-wrap">
+
+    return <div className={cabinet ? `catalogue-breadcrumb-wrapper justify-start fw-400-18-22` : `catalogue-breadcrumb-wrapper fw-400-18-22 flex-wrap`}>
         {breadcrumbs.map((item, index) => <Fragment key={index}>
             <div className={`catalogue-breadcrumb-item ${breadcrumbs.length - 1 == index ? `active` : ``}`}>
                 {breadcrumbs.length - 1 > index ? <Link href={route(item.route, item.params)}>{item.text}</Link> : <span>{item.text}</span>}
