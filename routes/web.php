@@ -70,12 +70,6 @@ Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
-
-Route::get('/migrate', function () {
-    Artisan::call('migrate');
-    return redirect('/');
-});
-
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::post('/cart/subtract', [CartController::class, 'subtract'])->name('cart.subtract');
