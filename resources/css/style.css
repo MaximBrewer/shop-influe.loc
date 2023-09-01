@@ -904,7 +904,7 @@ header .header__bottom .header-bottom-inner .header-media-icons-wrapper .header-
 }
 
 .main-slider .slick-dots {
-  display: flex;
+  display: flex !important;
   justify-content: center;
   width: 100%;
   bottom: 2.5rem;

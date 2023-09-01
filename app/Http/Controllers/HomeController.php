@@ -33,7 +33,7 @@ class HomeController extends Controller
      */
     public function service(Request $request)
     {
-        return Inertia::render('Home', [
+        return Inertia::render('Service', [
             'pagetitle' => __('Home')
         ]);
     }
