@@ -63,13 +63,6 @@ Route::get('/refund', RefundController::class)->name('refund');
 //     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 // });
 
-require __DIR__ . '/auth.php';
-
-
-Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
-});
-
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
@@ -119,6 +112,14 @@ Route::middleware('auth')->group(function () {
         // Route::post('/avatar', [CabinetController::class, 'avatar'])->name('avatar');
         // Route::post('/logotip', [CabinetController::class, 'logotip'])->name('logotip');
     });
+});
+
+
+require __DIR__ . '/auth.php';
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
 });
 
 Route::get('/clear', function () {
