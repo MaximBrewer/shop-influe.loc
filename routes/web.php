@@ -125,10 +125,3 @@ Route::middleware('auth')->group(function () {
         // Route::post('/logotip', [CabinetController::class, 'logotip'])->name('logotip');
     });
 });
-
-Route::get('/clear', function () {
-    Artisan::call('cache:clear');
-    Artisan::call('config:clear');
-    Artisan::call('route:clear');
-    return redirect('/');
-});
