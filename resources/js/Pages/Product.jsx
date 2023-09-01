@@ -125,19 +125,18 @@ export default (props) => {
     }, [product])
 
     useEffect(() => {
-        // console.log(specifications)
         let price = null;
         if (offer) {
-            // const f = {};
-            // for (let s of specifications) {
-            //     for (let vIndex in s.values) {
-            //         let v = s.values[vIndex]
-            //         if (v.offers.indexOf(offer.id) > -1) {
-            //             f[s.id] = vIndex
-            //         }
-            //     }
-            // }
-            // setSpFilter(f)
+            const f = {};
+            for (let s of specifications) {
+                for (let vIndex in s.values) {
+                    let v = s.values[vIndex]
+                    if (v.offers.indexOf(offer.id) > -1) {
+                        f[s.id] = vIndex
+                    }
+                }
+            }
+            setSpFilter(f)
             if (offer.prices.length) {
                 var priceIndex = offer.prices.findIndex(el => el.currency == 'тен' || el.currency == 'KZT');
                 if (priceIndex > -1) price = offer.prices[priceIndex].value
@@ -149,8 +148,8 @@ export default (props) => {
     useEffect(() => {
         let offers = [...product.data.offers];
         for (let s of specifications) {
-            console.log(s.values, offers, spFilter[s.id], s.id)
-            offers = offers.filter(el => s.values[spFilter[s.id]] && s.values[spFilter[s.id]].offers.indexOf(el.id) > -1)
+            let offersArray = s.values[spFilter[s.id]].offers.map(el => 1 * el)
+            offers = offers.filter(el => offersArray.indexOf(1 * el.id) > -1)
         }
         setOffer(offers[0] ?? null)
     }, [spFilter])
