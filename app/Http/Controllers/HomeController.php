@@ -14,6 +14,7 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
+        dd(9);
         return Inertia::render('Home2', [
             'pagetitle' => __('Home')
         ]);
