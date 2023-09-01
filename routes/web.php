@@ -38,8 +38,8 @@ Route::get('/clear', function () {
     return redirect('/');
 });
 
-Route::get('/', HomeController::class)->name('home');
-// Route::get('/shop', [HomeController::class, 'shop'])->name('shop');
+// Route::get('/', HomeController::class)->name('home');
+Route::get('/shop', [HomeController::class, 'shop'])->name('shop');
 // Route::get('/service', [HomeController::class, 'service'])->name('service');
 
 // Route::get('/about', AboutController::class)->name('about');
