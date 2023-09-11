@@ -20,8 +20,7 @@ export default (props) => {
                         </div>
                         <div className="main-page-text">
                             <h3 className="main-page-name mb-4">Магазин</h3>
-                            <p className="main-page-subname mb-6 md:mb-12">Основна сфера деяльности
-                                краткое описание желательно в две строки</p>
+                            <p className="main-page-subname mb-6 md:mb-12">Лечение и диагностика опорно-двигательной системы</p>
                             <Link href={route('shop')} className="main-page-link-btn -green">Посетить</Link>
                         </div>
                     </div>
@@ -31,16 +30,15 @@ export default (props) => {
                         </div>
                         <div className="main-page-text">
                             <h3 className="main-page-name mb-4">Услуги</h3>
-                            <p className="main-page-subname mb-12">Основна сфера деяльности
-                                краткое описание желательно в две строки</p>
+                            <p className="main-page-subname mb-12">Лечение и диагностика опорно-двигательной системы</p>
                             <Link href={route('service')} className="main-page-link-btn -purple">Посетить</Link>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="container-outer ">
+            {/* <div className="container-outer ">
                 <FormAppDoctor />
-            </div>
+            </div> */}
 
         </Layout>
     );
