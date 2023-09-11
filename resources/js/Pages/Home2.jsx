@@ -19,8 +19,8 @@ export default (props) => {
                             <img src={ShopImage} alt="Магазин" />
                         </div>
                         <div className="main-page-text">
-                            <h3 className="main-page-name mb-4">Магазин</h3>
-                            <p className="main-page-subname mb-6 md:mb-12">Лечение и диагностика опорно-двигательной системы</p>
+                            <h3 className="main-page-name mb-4">Магазин ортопедических товаров</h3>
+                            {/* <p className="main-page-subname mb-6 md:mb-12">Лечение и диагностика опорно-двигательной системы</p> */}
                             <Link href={route('shop')} className="main-page-link-btn -green">Посетить</Link>
                         </div>
                     </div>
