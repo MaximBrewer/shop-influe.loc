@@ -29,8 +29,8 @@ export default (props) => {
                             <img src={ServiceImage} alt="Услуги" />
                         </div>
                         <div className="main-page-text">
-                            <h3 className="main-page-name mb-4">Услуги</h3>
-                            <p className="main-page-subname mb-12">Лечение и диагностика опорно-двигательной системы</p>
+                            <h3 className="main-page-name mb-4">Лечение и диагностика опорно-двигательной системы</h3>
+                            {/* <p className="main-page-subname mb-12">Лечение и диагностика опорно-двигательной системы</p> */}
                             <Link href={route('service')} className="main-page-link-btn -purple">Посетить</Link>
                         </div>
                     </div>
