@@ -107,6 +107,9 @@ export default (props) => {
                             <div className="bottom-banner__subtitle fw-700-26-35">
                                 <p>Основна сфера деяльности – краткое описание желательно в две строки</p>
                             </div>
+                            <div className="my-6 text-center">
+                                <Link href={route('service')} className="main-page-link-btn -purple">Перейти</Link>
+                            </div>
                         </div>
                     </div>
                 </div>
