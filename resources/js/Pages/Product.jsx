@@ -388,9 +388,9 @@ export default (props) => {
                                 <textarea
                                     id="text"
                                     name="text"
-                                    value={data.text} className="contact__input input"
+                                    value={data.text} className="feedback-textarea"
                                     onChange={(e) => setData('text', e.target.value)}
-                                    placeholder="Отзыв" className="feedback-textarea" />
+                                    placeholder="Отзыв" />
                                 <InputError message={errors.text} />
                             </div>
                             <div className="contact__row fw-400-16-19">

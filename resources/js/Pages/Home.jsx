@@ -71,7 +71,7 @@ export default (props) => {
             <Head title={pagetitle} />
             <div className="main-block">
                 <div className="main-bg">
-                    <img src={Main1Img} alt="Хруст в коленях – норма или повод обратиться к врачу?" />
+                    <img src={Main1Img} alt="" />
                 </div>
                 <div className="container-outer">
                     <div className="main-content">
