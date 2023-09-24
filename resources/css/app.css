@@ -83,3 +83,19 @@
 .facility-text6 ul li {
     @apply mb-3 list-none flex items-center before:bg-markr before:bg-center before:bg-no-repeat before:bg-contain before:block before:w-8 before:h-8 before:mr-2
 }
+
+.pagination {
+    @apply flex items-center gap-2.5
+}
+
+.pagination .page-item .page-link {
+    @apply min-w-[2rem] h-8 flex items-center justify-center text-purple-900 text-sm rounded-full border border-purple-900
+}
+
+.pagination .page-item.active .page-link {
+    @apply bg-purple-900 shadow text-white
+}
+
+.pagination .page-item .page-link svg {
+    @apply w-4 h-4
+}
