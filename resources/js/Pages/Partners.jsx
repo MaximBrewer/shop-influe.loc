@@ -39,13 +39,13 @@ function NextArrow(props) {
 
 export default (props) => {
 
-    const { pagetitle } = props
+    const { pagetitle, partners } = props
 
     return (
         <Layout {...props}>
             <Head title={pagetitle} />
-            <div class="bg-white">
-                <div class="container-outer">
+            <div className="bg-white">
+                <div className="container-outer">
                     <div className="catalogue-categories mt-0 pt-8">
                         <div className="container-outer">
                             <div className="catalogue-categories__outer">
@@ -55,101 +55,22 @@ export default (props) => {
                             </div>
                         </div>
                     </div>
-                    <div class="partners-page">
-                        <div class="container-outer">
-                            <div class="catalogue-section__title refund__title center fw-700-45-55 mb-11">
+                    <div className="partners-page">
+                        <div className="container-outer">
+                            <div className="catalogue-section__title refund__title center fw-700-45-55 mb-11">
                                 <p>Партнеры</p>
                             </div>
-                            <div class="partners-content">
-                                <div class="grid md:grid-cols-2 gap-x-8 gap-y-7">
-                                    <div class="partners-content-items">
-                                        <div class="flex flex-col lg:flex-row gap-5 items-center mb-4">
-                                            <div class="partner-img">
-                                                <img src={ImgParner1} alt="" />
+                            <div className="partners-content">
+                                <div className="grid md:grid-cols-2 gap-x-8 gap-y-7">
+                                    {partners.data.map((item, index) => <div key={index} className="partners-content-items">
+                                        <div className="flex flex-col lg:flex-row gap-5 items-center mb-4">
+                                            <div className="partner-img">
+                                                <img src={item.image} alt="" className="max-w-[175px]"/>
                                             </div>
-                                            <h3 class="partner-name">Название компании</h3>
+                                            <h3 className="partner-name">{item.title}</h3>
                                         </div>
-                                        <div class="partner-description">
-                                            <p>Идейные соображения высшего порядка, а также реализация намеченных плановых заданий играет важную роль в формировании систем массового участия. Равным образом постоянное информационно-пропагандистское обеспечение нашей деятельности представляет собой интересный эксперимент проверки существенных финансовых и административных условий. </p>
-                                        </div>
-                                    </div>
-                                    <div class="partners-content-items">
-                                        <div class="flex flex-col lg:flex-row gap-5 items-center mb-4">
-                                            <div class="partner-img">
-                                                <img src={ImgParner2} alt="" />
-                                            </div>
-                                            <h3 class="partner-name">Название компании</h3>
-                                        </div>
-                                        <div class="partner-description">
-                                            <p>Идейные соображения высшего порядка, а также реализация намеченных плановых заданий играет важную роль в формировании систем массового участия. Равным образом постоянное информационно-пропагандистское обеспечение нашей деятельности представляет собой интересный эксперимент проверки существенных финансовых и административных условий. </p>
-                                        </div>
-                                    </div>
-                                    <div class="partners-content-items">
-                                        <div class="flex flex-col lg:flex-row gap-5 items-center mb-4">
-                                            <div class="partner-img">
-                                                <img src={ImgParner3} alt="" />
-                                            </div>
-                                            <h3 class="partner-name">Название компании</h3>
-                                        </div>
-                                        <div class="partner-description">
-                                            <p>Идейные соображения высшего порядка, а также реализация намеченных плановых заданий играет важную роль в формировании систем массового участия. Равным образом постоянное информационно-пропагандистское обеспечение нашей деятельности представляет собой интересный эксперимент проверки существенных финансовых и административных условий. </p>
-                                        </div>
-                                    </div>
-                                    <div class="partners-content-items">
-                                        <div class="flex flex-col lg:flex-row gap-5 items-center mb-4">
-                                            <div class="partner-img">
-                                                <img src={ImgParner4} alt="" />
-                                            </div>
-                                            <h3 class="partner-name">Название компании</h3>
-                                        </div>
-                                        <div class="partner-description">
-                                            <p>Идейные соображения высшего порядка, а также реализация намеченных плановых заданий играет важную роль в формировании систем массового участия. Равным образом постоянное информационно-пропагандистское обеспечение нашей деятельности представляет собой интересный эксперимент проверки существенных финансовых и административных условий. </p>
-                                        </div>
-                                    </div>
-                                    <div class="partners-content-items">
-                                        <div class="flex flex-col lg:flex-row gap-5 items-center mb-4">
-                                            <div class="partner-img">
-                                                <img src={ImgParner5} alt="" />
-                                            </div>
-                                            <h3 class="partner-name">Название компании</h3>
-                                        </div>
-                                        <div class="partner-description">
-                                            <p>Идейные соображения высшего порядка, а также реализация намеченных плановых заданий играет важную роль в формировании систем массового участия. Равным образом постоянное информационно-пропагандистское обеспечение нашей деятельности представляет собой интересный эксперимент проверки существенных финансовых и административных условий. </p>
-                                        </div>
-                                    </div>
-                                    <div class="partners-content-items">
-                                        <div class="flex flex-col lg:flex-row gap-5 items-center mb-4">
-                                            <div class="partner-img">
-                                                <img src={ImgParner6} alt="" />
-                                            </div>
-                                            <h3 class="partner-name">Название компании</h3>
-                                        </div>
-                                        <div class="partner-description">
-                                            <p>Идейные соображения высшего порядка, а также реализация намеченных плановых заданий играет важную роль в формировании систем массового участия. Равным образом постоянное информационно-пропагандистское обеспечение нашей деятельности представляет собой интересный эксперимент проверки существенных финансовых и административных условий. </p>
-                                        </div>
-                                    </div>
-                                    <div class="partners-content-items">
-                                        <div class="flex flex-col lg:flex-row gap-5 items-center mb-4">
-                                            <div class="partner-img">
-                                                <img src={ImgParner1} alt="" />
-                                            </div>
-                                            <h3 class="partner-name">Название компании</h3>
-                                        </div>
-                                        <div class="partner-description">
-                                            <p>Идейные соображения высшего порядка, а также реализация намеченных плановых заданий играет важную роль в формировании систем массового участия. Равным образом постоянное информационно-пропагандистское обеспечение нашей деятельности представляет собой интересный эксперимент проверки существенных финансовых и административных условий. </p>
-                                        </div>
-                                    </div>
-                                    <div class="partners-content-items">
-                                        <div class="flex flex-col lg:flex-row gap-5 items-center mb-4">
-                                            <div class="partner-img">
-                                                <img src={ImgParner1} alt="" />
-                                            </div>
-                                            <h3 class="partner-name">Название компании</h3>
-                                        </div>
-                                        <div class="partner-description">
-                                            <p>Идейные соображения высшего порядка, а также реализация намеченных плановых заданий играет важную роль в формировании систем массового участия. Равным образом постоянное информационно-пропагандистское обеспечение нашей деятельности представляет собой интересный эксперимент проверки существенных финансовых и административных условий. </p>
-                                        </div>
-                                    </div>
+                                        <div className="partner-description">{item.text}</div>
+                                    </div>)}
                                 </div>
                             </div>
                         </div>

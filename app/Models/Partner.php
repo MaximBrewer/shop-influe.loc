@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Facility extends Model
+class Partner extends Model
 {
     use HasFactory;
 
@@ -21,10 +21,5 @@ class Facility extends Model
         static::addGlobalScope('order', function (Builder $builder) {
             $builder->orderBy('order');
         });
-    }
-
-    public function getRouteKeyName()
-    {
-        return 'slug';
     }
 }

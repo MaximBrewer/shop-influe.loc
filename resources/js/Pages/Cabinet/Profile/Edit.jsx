@@ -42,7 +42,7 @@ export default function Edit(props) {
                             <div className="cabinet-my-data white-block -gray">
                                 <form onSubmit={submit} className="mt-6 space-y-6">
                                     <div>
-                                        <InputLabel htmlhtmlFor="name" value="Имя" />
+                                        <InputLabel htmlFor="name" value="Имя" />
 
                                         <TextInput
                                             id="name"
@@ -58,7 +58,7 @@ export default function Edit(props) {
                                     </div>
 
                                     <div>
-                                        <InputLabel htmlhtmlFor="email" value="E-mail" />
+                                        <InputLabel htmlFor="email" value="E-mail" />
 
                                         <TextInput
                                             id="email"

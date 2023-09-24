@@ -24,7 +24,7 @@ export default (props) => {
             {...props}
         >
             <Head title={pagetitle} />
-            <div class="bg-white">
+            <div className="bg-white">
                 <div className="catalogue-categories mt-0 pt-8">
                     <div className="container-outer">
                         <div className="catalogue-categories__outer">
@@ -35,16 +35,16 @@ export default (props) => {
                         </div>
                     </div>
                 </div>
-                <div class="contacts-page registration-section pb-20">
-                    <div class="container-outer">
-                        <div class="registration-section__title catalogue-section__title center fw-700-45-55">{pagetitle}</div>
-                        <div class="registration-section__subtitle reg-subtitle fw-400-16-19">
+                <div className="contacts-page registration-section pb-20">
+                    <div className="container-outer">
+                        <div className="registration-section__title catalogue-section__title center fw-700-45-55">{pagetitle}</div>
+                        <div className="registration-section__subtitle reg-subtitle fw-400-16-19">
                         </div>
-                        <div class="contacts-page-block white-block -gray">
-                            <div class="flex flex-col md:flex-row gap-8">
-                                <div class="contacts-locations">
-                                    <div class="contacts-address">
-                                        <a href="#" class="flex items-center gap-2">
+                        <div className="contacts-page-block white-block -gray">
+                            <div className="flex flex-col md:flex-row gap-8">
+                                <div className="contacts-locations">
+                                    <div className="contacts-address">
+                                        <a href="#" className="flex items-center gap-2">
                                             <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M12.875 17.6562C12.875 13.7291 16.0717 10.5 19.9922 10.5C23.9127 10.5 27.1094 13.7291 27.1094 17.6562C27.1094 19.209 26.6195 20.6813 25.6922 21.9188L19.9922 29.1896L14.299 21.9273C13.3647 20.681 12.875 19.2086 12.875 17.6562ZM15.3906 17.6562C15.3906 20.1937 17.4547 22.2578 19.9922 22.2578C22.5297 22.2578 24.5938 20.1937 24.5938 17.6562C24.5938 15.1188 22.5297 13.0547 19.9922 13.0547C17.4547 13.0547 15.3906 15.1188 15.3906 17.6562Z" stroke="#56326E" />
                                                 <path d="M17.5625 17.6562C17.5625 16.3172 18.6531 15.2266 19.9922 15.2266C21.3313 15.2266 22.4219 16.3172 22.4219 17.6562C22.4219 18.9953 21.3313 20.0859 19.9922 20.0859C18.6531 20.0859 17.5625 18.9953 17.5625 17.6562Z" stroke="#56326E" />
@@ -52,7 +52,7 @@ export default (props) => {
                                             </svg>
                                             Казахстан, Карагандинская область,<br />г.Караганда, ул.Бухар Жырау, 79
                                         </a>
-                                        <a href="#" class="flex items-center gap-2">
+                                        <a href="#" className="flex items-center gap-2">
                                             <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <g clip-path="url(#clip0_0_2869)">
                                                     <path d="M27.866 13.8257H28.484C28.6996 13.8257 28.8744 13.6508 28.8744 13.4353C28.8744 13.2197 28.6996 13.0449 28.484 13.0449H27.0006C26.785 13.0449 26.6102 13.2197 26.6102 13.4353V14.9187C26.6102 15.1342 26.785 15.3091 27.0006 15.3091C27.2162 15.3091 27.391 15.1342 27.391 14.9187V14.4892C28.5754 16.0749 29.2193 17.9989 29.2193 20C29.2193 25.0835 25.0835 29.2193 20 29.2193C14.9165 29.2193 10.7807 25.0835 10.7807 20C10.7807 14.9165 14.9165 10.7807 20 10.7807C20.376 10.7807 20.7543 10.8036 21.1247 10.8486C21.3385 10.8744 21.5334 10.7222 21.5594 10.5082C21.5854 10.2942 21.433 10.0995 21.219 10.0735C20.8174 10.0247 20.4073 10 20 10C17.3289 10 14.8177 11.0402 12.9289 12.9289C11.0402 14.8177 10 17.3289 10 20C10 22.6711 11.0402 25.1823 12.9289 27.0711C14.8177 28.9598 17.3289 30 20 30C22.6711 30 25.1823 28.9598 27.0711 27.0711C28.9598 25.1823 30 22.6711 30 20C30 17.746 29.247 15.5821 27.866 13.8257Z" fill="#56326E" />
@@ -77,8 +77,8 @@ export default (props) => {
                                             </p>
                                         </a>
                                     </div>
-                                    <div class="contacts-address">
-                                        <a href="#" class="flex items-center gap-2">
+                                    <div className="contacts-address">
+                                        <a href="#" className="flex items-center gap-2">
                                             <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M12.875 17.6562C12.875 13.7291 16.0717 10.5 19.9922 10.5C23.9127 10.5 27.1094 13.7291 27.1094 17.6562C27.1094 19.209 26.6195 20.6813 25.6922 21.9188L19.9922 29.1896L14.299 21.9273C13.3647 20.681 12.875 19.2086 12.875 17.6562ZM15.3906 17.6562C15.3906 20.1937 17.4547 22.2578 19.9922 22.2578C22.5297 22.2578 24.5938 20.1937 24.5938 17.6562C24.5938 15.1188 22.5297 13.0547 19.9922 13.0547C17.4547 13.0547 15.3906 15.1188 15.3906 17.6562Z" stroke="#56326E" />
                                                 <path d="M17.5625 17.6562C17.5625 16.3172 18.6531 15.2266 19.9922 15.2266C21.3313 15.2266 22.4219 16.3172 22.4219 17.6562C22.4219 18.9953 21.3313 20.0859 19.9922 20.0859C18.6531 20.0859 17.5625 18.9953 17.5625 17.6562Z" stroke="#56326E" />
@@ -86,7 +86,7 @@ export default (props) => {
                                             </svg>
                                             Казахстан, Карагандинская область,<br />г.Караганда, ул.Бухар Жырау, 79
                                         </a>
-                                        <a href="#" class="flex items-center gap-2">
+                                        <a href="#" className="flex items-center gap-2">
                                             <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <g clip-path="url(#clip0_0_2869)">
                                                     <path d="M27.866 13.8257H28.484C28.6996 13.8257 28.8744 13.6508 28.8744 13.4353C28.8744 13.2197 28.6996 13.0449 28.484 13.0449H27.0006C26.785 13.0449 26.6102 13.2197 26.6102 13.4353V14.9187C26.6102 15.1342 26.785 15.3091 27.0006 15.3091C27.2162 15.3091 27.391 15.1342 27.391 14.9187V14.4892C28.5754 16.0749 29.2193 17.9989 29.2193 20C29.2193 25.0835 25.0835 29.2193 20 29.2193C14.9165 29.2193 10.7807 25.0835 10.7807 20C10.7807 14.9165 14.9165 10.7807 20 10.7807C20.376 10.7807 20.7543 10.8036 21.1247 10.8486C21.3385 10.8744 21.5334 10.7222 21.5594 10.5082C21.5854 10.2942 21.433 10.0995 21.219 10.0735C20.8174 10.0247 20.4073 10 20 10C17.3289 10 14.8177 11.0402 12.9289 12.9289C11.0402 14.8177 10 17.3289 10 20C10 22.6711 11.0402 25.1823 12.9289 27.0711C14.8177 28.9598 17.3289 30 20 30C22.6711 30 25.1823 28.9598 27.0711 27.0711C28.9598 25.1823 30 22.6711 30 20C30 17.746 29.247 15.5821 27.866 13.8257Z" fill="#56326E" />
@@ -112,7 +112,7 @@ export default (props) => {
                                         </a>
                                     </div>
                                 </div>
-                                <a href="#" class="flex items-center gap-2">
+                                <a href="#" className="flex items-center gap-2">
                                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M11 13.6719V26.3281H29V13.6719H11ZM27.1958 14.7266L20 21.8925L12.8042 14.7266H27.1958ZM12.0547 25.2734V15.4687L20 23.381L27.9453 15.4687V25.2734H12.0547Z" fill="#56326E" />
                                         <circle cx="20" cy="20" r="19.5" stroke="#56326E" />
@@ -123,24 +123,24 @@ export default (props) => {
                         </div>
                     </div>
                 </div>
-                <div class="contacts-page registration-section pb-20">
-                    <div class="container-outer">
-                        <div class="registration-section__title catalogue-section__title center fw-700-45-55">
+                <div className="contacts-page registration-section pb-20">
+                    <div className="container-outer">
+                        <div className="registration-section__title catalogue-section__title center fw-700-45-55">
                             <p>Напишите нам</p>
                         </div>
-                        <div class="registration-section__subtitle reg-subtitle fw-400-16-19">
+                        <div className="registration-section__subtitle reg-subtitle fw-400-16-19">
                             <p>Введите ваши контактные данные и текст сообщения, если у вас возникли вопросы, и мы в ближайшее время свяжемся с вами.</p>
                         </div>
-                        <form class="ordering-contacts-form ordering-details__ordering-contacts-form reg-form fw-400-16-19">
+                        <form className="ordering-contacts-form ordering-details__ordering-contacts-form reg-form fw-400-16-19">
                             <div className="grid grid-cols-2 gap-8 pb-8">
-                                <input class="ordering__input" type="text" name="fname" id="name" placeholder="Имя" />
-                                <input class="ordering__input" type="text" name="lname" id="last-name" placeholder="Фамилия" />
-                                <input class="ordering__input" type="tel" name="tel" id="ordering-tel" placeholder="Телефон" />
-                                <input class="ordering__input" type="email" name="email" id="ordering-email" placeholder="Email" />
-                                <textarea name="ordering-textarea" id="ordering-textarea" class="ordering-contacts-form__textarea fw-400-16-19 col-span-2" placeholder="Комментарии"></textarea>
+                                <input className="ordering__input" type="text" name="fname" id="name" placeholder="Имя" />
+                                <input className="ordering__input" type="text" name="lname" id="last-name" placeholder="Фамилия" />
+                                <input className="ordering__input" type="tel" name="tel" id="ordering-tel" placeholder="Телефон" />
+                                <input className="ordering__input" type="email" name="email" id="ordering-email" placeholder="Email" />
+                                <textarea name="ordering-textarea" id="ordering-textarea" className="ordering-contacts-form__textarea fw-400-16-19 col-span-2" placeholder="Комментарии"></textarea>
                             </div>
-                            <div class="reg-form__btn-wrapper fw-700-16-20">
-                                <button class="btn-primary">Отправить</button>
+                            <div className="reg-form__btn-wrapper fw-700-16-20">
+                                <button className="btn-primary">Отправить</button>
                             </div>
                         </form>
                     </div>
