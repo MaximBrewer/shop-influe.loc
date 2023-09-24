@@ -28,7 +28,7 @@ export default (props) => {
 
     const { post } = useForm({});
 
-    const { cart } = usePage().props
+    const { cart, shoppage = false, sitenote = `` } = usePage().props
 
     useEffect(() => {
 
@@ -47,7 +47,7 @@ export default (props) => {
         }
     })
 
-    return <header className="header">
+    return <header className="header z-50 relative">
         <div className="header__top fw-300-16-19">
             <div className="container-outer">
 
@@ -63,11 +63,11 @@ export default (props) => {
                     </a>
                     <nav className="header__navbar center">
                         <ul className="navbar-list">
-                            {menus.find(menu => menu.name === `top`).items.map((item, index) => <MenuItem key={index} item={item} />)}
+                            {menus.find(menu => menu.name === (shoppage ? `shop` : `service`)).items.map((item, index) => <MenuItem key={index} item={item} />)}
                         </ul>
                     </nav>
                     <div className="flex items-center">
-                        {cart ? <div className="header__navbar basket-navbar">
+                        {shoppage && cart ? <div className="header__navbar basket-navbar">
                             <ul className="navbar-list">
                                 <li className="navbar-list__item center">
                                     <Link href={route('cart.index')} className="inline-flex items-center">
@@ -108,8 +108,8 @@ export default (props) => {
                 </div>
             </div>
         </div>
-        <div className="header__bottom">
-            <div className="container-outer">
+        <div className="header__bottom relative">
+            <div className="container-outer relative">
                 <div className="header-bottom-inner">
                     <div className="header-bottom-left">
                         <div className="logo">
@@ -117,16 +117,18 @@ export default (props) => {
                         </div>
                     </div>
                     <div className="flex gap-6 items-center justify-between">
-                        <button className="catalogue-btn" type="button" ref={catalogButtonRef} onClick={e => setCatalogMenu(prev => !prev)}>
-                            <i className="ic-catalogue-btn"></i>
-                            <span>Каталог</span>
-                        </button>
-                        <div className="search-wrapper header-bottom__search-wrapper fw-400-16-19">
-                            <input className="search-input" type="text" name="search" placeholder="Поиск" />
-                            <div className="search-icon-wrapper center">
-                                <Lens className="w-3.5 h-3.5 shrink-0" />
+                        {shoppage ? <>
+                            <button className="catalogue-btn" type="button" ref={catalogButtonRef} onClick={e => setCatalogMenu(prev => !prev)}>
+                                <i className="ic-catalogue-btn"></i>
+                                <span>Каталог</span>
+                            </button>
+                            <div className="search-wrapper header-bottom__search-wrapper fw-400-16-19">
+                                <input className="search-input" type="text" name="search" placeholder="Поиск" />
+                                <div className="search-icon-wrapper center">
+                                    <Lens className="w-3.5 h-3.5 shrink-0" />
+                                </div>
                             </div>
-                        </div>
+                        </> : ``}
                         <div className="contact-info-wrapper header-bottom__contact-info-wrapper">
                             <div className="contact-info__left">
                                 <div className="header-phone-icon-wrapper center">
@@ -148,6 +150,9 @@ export default (props) => {
                     </div>
                 </div>
             </div>
+            {sitenote ? <div className="justify-center flex w-full pointer-events-none top-full pb-1">
+                <div className="min-w-[251px] px-10 py-1.5 bg-amber-500 rounded-b-[20px] text-stone-900 text-sm font-bold">{sitenote}</div>
+            </div> : ``}
         </div>
         {catalogMenu ? <CatalogMenu catalogMenuRef={catalogMenuRef} /> : ``}
         <div className={`header__mobile ${mmenu ? `is-active` : ``}`}>
@@ -156,7 +161,7 @@ export default (props) => {
                     <XIcon className="w-6 h-6 shrink-0" />
                 </div>
                 <ul className="navbar-list">
-                    {menus.find(menu => menu.name === `top`).items.map((item, index) => <MenuItem key={index} item={item} mobile={true} />)}
+                    {menus.find(menu => menu.name === (shoppage ? `shop` : `service`)).items.map((item, index) => <MenuItem key={index} item={item} mobile={true} />)}
                 </ul>
                 <div className="search-wrapper header-bottom__search-wrapper fw-400-16-19">
                     <input className="search-input" type="text" name="search" placeholder="Поиск" />

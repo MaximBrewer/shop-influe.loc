@@ -16,7 +16,7 @@ class HomeController extends Controller
     public function __invoke(Request $request)
     {
         return Inertia::render('Home2', [
-            'pagetitle' => __('Home'),
+            'pagetitle' => setting('site.title'),
             'services' => [
                 'title' => setting('services.title_on_main'),
                 'subtitle' => setting('services.subtitle_on_main'),
