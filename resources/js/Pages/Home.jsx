@@ -132,7 +132,7 @@ export default (props) => {
                                 <p>Основна сфера деяльности – краткое описание желательно в две строки</p>
                             </div>
                             <div className="my-6 text-center">
-                                <Link href={route('service')} className="main-page-link-btn -purple">Перейти</Link>
+                                <Link href={route('services.index')} className="main-page-link-btn -purple">Перейти</Link>
                             </div>
                         </div>
                     </div>
