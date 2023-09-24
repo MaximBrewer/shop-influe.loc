@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\Category as ResourcesCategory;
+use App\Http\Resources\Facility as ResourcesFacility;
 use App\Http\Resources\Product as ResourcesProduct;
 use App\Models\Category;
+use App\Models\Facility;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -39,15 +41,6 @@ class HomeController extends Controller
         return Inertia::render('Home', [
             'pagetitle' => __('Home'),
             'products' => ResourcesProduct::collection(Product::limit(20)->get())
-        ]);
-    }
-    /**
-     * Handle the incoming request.
-     */
-    public function service(Request $request)
-    {
-        return Inertia::render('Service', [
-            'pagetitle' => __('Home')
         ]);
     }
 }

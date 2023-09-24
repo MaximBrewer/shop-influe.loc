@@ -13,6 +13,21 @@ return new class extends Migration
     {
         Schema::create('facilities', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('order')->default(1000);
+            $table->longText('icon')->nullable();
+            $table->string('image', 1023)->nullable();
+            $table->string('title', 1023);
+            $table->text('subtitle')->nullable();
+            $table->string('slug', 1023)->nullable();
+            $table->longText('text1')->nullable();
+            $table->longText('text2')->nullable();
+            $table->longText('text3')->nullable();
+            $table->longText('text4')->nullable();
+            $table->longText('text5')->nullable();
+            $table->longText('text6')->nullable();
+            $table->string('text6image', 1023)->nullable();
+            $table->string('sign1', 1023)->nullable();
+            $table->string('sign2', 1023)->nullable();
             $table->timestamps();
         });
     }

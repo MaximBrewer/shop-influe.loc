@@ -21,6 +21,11 @@ export default {
                     100: "#F1F5F8",
                     500: "#56326E"
                 }
+            },
+            backgroundImage: {
+                'check': "url('../images/check.svg')",
+                'info': "url('../images/info.svg')",
+                'markr': "url('../images/markr.svg')"
             }
         }
     },

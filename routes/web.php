@@ -20,6 +20,7 @@ use App\Http\Controllers\Cabinet;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +34,8 @@ use App\Http\Controllers\ReviewController;
 */
 
 Route::get('/', HomeController::class)->name('home');
-Route::get('/service', [HomeController::class, 'service'])->name('service');
+
+Route::resource('/services', ServiceController::class);
 
 Route::get('/about', AboutController::class)->name('about');
 Route::get('/offer', OfferController::class)->name('offer');
