@@ -40,6 +40,8 @@ export default (props) => {
 
     const { categories } = window.appdata;
 
+    console.log(categories)
+
     var settings = {
         infinite: false,
         slidesToShow: 4,
