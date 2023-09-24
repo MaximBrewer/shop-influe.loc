@@ -29,7 +29,7 @@ export default (props) => {
                         <div className="main-page-text">
                             <h3 className="main-page-name mb-4">{services.title}</h3>
                             {services.subtitle ? <p className="main-page-subname mb-6 md:mb-12">{services.subtitle}</p> : ``}
-                            <Link href={route('service')} className="main-page-link-btn -purple">Посетить</Link>
+                            <Link href={route('services.index')} className="main-page-link-btn -purple">Посетить</Link>
                         </div>
                     </div>
                 </div>
