@@ -1,0 +1,22 @@
+Данные для доступа к вашему VDS по протоколу SSH (Для Windows RDP):
+
+IP-адрес: 185.111.106.80
+
+Имя пользователя: root (Для Windows имя пользователя: Administrator):
+
+Пароль: L1N6KsekkpNA
+
+Дополнительно к услуге VDS KVM Вы можете приобрести сопутствующие услуги:
+
+- Администрирование VDS.
+- Защита от DDOS-атак
+- Внешний DNS сервер.
+- Дополнительный IP-адрес.
+- SSL- сертификаты. Самый широкий выбор в Казахстане. https://hoster.kz/ssl/about_ssl/
+- Лицензии на программные продукты Plesk. https://hoster.kz/license/plesk/
+
+
+ssh root@185.111.106.80
+L1N6KsekkpNA
+
+(ошибка)net::ERR_INCOMPLETE_CHUNKED_ENCODING	
