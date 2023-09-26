@@ -4,26 +4,26 @@ import { Head, Link } from '@inertiajs/react';
 import ImgOrthopedic1 from "@/../images/img-orthopedic-1.png"
 import ImgAbout1 from "@/../images/img-about-1.png"
 
-
-
 import Slider from 'react-slick';
-import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/solid';
+
+import { ArrowLeftIcon, ArrowRightIcon, ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/solid';
 import NoPhoto from '@/Icons/NoPhoto';
 import Cart2 from '@/Icons/Cart2';
 import Star from '@/Icons/Star';
 import ProductTizer from '@/Components/ProductTizer';
 import FormAppDoctor from '@/Components/FormAppDoctor';
 import GiftCertificates from '@/Components/ GiftCertificates';
+import ChevronDown from '@/Icons/ChevronDown';
 
 
 function PrevArrow(props) {
     const { className, style, onClick } = props;
     return (
         <div
-            className={`${className} slick-arrow-purple similar-products-slick__arrow-left center`}
+            className={`${className} -right-8 lg:-right-20 top-1/2 -translate-y-[8.5rem] orthopedic-slider-slick__arrow-left center bg-purple-900 rounded-full w-10 lg:w-[62px] h-10 lg:h-[62px] flex  items-center justify-center text-[#C7C7C7]`}
             onClick={onClick}
         >
-            <ArrowLeftIcon className="w-6 h-6 shrink-0" />
+            <ChevronUpIcon className="w-5 lg:w-8 h-5 lg:h-8 shrink-0 relative -top-px" />
         </div>
     );
 }
@@ -32,10 +32,10 @@ function NextArrow(props) {
     const { className, style, onClick } = props;
     return (
         <div
-            className={`${className} slick-arrow-purple similar-products-slick__arrow-right center`}
+            className={`${className} -right-8 lg:-right-20 bottom-1/2 translate-y-[8.5rem] orthopedic-slider-slick__arrow-right center bg-purple-900 rounded-full w-10 lg:w-[62px] h-10 lg:h-[62px] flex  items-center justify-center text-[#C7C7C7]`}
             onClick={onClick}
         >
-            <ArrowRightIcon className="w-6 h-6 shrink-0" />
+            <ChevronDownIcon className="w-5 lg:w-8 h-5 lg:h-8 shrink-0 relative top-px" />
         </div>
     );
 }
@@ -46,29 +46,33 @@ export default (props) => {
 
     var settings = {
         infinite: false,
-        slidesToShow: 4,
+        slidesToShow: 3,
         slidesToScroll: 1,
-        autoplay: true,
+        autoplay: false,
         autoplaySpeed: 1200,
         prevArrow: <PrevArrow />,
         nextArrow: <NextArrow />,
         dots: true,
-        responsive: [{
-            breakpoint: 992,
-            settings: {
-                slidesToShow: 3
-            }
-        }, {
-            breakpoint: 768,
-            settings: {
-                slidesToShow: 2
-            }
-        }, {
-            breakpoint: 460,
-            settings: {
-                slidesToShow: 1
-            }
-        }]
+        vertical: true,
+        centerMode: true,
+        infinite: true,
+        centerPadding: `0px`
+        // responsive: [{
+        //     breakpoint: 992,
+        //     settings: {
+        //         slidesToShow: 3
+        //     }
+        // }, {
+        //     breakpoint: 768,
+        //     settings: {
+        //         slidesToShow: 2
+        //     }
+        // }, {
+        //     breakpoint: 460,
+        //     settings: {
+        //         slidesToShow: 1
+        //     }
+        // }]
     };
 
 
@@ -129,7 +133,7 @@ export default (props) => {
                                 </p>
                                 <svg className="absolute right-0 -top-16" width="92" height="92" viewBox="0 0 92 92" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <rect width="91.667" height="91.667" rx="45.8335" fill="white" />
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M13.958 45.8336C13.958 28.2295 28.229 13.9585 45.8331 13.9585C63.4373 13.9585 77.7083 28.2295 77.7083 45.8336C77.7083 63.4378 63.4373 77.7087 45.8331 77.7087H16.1293L18.9583 73.4653L19.0122 73.3845C19.4947 72.6609 19.9479 71.9812 20.2739 71.3764C20.6301 70.7158 20.9564 69.9325 21.0029 68.9954C21.0508 68.0309 20.7758 67.1858 20.4777 66.4842C20.1962 65.8213 19.7868 65.0519 19.3388 64.2098L19.2935 64.1247C17.0807 59.9645 13.958 52.8074 13.958 45.8336ZM45.8331 8.9585C25.4676 8.9585 8.95801 25.4681 8.95801 45.8336C8.95801 54.07 12.5655 62.123 14.8792 66.4727C15.3873 67.4281 15.6901 68.0022 15.8757 68.4391C15.9415 68.594 15.976 68.6953 15.9937 68.7547C15.9734 68.8044 15.9368 68.8849 15.8729 69.0036C15.6718 69.3765 15.3534 69.8588 14.798 70.6918L9.37789 78.822C8.86646 79.5891 8.81878 80.5755 9.25383 81.3884C9.68887 82.2013 10.536 82.7087 11.458 82.7087H45.8331C66.1987 82.7087 82.7083 66.1992 82.7083 45.8336C82.7083 25.4681 66.1987 8.9585 45.8331 8.9585ZM16.0156 68.6945C16.0166 68.6911 16.0169 68.6895 16.0169 68.6895C16.0168 68.6896 16.0166 68.6902 16.0163 68.6914C16.0161 68.6922 16.0159 68.6932 16.0156 68.6945ZM60.969 38.0527C61.9453 37.0764 61.9453 35.4935 60.969 34.5172C59.9927 33.5409 58.4098 33.5409 57.4335 34.5172L42.0137 49.937L36.1425 44.0659C35.1662 43.0895 33.5833 43.0895 32.607 44.0659C31.6307 45.0422 31.6307 46.6251 32.607 47.6014L40.2459 55.2403C41.2222 56.2166 42.8051 56.2166 43.7814 55.2403L60.969 38.0527Z" fill="#65BC54" />
+                                    <path fillRule="evenodd" clipRule="evenodd" d="M13.958 45.8336C13.958 28.2295 28.229 13.9585 45.8331 13.9585C63.4373 13.9585 77.7083 28.2295 77.7083 45.8336C77.7083 63.4378 63.4373 77.7087 45.8331 77.7087H16.1293L18.9583 73.4653L19.0122 73.3845C19.4947 72.6609 19.9479 71.9812 20.2739 71.3764C20.6301 70.7158 20.9564 69.9325 21.0029 68.9954C21.0508 68.0309 20.7758 67.1858 20.4777 66.4842C20.1962 65.8213 19.7868 65.0519 19.3388 64.2098L19.2935 64.1247C17.0807 59.9645 13.958 52.8074 13.958 45.8336ZM45.8331 8.9585C25.4676 8.9585 8.95801 25.4681 8.95801 45.8336C8.95801 54.07 12.5655 62.123 14.8792 66.4727C15.3873 67.4281 15.6901 68.0022 15.8757 68.4391C15.9415 68.594 15.976 68.6953 15.9937 68.7547C15.9734 68.8044 15.9368 68.8849 15.8729 69.0036C15.6718 69.3765 15.3534 69.8588 14.798 70.6918L9.37789 78.822C8.86646 79.5891 8.81878 80.5755 9.25383 81.3884C9.68887 82.2013 10.536 82.7087 11.458 82.7087H45.8331C66.1987 82.7087 82.7083 66.1992 82.7083 45.8336C82.7083 25.4681 66.1987 8.9585 45.8331 8.9585ZM16.0156 68.6945C16.0166 68.6911 16.0169 68.6895 16.0169 68.6895C16.0168 68.6896 16.0166 68.6902 16.0163 68.6914C16.0161 68.6922 16.0159 68.6932 16.0156 68.6945ZM60.969 38.0527C61.9453 37.0764 61.9453 35.4935 60.969 34.5172C59.9927 33.5409 58.4098 33.5409 57.4335 34.5172L42.0137 49.937L36.1425 44.0659C35.1662 43.0895 33.5833 43.0895 32.607 44.0659C31.6307 45.0422 31.6307 46.6251 32.607 47.6014L40.2459 55.2403C41.2222 56.2166 42.8051 56.2166 43.7814 55.2403L60.969 38.0527Z" fill="#65BC54" />
                                 </svg>
 
                             </div>
@@ -150,16 +154,15 @@ export default (props) => {
                             </div>
                         </div>
                         <div className="block md:w-1/2">
-                            <div className="orthopedic-slider">
-                                <div className="orthopedic-slide-item">
-                                    <img src={ImgOrthopedic1} alt="" />
-                                </div>
-                                <div className="orthopedic-slide-item">
-                                    <img src={ImgOrthopedic1} alt="" />
-                                </div>
-                                <div className="orthopedic-slide-item">
-                                    <img src={ImgOrthopedic1} alt="" />
-                                </div>
+                            <div className="w-[240px] lg:w-[409px]">
+                                <Slider {...settings} className="orthopedic-slider">
+                                    {[0, 0, 0, 0, 0, 0].map((item, index) => <div key={index} className="orthopedic-slide-item">
+                                        <div className="relative">
+                                            <img src={ImgOrthopedic1} alt="" className="w-full block" />
+                                            <div className="top-0 left-0 bottom-0 right-0 absolute backdrop-blur" />
+                                        </div>
+                                    </div>)}
+                                </Slider>
                             </div>
                         </div>
                     </div>
