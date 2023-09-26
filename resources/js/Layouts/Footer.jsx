@@ -5,10 +5,14 @@ import LogoVertical from "@/../images/logo_vertical.svg"
 import Email from "@/../images/email.svg"
 import Phone from "@/../images/phone.svg"
 import { Link } from "@inertiajs/react"
+import CallBack from "@/Modals/CallBack"
+import { useLayout } from "@/Contexts/LayoutContext"
 
 export default () => {
 
     const { menus, footeremail, footerphone, copyright } = window.appdata
+
+    const { setModal } = useLayout()
 
     return <footer>
         <div className="container-outer h-full">
@@ -40,31 +44,34 @@ export default () => {
                             <div className="footer-navbar-item__title fw-600-18-22">Контакты</div>
                             <div className="footer-contacts-wrapper">
                                 <div className="footer-contacts-tel-wrapper">
-                                    <div className="icon-wrapper center">
+                                    <a href={`tel:${footerphone}`} className="icon-wrapper center">
                                         <img src={Phone} alt="" />
-                                    </div>
+                                    </a>
                                     <div className="footer-contacts-details-wrapper">
-                                        <div className="footer-contacts-num-wrapper">
+                                        <a href={`tel:${footerphone}`} className="footer-contacts-num-wrapper">
                                             <div className="footer-num-wrapper">
                                                 {footerphone}
                                             </div>
-                                            <div className="footer-num-chevron-wrapper center">
+                                            {/* <div className="footer-num-chevron-wrapper center">
                                                 <img src={ChevronDown} alt="" />
-                                            </div>
-                                        </div>
+                                            </div> */}
+                                        </a>
                                         <div className="order-callback purple">
-                                            <a href="">Заказать обратный звонок</a>
+                                            <a href="#" onClick={e => {
+                                                e.preventDefault()
+                                                setModal(<CallBack />)
+                                            }}>Заказать обратный звонок</a>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="footer-contacts-email-wrapper">
+                                <a href={`mailto:${footeremail}`} className="footer-contacts-email-wrapper">
                                     <div className="icon-wrapper center">
                                         <img src={Email} alt="" />
                                     </div>
                                     <div className="email-wrapper center fw-400-16-19">
                                         {footeremail}
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         </li>
                     </ul>

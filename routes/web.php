@@ -9,20 +9,18 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RefundController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 use TCG\Voyager\Facades\Voyager;
 use App\Http\Controllers\Cabinet;
-use App\Http\Controllers\OfferController;
+use App\Http\Controllers\CallBackController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\WriteUsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +55,8 @@ Route::get('/product/{product}', ProductController::class)->name('product');
 Route::get('/payment', PaymentController::class)->name('payment');
 Route::get('/refund', RefundController::class)->name('refund');
 
+Route::post('/callback', CallBackController::class)->name('callback');
+Route::post('/writeus', WriteUsController::class)->name('writeus');
 // Route::get('/catalog', function () {
 //     return Inertia::render('Catalog');
 // });

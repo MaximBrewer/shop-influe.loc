@@ -2,41 +2,15 @@ import Layout from "@/Layouts/Layout";
 import { Head, Link } from "@inertiajs/react";
 
 import ImgMain1 from "@/../images/img-main-1.jpg"
-import ImgOutService1 from "@/../images/our-services-1.png"
 import FormAppDoctor from "@/Components/FormAppDoctor";
-import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
 import Slider from 'react-slick';
 import parse from "html-react-parser"
-
-
-function PrevArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-        <div
-            className={`${className} slick-arrow-purple similar-products-slick__arrow-left center`}
-            onClick={onClick}
-        >
-            <ArrowLeftIcon className="w-6 h-6 shrink-0" />
-        </div>
-    );
-}
-
-function NextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-        <div
-            className={`${className} slick-arrow-purple similar-products-slick__arrow-right center`}
-            onClick={onClick}
-        >
-            <ArrowRightIcon className="w-6 h-6 shrink-0" />
-        </div>
-    );
-}
+import Breadcrumbs from "@/Components/Breadcrumbs";
 
 
 export default (props) => {
 
-    const { pagetitle, facilities } = props;
+    const { pagetitle, facilities, banners } = props;
 
     var settings = {
         infinite: true,
@@ -54,118 +28,24 @@ export default (props) => {
         {...props}
     >
         <Head title={pagetitle} />
-        <div className="main-block">
+        <div className="main-block relative">
+            <div className="absolute top-0 w-full flex justify-center text-white pt-6">
+                <Breadcrumbs {...props} inbanner={true} />
+            </div>
             <Slider {...settings} className="main-slider">
-                <div className="main-slider-item">
+                {banners.data.map((item, index) => <div key={index} className="main-slider-item">
                     <div className="main-bg brightness-50">
-                        <img src={ImgMain1} alt="Хруст в коленях – норма или повод обратиться к врачу?" />
+                        <img src={item.image} alt={item.title} />
                     </div>
                     <div className="container-outer flex flex-col justify-between h-full py-8">
-                        <div className="main-breadcrumbs">
-                            <div className="catalogue-breadcrumb-wrapper fw-400-18-22">
-                                <div className="catalogue-breadcrumb-item">
-                                    <a href=""><p>Главная</p></a>
-                                </div>
-                                <div className="catalogue-breadcrumb-dot-wrapper center">
-                                    <div className="catalogue-breadcrumb-dot"></div>
-                                </div>
-                                <div className="catalogue-breadcrumb-item active">
-                                    <a href=""><p>Услуги</p></a>
-                                </div>
-                            </div>
-                        </div>
                         <div className="main-content flex flex-col justify-center items-center text-center w-full">
-                            <h1 className="main-title">
-                                Хруст в коленях – норма или повод обратиться к врачу?
-                            </h1>
+                            <div className="main-title">{item.title}</div>
                             <a href="#" className="btn-primary fw-700-16-20 py-4 px-6 mt-7 mx-auto">Заказать звонок</a>
                         </div>
                         <div></div>
                     </div>
-                </div>
-                <div className="main-slider-item">
-                    <div className="main-bg brightness-50">
-                        <img src={ImgMain1} alt="Хруст в коленях – норма или повод обратиться к врачу?" />
-                    </div>
-                    <div className="container-outer flex flex-col justify-between h-full py-8">
-                        <div className="main-breadcrumbs">
-                            <div className="catalogue-breadcrumb-wrapper fw-400-18-22">
-                                <div className="catalogue-breadcrumb-item">
-                                    <a href=""><p>Главная</p></a>
-                                </div>
-                                <div className="catalogue-breadcrumb-dot-wrapper center">
-                                    <div className="catalogue-breadcrumb-dot"></div>
-                                </div>
-                                <div className="catalogue-breadcrumb-item active">
-                                    <a href=""><p>Услуги</p></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="main-content flex flex-col justify-center items-center text-center w-full">
-                            <h1 className="main-title">
-                                Индивидуальный подход к каждому ребенку
-                            </h1>
-                            <a href="#" className="btn-primary fw-700-16-20 py-4 px-6 mt-7 mx-auto">Заказать звонок</a>
-                        </div>
-                        <div></div>
-                    </div>
-                </div>
-                <div className="main-slider-item">
-                    <div className="main-bg brightness-50">
-                        <img src={ImgMain1} alt="Хруст в коленях – норма или повод обратиться к врачу?" />
-                    </div>
-                    <div className="container-outer flex flex-col justify-between h-full py-8">
-                        <div className="main-breadcrumbs">
-                            <div className="catalogue-breadcrumb-wrapper fw-400-18-22">
-                                <div className="catalogue-breadcrumb-item">
-                                    <a href=""><p>Главная</p></a>
-                                </div>
-                                <div className="catalogue-breadcrumb-dot-wrapper center">
-                                    <div className="catalogue-breadcrumb-dot"></div>
-                                </div>
-                                <div className="catalogue-breadcrumb-item active">
-                                    <a href=""><p>Услуги</p></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="main-content flex flex-col justify-center items-center text-center w-full">
-                            <h1 className="main-title">
-                                Все терапевтические методики ортопедии
-                            </h1>
-                            <a href="#" className="btn-primary fw-700-16-20 py-4 px-6 mt-7 mx-auto">Заказать звонок</a>
-                        </div>
-                        <div></div>
-                    </div>
-                </div>
-                <div className="main-slider-item">
-                    <div className="main-bg brightness-50">
-                        <img src={ImgMain1} alt="Хруст в коленях – норма или повод обратиться к врачу?" />
-                    </div>
-                    <div className="container-outer flex flex-col justify-between h-full py-8">
-                        <div className="main-breadcrumbs">
-                            <div className="catalogue-breadcrumb-wrapper fw-400-18-22">
-                                <div className="catalogue-breadcrumb-item">
-                                    <a href=""><p>Главная</p></a>
-                                </div>
-                                <div className="catalogue-breadcrumb-dot-wrapper center">
-                                    <div className="catalogue-breadcrumb-dot"></div>
-                                </div>
-                                <div className="catalogue-breadcrumb-item active">
-                                    <a href=""><p>Услуги</p></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="main-content flex flex-col justify-center items-center text-center w-full">
-                            <h1 className="main-title">
-                                Врачи экспертного уровня
-                            </h1>
-                            <a href="#" className="btn-primary fw-700-16-20 py-4 px-6 mt-7 mx-auto">Заказать звонок</a>
-                        </div>
-                        <div></div>
-                    </div>
-                </div>
+                </div>)}
             </Slider>
-
         </div>
 
         <div className="our-services">

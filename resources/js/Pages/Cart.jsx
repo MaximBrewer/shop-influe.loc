@@ -183,38 +183,44 @@ export default (props) => {
                                                     </div>
                                                 </div>
                                                 <div className="ordering-contacts-form__row">
-                                                    <div className="ordering-contacts-form__selectbox">
+                                                    <div className="ordering-contacts-form__selectbox w-full">
                                                         <input
                                                             id="street"
                                                             type="text"
                                                             name="street"
-                                                            value={data.street} className="ordering__input"
+                                                            value={data.street} className="ordering__input w-full"
                                                             onChange={(e) => setData('street', e.target.value)}
                                                             placeholder={`Улица`}
                                                         />
-                                                    </div>
-                                                    <div className="ordering-contacts-form__row-inner">
-                                                        <input
-                                                            id="house"
-                                                            type="text"
-                                                            name="house"
-                                                            value={data.house} className="ordering__house-input leading-[1.5rem]"
-                                                            onChange={(e) => setData('house', e.target.value)}
-                                                            placeholder={`№ Дома`}
-                                                        />
-                                                        <input
-                                                            id="appartement"
-                                                            type="text"
-                                                            name="appartement"
-                                                            value={data.appartement} className="ordering__flat-input leading-[1.5rem]"
-                                                            onChange={(e) => setData('appartement', e.target.value)}
-                                                            placeholder={`№ Квартиры`}
-                                                        />
+                                                        <InputError message={errors.street} />
                                                     </div>
                                                 </div>
-                                                <InputError message={errors.street} />
-                                                <InputError message={errors.house} />
-                                                <InputError message={errors.appartement} />
+                                                <div className="ordering-contacts-form__row">
+                                                    <div className="ordering-contacts-form__row-inner">
+                                                        <div className="ordering-contacts-form__selectbox">
+                                                            <input
+                                                                id="house"
+                                                                type="text"
+                                                                name="house"
+                                                                value={data.house} className="ordering__input"
+                                                                onChange={(e) => setData('house', e.target.value)}
+                                                                placeholder={`№ Дома`}
+                                                            />
+                                                            <InputError message={errors.house} />
+                                                        </div>
+                                                        <div className="ordering-contacts-form__selectbox">
+                                                            <input
+                                                                id="appartement"
+                                                                type="text"
+                                                                name="appartement"
+                                                                value={data.appartement} className="ordering__input"
+                                                                onChange={(e) => setData('appartement', e.target.value)}
+                                                                placeholder={`№ Квартиры`}
+                                                            />
+                                                            <InputError message={errors.appartement} />
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div className="ordering-contacts-form__line"></div>
                                             </div>
                                             <div className="ordering-contacts__title-label fw-600-20-24">

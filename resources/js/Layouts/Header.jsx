@@ -12,6 +12,8 @@ import Lens from "@/Icons/Lens"
 import XIcon from "@/Icons/XIcon"
 import CatalogMenu from "./CatalogMenu"
 import MenuItem from "./MenuItem"
+import { useLayout } from "@/Contexts/LayoutContext"
+import CallBack from "@/Modals/CallBack"
 
 
 export default (props) => {
@@ -22,6 +24,8 @@ export default (props) => {
     const [mmenu, setMmenu] = useState(false)
 
     const [catalogMenu, setCatalogMenu] = useState(false)
+
+    const { setModal } = useLayout()
 
     const catalogMenuRef = useRef(null)
     const catalogButtonRef = useRef(null)
@@ -130,27 +134,30 @@ export default (props) => {
                             </div>
                         </> : ``}
                         <div className="contact-info-wrapper header-bottom__contact-info-wrapper">
-                            <div className="contact-info__left">
+                            <a href={`tel:${headerphone}`} className="contact-info__left">
                                 <div className="header-phone-icon-wrapper center">
                                     <Phone className="w-3 h-4 shrink-0" />
                                 </div>
-                            </div>
+                            </a>
                             <div className="contact-info__right">
-                                <div className="header-tel-wrapper">
+                                <a href={`tel:${headerphone}`} className="header-tel-wrapper">
                                     <div className="header-tel black fw-400-16-19">{headerphone}</div>
-                                    <div className="header-tel-chevron-icon center">
+                                    {/* <div className="header-tel-chevron-icon center">
                                         <ChevronDown2 className="w-2.5 h-2.5 shrink-0" />
-                                    </div>
-                                </div>
+                                    </div> */}
+                                </a>
                                 <div className="order-callback purple fw-700-14-17">
-                                    <a href="">Заказать обратный звонок</a>
+                                    <a href="#" onClick={e => {
+                                        e.preventDefault()
+                                        setModal(<CallBack />)
+                                    }}>Заказать обратный звонок</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            {sitenote ? <div className="justify-center flex w-full pointer-events-none top-full pb-1">
+            {sitenote ? <div className="absolute justify-center flex w-full pointer-events-none top-full pb-1">
                 <div className="min-w-[251px] px-10 py-1.5 bg-amber-500 rounded-b-[20px] text-stone-900 text-sm font-bold">{sitenote}</div>
             </div> : ``}
         </div>
@@ -180,16 +187,19 @@ export default (props) => {
                             <div className="header-tel black fw-400-16-19">
                                 <p>{headerphone}</p>
                             </div>
-                            <div className="header-tel-chevron-icon center">
+                            {/* <div className="header-tel-chevron-icon center">
                                 <ChevronDown2 className="w-2.5 h-2.5 shrink-0" />
-                            </div>
+                            </div> */}
                         </div>
                         <div className="order-callback purple fw-700-14-17">
-                            <a href="">Заказать обратный звонок</a>
+                            <a href="#" onClick={e => {
+                                e.preventDefault()
+                                setModal(<CallBack />)
+                            }}>Заказать обратный звонок</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </header >
+    </header>
 }
