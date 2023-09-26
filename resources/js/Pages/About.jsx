@@ -12,7 +12,7 @@ import Cart2 from '@/Icons/Cart2';
 import Star from '@/Icons/Star';
 import ProductTizer from '@/Components/ProductTizer';
 import FormAppDoctor from '@/Components/FormAppDoctor';
-import GiftCertificates from '@/Components/ GiftCertificates';
+import GiftCertificates from '@/Components/GiftCertificates';
 import ChevronDown from '@/Icons/ChevronDown';
 
 
