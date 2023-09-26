@@ -27,6 +27,11 @@ class Page extends Model
 
     protected $guarded = [];
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     /**
      * Scope a query to only include active pages.
      *

@@ -85,7 +85,7 @@
 }
 
 .pagination {
-    @apply flex items-center gap-2.5
+    @apply flex flex-wrap items-center gap-2.5
 }
 
 .pagination .page-item .page-link {

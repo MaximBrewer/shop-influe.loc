@@ -19,7 +19,11 @@ export default {
             colors: {
                 primary: {
                     100: "#F1F5F8",
+                    200: "#DBC6E9",
                     500: "#56326E"
+                },
+                sky: {
+                    300: "#77DAE9"
                 }
             },
             backgroundImage: {

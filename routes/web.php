@@ -18,6 +18,7 @@ use Inertia\Inertia;
 use TCG\Voyager\Facades\Voyager;
 use App\Http\Controllers\Cabinet;
 use App\Http\Controllers\OfferController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ServiceController;
@@ -35,10 +36,10 @@ use App\Http\Controllers\ServiceController;
 
 Route::get('/', HomeController::class)->name('home');
 
-Route::resource('/services', ServiceController::class);
+Route::resource('/services', ServiceController::class)->only(['show', 'index']);
+Route::resource('/company', PageController::class)->only('show');
 
 Route::get('/about', AboutController::class)->name('about');
-Route::get('/offer', OfferController::class)->name('offer');
 Route::get('/partners', PartnerController::class)->name('partners');
 
 Route::get('/articles', [PostsController::class, 'index'])->name('articles');

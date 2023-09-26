@@ -13,6 +13,7 @@ import Cart2 from '@/Icons/Cart2';
 import Star from '@/Icons/Star';
 import ProductTizer from '@/Components/ProductTizer';
 import FormAppDoctor from '@/Components/FormAppDoctor';
+import GiftCertificates from '@/Components/ GiftCertificates';
 
 
 function PrevArrow(props) {
@@ -162,6 +163,11 @@ export default (props) => {
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div className="bg-white pb-12">
+                <div className="container-outer">
+                    <GiftCertificates />
                 </div>
             </div>
             <div className="bg-white pb-20">
