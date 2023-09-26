@@ -16,6 +16,9 @@ export default {
             fontFamily: {
                 sans: ['Monserrat', ...defaultTheme.fontFamily.sans],
             },
+            zIndex: {
+                200: 200
+            },
             colors: {
                 primary: {
                     100: "#F1F5F8",
