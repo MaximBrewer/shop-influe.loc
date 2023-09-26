@@ -10,7 +10,7 @@ import NoPhoto from '@/Icons/NoPhoto';
 export default (props) => {
 
     const { cart, pagetitle } = props
-    const { priceFormat, setModal, numWord } = useLayout();
+    const { priceFormat, numWord } = useLayout();
 
     const deleteItem = (offer) => {
         if (!offer) return;

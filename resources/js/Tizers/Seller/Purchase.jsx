@@ -4,7 +4,6 @@ import { Inertia } from "@inertiajs/inertia";
 export default (props) => {
 
     const { item } = props
-    const { setModal, priceFormat, moment } = useLayout();
 
     const close = () => {
         Inertia.patch(route(`cabinet.purchases.close`, {

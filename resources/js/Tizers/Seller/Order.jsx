@@ -4,7 +4,7 @@ import { Fragment } from "react";
 export default (props) => {
 
     const { item } = props
-    const { setModal, priceFormat, moment } = useLayout();
+    const { priceFormat } = useLayout();
 
     return <div className={`seller-card`}>
         <div className={`seller-card-product-list`}>

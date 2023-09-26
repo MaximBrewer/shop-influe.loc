@@ -22,6 +22,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\TeamController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,7 @@ Route::resource('/services', ServiceController::class)->only(['show', 'index']);
 Route::resource('/company', PageController::class)->only('show');
 
 Route::get('/about', AboutController::class)->name('about');
+Route::get('/team', TeamController::class)->name('team');
 Route::get('/partners', PartnerController::class)->name('partners');
 
 Route::get('/articles', [PostsController::class, 'index'])->name('articles');

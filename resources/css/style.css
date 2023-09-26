@@ -4324,6 +4324,7 @@ footer {
 
 .team-composition-nav ul li a.-active {
   background-color: #3A9EAA;
+  color: var(--white);
 }
 
 .team-composition-content {

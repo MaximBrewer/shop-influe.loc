@@ -5,7 +5,6 @@ import { Fragment } from "react";
 export default (props) => {
 
     const { item } = props
-    const { setModal, priceFormat, moment } = useLayout();
 
     const assign = () => {
         Inertia.patch(route(`cabinet.orders.assign`, {

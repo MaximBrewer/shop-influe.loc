@@ -86,19 +86,21 @@ export default (props) => {
                 <div className="container-outer">
                     <div className="similar-products__outer pb-0">
                         <div className="similar-products__inner">
-                            <div className="similar-products-title-label similar-products__similar-products-title-label fw-700-45-55">Категории товаров</div>
+                            {/* <div className="similar-products-title-label similar-products__similar-products-title-label fw-700-45-55">Категории товаров</div> */}
                             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-                                {categories.map((item, index) => <div key={index} className="p-6 bg-white shadow text-center flex flex-col gap-3 justify-between items-center">
+                                {categories.map((item, index) => <Link href={route('category', {
+                                    category: item.slug
+                                })} key={index} className="p-6 bg-white shadow text-center flex flex-col gap-3 justify-between items-center">
                                     <div>
                                         <div className="w-12 h-12 bg-center bg-no-repeat bg-contain mx-auto mb-2"
                                             style={{ backgroundImage: `url('${item.image}')` }}
                                         />
                                         <div className="font-semibold">{item.name}</div>
                                     </div>
-                                    <Link href={route('category', {
+                                    {/* <Link href={route('category', {
                                         category: item.slug
-                                    })} className="border border-purple-900 px-6 py-1.5 rounded-full text-purple-900 text-center" >Подробнее</Link>
-                                </div>)}
+                                    })} className="border border-purple-900 px-6 py-1.5 rounded-full text-purple-900 text-center" >Подробнее</Link> */}
+                                </Link>)}
                             </div>
                         </div>
                     </div>
