@@ -20,13 +20,14 @@ import parse from "html-react-parser"
 import ProductTizer from '@/Components/ProductTizer';
 import InputError from '@/Components/InputError';
 import Star from '@/Icons/Star';
+import Sizes from '@/Modals/Sizes';
 
 
 export default (props) => {
 
     const { pagetitle, product, auth, cart, favorites } = props
 
-    const { priceFormat, moment } = useLayout()
+    const { priceFormat, moment, setModal } = useLayout()
 
     const [price, setPrice] = useState(null)
     const [offer, setOffer] = useState(null)
@@ -200,13 +201,14 @@ export default (props) => {
                                                     <p>Название</p>
                                                 </div>
                                             </div> */}
-                                            {/* <div className="product-description__card-size-link fw-400-14-17">
-                                                    <a href="">Подобрать размер</a>
-                                                </div> */}
                                             {specifications.map((sp, sdx) => <div key={sp.id}>
                                                 <div className="product-description__card-size-wrapper">
-                                                    <div className="product-description__card-size-label fw-700-14-17">
-                                                        <p>{sp.title}</p>
+                                                    <div className="product-description__card-size-label fw-700-14-17 flex gap-2">
+                                                        <span>{sp.title}</span>
+                                                        {sp.id === 1 && product.data.sizes && product.data.sizes.length ? <a href="#" onClick={e => {
+                                                            e.preventDefault()
+                                                            setModal(<Sizes sizes={product.data.sizes} />)
+                                                        }} className="product-description__card-size-link fw-400-14-17">Подобрать размер</a> : ``}
                                                     </div>
                                                 </div>
                                                 <div className="product-description__card-size-flexbox">
@@ -289,8 +291,8 @@ export default (props) => {
             <div className="product-review-tab-wrapper pb-20">
                 <div className="container-outer">
                     <div className="product-review-tab-wrapper__tab-line fw-700-20-24">
-                        {product.data.body ? <button className={`tab-item ${tab === 0 ? `product-active` : ``}`} onclick={e => setTab(0)}>Описание</button> : ``}
-                        <button className={`tab-item ${tab === 1 ? `product-active` : ``}`} onclick={e => setTab(0)}>Отзывы</button>
+                        {product.data.body ? <button className={`tab-item ${tab === 0 ? `product-active` : ``}`} onClick={e => setTab(0)}>Описание</button> : ``}
+                        <button className={`tab-item ${tab === 1 ? `product-active` : ``}`} onClick={e => setTab(0)}>Отзывы</button>
                     </div>
                     <div className="product-review-tab-wrapper__bottom-section">
                         <div className="product-review-tab-wrapper__bottom-section-inner">
