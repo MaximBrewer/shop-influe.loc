@@ -14,8 +14,20 @@ class ProductController extends Controller
      */
     public function __invoke(Request $request, Product $product)
     {
-        $subcategory = $product->category;
-        $category = $subcategory->parent;
+        $subsubcategory = null;
+        $subcategory = null;
+        $category = null;
+
+        if ($product->category->parent && $product->category->parent->parent) {
+            $subsubcategory = $product->category;
+            $subcategory = $product->category->parent;
+            $category = $product->category->parent->parent;
+        } elseif ($product->category->parent) {
+            $subcategory = $product->category;
+            $category = $product->category->parent;
+        } else {
+            $category = $product->parent;
+        }
 
         $breadcrumbs = [
             [
@@ -40,17 +52,24 @@ class ProductController extends Controller
                 $breadcrumbs[] = [
                     'route' => 'category',
                     'params' => [
-                        'category' => $subcategory->slug,
-                        'category' => $subcategory->slug
+                        'category' => $category->slug,
+                        'subcategory' => $subcategory->slug
                     ],
                     'text' => $subcategory->name
                 ];
+                if ($subsubcategory) {
+                    $breadcrumbs[] = [
+                        'route' => 'category',
+                        'params' => [
+                            'category' => $category->slug,
+                            'subcategory' => $subcategory->slug,
+                            'subsubcategory' => $subsubcategory->slug
+                        ],
+                        'text' => $subsubcategory->name
+                    ];
+                }
             }
         }
-
-        // $breadcrumbs[] = [
-        //     'text' => $product->title
-        // ];
 
         return Inertia::render('Product', [
             'pagetitle' => $product->title,

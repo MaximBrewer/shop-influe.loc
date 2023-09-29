@@ -6,6 +6,7 @@ use App\Http\Resources\Category as ResourcesCategory;
 use App\Http\Resources\Product as ResourcesProduct;
 use App\Http\Resources\Specification as ResourcesSpecification;
 use App\Models\Category;
+use App\Models\Facet;
 use App\Models\Product;
 use App\Models\Specification;
 use Illuminate\Http\Request;
@@ -19,11 +20,21 @@ class CatalogController extends Controller
     public function __invoke(Request $request)
     {
         $products = new Product();
-        $specifications = ResourcesSpecification::collection(Specification::all());
+
+        if ($request->sort && $request->order) {
+            $products = $products->orderBy($request->sort, $request->order);
+        } else {
+            $products = $products->orderBy('title');
+        }
+
+        $specifications = Specification::all();
+
         return Inertia::render('Catalog', [
             'pagetitle' => __('Каталог'),
-            'products' => ResourcesProduct::collection($products->paginate(12)),
-            'specifications' => $specifications,
+            'products' => ResourcesProduct::collection($products->paginate(12)->appends(request()->only(['sort', 'order']))),
+            'specifications' => ResourcesSpecification::collection($specifications),
+            'sort' => $request->sort,
+            'order' => $request->order,
             'breadcrumbs' => [
                 [
                     'route' => 'home',

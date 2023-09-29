@@ -21,7 +21,64 @@ import ProductTizer from '@/Components/ProductTizer';
 import InputError from '@/Components/InputError';
 import Star from '@/Icons/Star';
 import Sizes from '@/Modals/Sizes';
+import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/solid';
 
+
+function PrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+        <div
+            className={`${className} slick-arrow-purple similar-products-slick__arrow-left center`}
+            onClick={onClick}
+        >
+            <ArrowLeftIcon className="w-6 h-6 shrink-0" />
+        </div>
+    );
+}
+
+function NextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+        <div
+            className={`${className} slick-arrow-purple similar-products-slick__arrow-right center`}
+            onClick={onClick}
+        >
+            <ArrowRightIcon className="w-6 h-6 shrink-0" />
+        </div>
+    );
+}
+
+var settings = {
+    infinite: false,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: false,
+    autoplaySpeed: 1200,
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
+    dots: false,
+    responsive: [{
+        breakpoint: 1620,
+        settings: {
+            slidesToShow: 3
+        }
+    }, {
+        breakpoint: 992,
+        settings: {
+            slidesToShow: 2
+        }
+    }, {
+        breakpoint: 768,
+        settings: {
+            slidesToShow: 1
+        }
+    }, {
+        breakpoint: 460,
+        settings: {
+            slidesToShow: 1
+        }
+    }]
+};
 
 export default (props) => {
 
@@ -163,7 +220,7 @@ export default (props) => {
                     <div className="catalogue-categories__outer">
                         <div className="catalogue-categories__inner">
                             {/* <TopCategories /> */}
-                            <Breadcrumbs {...props} />
+                            <Breadcrumbs {...props} lastActive={true} />
                         </div>
                     </div>
                 </div>
@@ -292,7 +349,7 @@ export default (props) => {
                 <div className="container-outer">
                     <div className="product-review-tab-wrapper__tab-line fw-700-20-24">
                         {product.data.body ? <button className={`tab-item ${tab === 0 ? `product-active` : ``}`} onClick={e => setTab(0)}>Описание</button> : ``}
-                        <button className={`tab-item ${tab === 1 ? `product-active` : ``}`} onClick={e => setTab(0)}>Отзывы</button>
+                        <button className={`tab-item ${tab === 1 ? `product-active` : ``}`} onClick={e => setTab(1)}>Отзывы</button>
                     </div>
                     <div className="product-review-tab-wrapper__bottom-section">
                         <div className="product-review-tab-wrapper__bottom-section-inner">
@@ -409,11 +466,14 @@ export default (props) => {
                             <div className="similar-products-title-label similar-products__similar-products-title-label fw-700-45-55 color_white">
                                 <p>Похожие товары</p>
                             </div>
-                            <ul className="similar-products-slick">
-                                {product.data.similars.map((item) => <li key={item.id} className="catalogue-item">
-                                    <ProductTizer item={item} />
-                                </li>)}
-                            </ul>
+
+                            <Slider {...settings} className="similar-products-slick">
+                                {product.data.similars.map((item, index) => <div key={index} className="">
+                                    <div className="catalogue-item">
+                                        <ProductTizer item={item} />
+                                    </div>
+                                </div>)}
+                            </Slider>
                             <div className="similar-products__btn-wrapper">
                                 <button className="btn-primary similar-products__btn-primary fw-400-18-30">Посмотреть все</button>
                             </div>

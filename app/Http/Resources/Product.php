@@ -26,10 +26,16 @@ class Product extends JsonResource
                     'image' => Storage::url($this->category->{$t}),
                     'title' => $arrSizeTitles[$tdx]
                 ];
-            } elseif ($this->category->parent->{$t}) {
+            } elseif ($this->category->parent && $this->category->parent->{$t}) {
                 $sizes[] = [
                     'code' => $t,
                     'image' => Storage::url($this->category->parent->{$t}),
+                    'title' => $arrSizeTitles[$tdx]
+                ];
+            } elseif ($this->category->parent && $this->category->parent->parent && $this->category->parent->parent->{$t}) {
+                $sizes[] = [
+                    'code' => $t,
+                    'image' => Storage::url($this->category->parent->parent->{$t}),
                     'title' => $arrSizeTitles[$tdx]
                 ];
             }
@@ -40,6 +46,7 @@ class Product extends JsonResource
         $arr['reviewsCount'] = 12 . ' ' . Lang::choice('отзыв|отзыва|отзывов', 12, [], 'ru');
         $arr['reviews'] = Review::collection($this->reviews);
         $arr['similars'] = ProductTizer::collection($this->similars);
+        
         $arr['sizes'] = $sizes;
         return $arr;
     }

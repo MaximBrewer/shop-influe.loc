@@ -22,7 +22,7 @@ export default ({ item }) => {
             <div className="catalogue__item-bottom-inner">
                 <Link href={route('product', {
                     product: item.id
-                })} className="catalogue__item-title fw-600-16-19 h-[2.75rem] line-clamp-2">{item.title}</Link>
+                })} className="catalogue__item-title fw-600-16-19 h-[2.5rem] line-clamp-2">{item.title}</Link>
                 <div className="catalogue__item-rating">
                     <div className="catalogue__stars">
                         {[null, null, null, null, null].map((st, stdx) => <div key={stdx} className="catalogue__star-wrapper center">

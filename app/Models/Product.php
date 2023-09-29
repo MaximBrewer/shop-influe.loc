@@ -48,6 +48,12 @@ class Product extends Model
         return $this->hasMany(Offer::class);
     }
 
+
+    public function facets(): HasMany
+    {
+        return $this->hasMany(Facet::class);
+    }
+
     public function reviews(): HasMany
     {
         return $this->hasMany(Review::class);

@@ -2478,7 +2478,9 @@ footer {
 
 .similar-products-slick-main.slick-slider .slick-slide,
 .similar-products-slick.slick-slider .slick-slide {
-  margin: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .similar-products-slick-main.slick-slider .similar-products-slick__arrow-left.slick-disabled,

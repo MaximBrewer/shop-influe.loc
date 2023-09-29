@@ -18,11 +18,42 @@ class CategoryController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request, Category $category, Category $subcategory = null, Category $subsubcategory = null)
+    public function __invoke(Request $request, $category, $subcategory = false, $subsubcategory = false)
     {
-        $products = $subcategory ? $subcategory->products() : Product::where('category_id', $category->id)->orWhereHas('category', function (Builder $query) use ($category) {
-            $query->where('parent_id', $category->id);
-        });
+        global $categoryId;
+
+        $category = Category::where('slug', $category)->firstOrFail();
+
+        if ($subcategory) {
+            $subcategory = $category->children()->where('slug', $subcategory)->firstOrFail();
+            if ($subsubcategory)  $subsubcategory = $subcategory->children()->where('slug', $subsubcategory)->firstOrFail();
+        }
+
+        if ($subsubcategory) {
+            $categoryId = $subsubcategory->id;
+            $products = Product::whereHas('facets',  function (Builder $query) use ($subsubcategory) {
+                $query->where('subsubcategory_id', $subsubcategory->id);
+            });
+        } elseif ($subcategory) {
+            $categoryId = $subcategory->id;
+            $products = Product::whereHas('facets',  function (Builder $query) use ($subcategory) {
+                $query->where('subcategory_id', $subcategory->id);
+            });
+        } else {
+            $categoryId = $category->id;
+            $products = Product::whereHas('facets',  function (Builder $query) use ($category) {
+                $query->where('category_id', $category->id);
+            });
+        }
+
+        foreach ($request->all() as $fk => $fv) {
+            $products->whereHas('facets',  function (Builder $query) use ($fk, $fv) {
+                // dd($fv);
+                $query->where('specification_accounting_id', $fk);
+                $query->whereIn('specification_value', explode(":::", $fv));
+            });
+        }
+
         $breadcrumbs = [
             [
                 'route' => 'home',
@@ -65,18 +96,20 @@ class CategoryController extends Controller
             ];
         }
 
-        $specifications = ResourcesSpecification::collection(Specification::all());
+        // $category = $subcategory ?: $category;
 
-        $category = $subcategory ?: $category;
+        $specifications = Specification::all();
 
         return Inertia::render('Category', [
             'pagetitle' => $category->name,
             'category' => new ResourcesCategory($category),
-            'categories' => ResourcesCategory::collection($category->children),
+            'subcategory' => $subcategory ? new ResourcesCategory($subcategory) : null,
+            'subsubcategory' => $subsubcategory ? new ResourcesCategory($subsubcategory) : null,
+            'categories' => $subsubcategory ? ['data' => []] : ResourcesCategory::collection($subcategory ? $subcategory->children : $category->children),
             'total' => 'Показано ' . $products->count() . ' ' . Lang::choice('товар|товара|товаров', $products->count(), [], 'ru'),
             'products' => ResourcesProduct::collection($products->paginate(12)),
             'breadcrumbs' => $breadcrumbs,
-            'specifications' => $specifications,
+            'specifications' => ResourcesSpecification::collection($specifications),
             // 'posts' => Post::paginate(6)
         ]);
     }

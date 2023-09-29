@@ -34,38 +34,38 @@ function NextArrow(props) {
     );
 }
 
+var settings = {
+    infinite: false,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 1200,
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
+    dots: true,
+    responsive: [{
+        breakpoint: 992,
+        settings: {
+            slidesToShow: 3
+        }
+    }, {
+        breakpoint: 768,
+        settings: {
+            slidesToShow: 2
+        }
+    }, {
+        breakpoint: 460,
+        settings: {
+            slidesToShow: 1
+        }
+    }]
+};
+
 export default (props) => {
 
     const { pagetitle, products } = props
 
     const { categories } = window.appdata;
-
-    var settings = {
-        infinite: false,
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 1200,
-        prevArrow: <PrevArrow />,
-        nextArrow: <NextArrow />,
-        dots: true,
-        responsive: [{
-            breakpoint: 992,
-            settings: {
-                slidesToShow: 3
-            }
-        }, {
-            breakpoint: 768,
-            settings: {
-                slidesToShow: 2
-            }
-        }, {
-            breakpoint: 460,
-            settings: {
-                slidesToShow: 1
-            }
-        }]
-    };
 
 
     return (
