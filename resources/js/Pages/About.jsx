@@ -45,7 +45,6 @@ export default (props) => {
     const { pagetitle, products } = props
 
     var settings = {
-        infinite: false,
         slidesToShow: 3,
         slidesToScroll: 1,
         autoplay: false,

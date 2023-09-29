@@ -48,7 +48,6 @@ class CategoryController extends Controller
 
         foreach ($request->all() as $fk => $fv) {
             $products->whereHas('facets',  function (Builder $query) use ($fk, $fv) {
-                // dd($fv);
                 $query->where('specification_accounting_id', $fk);
                 $query->whereIn('specification_value', explode(":::", $fv));
             });

@@ -41,31 +41,48 @@ export default (props) => {
 
     const [filter, setFilter] = useState({})
 
+    const filterInizializedRef = useRef(false)
+
     const timeOutRef = useRef(0)
 
     useEffect(() => {
-        clearTimeout(timeOutRef.current)
-        let params = {};
-        for (let f in filter) params[f] = filter[f].join(':::')
-        timeOutRef.current = setTimeout(() => {
-            category ? router.visit(route('category', subsubcategory ? {
-                ...params,
-                category: category.data.slug,
-                subcategory: subcategory.data.slug,
-                subsubcategory: subsubcategory.data.slug,
-            } : (subcategory ? {
-                ...params,
-                category: category.data.slug,
-                subcategory: subcategory.data.slug
-            } : {
-                ...params,
-                category: category.data.slug
-            })), {
-                preserveState: true,
-                preserveScroll: true,
-            }) : router.visit(route('catalog', params))
-        }, 2000);
+        if (filterInizializedRef.current) {
+            clearTimeout(timeOutRef.current)
+            let params = {};
+            for (let f in filter) params[f] = filter[f].join(':::')
+            timeOutRef.current = setTimeout(() => {
+                category ? router.visit(route('category', subsubcategory ? {
+                    ...params,
+                    category: category.data.slug,
+                    subcategory: subcategory.data.slug,
+                    subsubcategory: subsubcategory.data.slug,
+                } : (subcategory ? {
+                    ...params,
+                    category: category.data.slug,
+                    subcategory: subcategory.data.slug
+                } : {
+                    ...params,
+                    category: category.data.slug
+                })), {
+                    preserveState: true,
+                    preserveScroll: true,
+                }) : router.visit(route('catalog', params))
+            }, 2000);
+        }
+        filterInizializedRef.current = true
     }, [filter])
+
+    const clearTimeoutRef = (event) => {
+        clearTimeout(timeOutRef.current)
+    }
+
+    useEffect(() => {
+        document.addEventListener('inertia:start', clearTimeoutRef)
+        return () => {
+            clearTimeout(timeOutRef.current)
+            document.removeEventListener('inertia:start', clearTimeoutRef)
+        }
+    }, [])
 
     return <ul className="filter-sidebar catalogue__filter-sidebar fw-400-16-19">
         <li className="filter-sidebar__title center">Фильтр</li>
