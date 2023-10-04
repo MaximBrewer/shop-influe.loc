@@ -36,7 +36,7 @@ export default (props) => {
             <div className="absolute top-0 w-full flex justify-center text-white pt-6">
                 <Breadcrumbs {...props} inbanner={true} />
             </div>
-            <Slider {...settings} className="main-slider">
+            <Slider {...settings} className="main-slider w-full">
                 {banners.data.map((item, index) => <div key={index} className="main-slider-item">
                     <div className="main-bg brightness-50">
                         <img src={item.image} alt={item.title} />
