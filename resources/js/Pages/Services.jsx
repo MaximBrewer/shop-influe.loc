@@ -6,11 +6,15 @@ import FormAppDoctor from "@/Components/FormAppDoctor";
 import Slider from 'react-slick';
 import parse from "html-react-parser"
 import Breadcrumbs from "@/Components/Breadcrumbs";
+import CallBack from "@/Modals/CallBack";
+import { useLayout } from "@/Contexts/LayoutContext";
 
 
 export default (props) => {
 
     const { pagetitle, facilities, banners } = props;
+
+    const { setModal } = useLayout()
 
     var settings = {
         infinite: true,
@@ -40,7 +44,10 @@ export default (props) => {
                     <div className="container-outer flex flex-col justify-between h-full py-8">
                         <div className="main-content flex flex-col justify-center items-center text-center w-full">
                             <div className="main-title">{item.title}</div>
-                            <a href="#" className="btn-primary fw-700-16-20 py-4 px-6 mt-7 mx-auto">Заказать звонок</a>
+                            <a href="#" className="btn-primary fw-700-16-20 py-4 px-6 mt-7 mx-auto" onClick={e => {
+                                e.preventDefault()
+                                setModal(<CallBack />)
+                            }}>Заказать звонок</a>
                         </div>
                         <div></div>
                     </div>

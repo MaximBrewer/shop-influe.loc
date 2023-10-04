@@ -14,6 +14,8 @@ import ProductTizer from '@/Components/ProductTizer';
 import FormAppDoctor from '@/Components/FormAppDoctor';
 import GiftCertificates from '@/Components/GiftCertificates';
 import ChevronDown from '@/Icons/ChevronDown';
+import CallBack from '@/Modals/CallBack';
+import { useLayout } from '@/Contexts/LayoutContext';
 
 
 function PrevArrow(props) {
@@ -43,6 +45,8 @@ function NextArrow(props) {
 export default (props) => {
 
     const { pagetitle, products } = props
+
+    const { setModal } = useLayout()
 
     var settings = {
         slidesToShow: 3,
@@ -90,7 +94,10 @@ export default (props) => {
                         <p className="main-subtitle">
                             Ортопедический центр Extra Comfort работает с 2006 года. <br /> Мы - первооткрыватели ортопедического центра в Казахстане.
                         </p>
-                        <a href="#" className="btn-primary fw-700-16-20 py-4 px-6 mt-7 mx-auto">Заказать звонок</a>
+                        <a href="#" className="btn-primary fw-700-16-20 py-4 px-6 mt-7 mx-auto" onClick={e => {
+                            e.preventDefault()
+                            setModal(<CallBack />)
+                        }}>Заказать звонок</a>
                     </div>
                 </div>
             </div>

@@ -7,10 +7,14 @@ import FormAppDoctor from "@/Components/FormAppDoctor";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
 import Slider from 'react-slick';
 import parse from "html-react-parser"
+import CallBack from "@/Modals/CallBack";
+import { useLayout } from "@/Contexts/LayoutContext";
 
 export default (props) => {
 
     const { pagetitle, facility } = props;
+
+    const { setModal } = useLayout()
 
     return <Layout
         {...props}
@@ -24,7 +28,10 @@ export default (props) => {
                 <div className="main-content flex flex-col justify-center text-center">
                     <h1 className="main-title">{facility.data.title}</h1>
                     <p className="main-subtitle">{facility.data.subtitle}</p>
-                    <a href="#" className="btn-primary fw-700-16-20 py-4 px-6 mt-7 mx-auto">Заказать звонок</a>
+                    <a href="#" className="btn-primary fw-700-16-20 py-4 px-6 mt-7 mx-auto" onClick={e => {
+                        e.preventDefault()
+                        setModal(<CallBack />)
+                    }}>Заказать звонок</a>
                 </div>
             </div>
         </div>
