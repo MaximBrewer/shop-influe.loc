@@ -55,7 +55,7 @@ export default (props) => {
                                     <div className="team-composition-content">
                                         {employees.data.map((item, index) => <Fragment key={index}>
                                             {type === -1 || type == item.type ? <div className="p-4 shadow-lg bg-white rounded-xl flex-col justify-start items-center gap-4 flex text-center">
-                                                <div className="bg-cover bg-center pt-[68.23%] w-full rounded-[20px]" style={{ backgroundImage: `url('${item.avatar}')` }} />
+                                                <div className="bg-contain bg-no-repeat bg-center pt-[68.23%] w-full rounded-[20px]" style={{ backgroundImage: `url('${item.avatar}')` }} />
                                                 <div className="text-black text-[22px] font-semibold">{item.name}</div>
                                                 {item.post ? <div className="text-neutral-500">{item.post}</div> : ``}
                                                 {item.degree ? <div className="text-neutral-500">{item.degree}</div> : ``}

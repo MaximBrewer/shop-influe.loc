@@ -14,7 +14,7 @@ export default (props) => {
         </svg>
         <div className="flex flex-col lg:flex-row gap-6 mb-4">
             <div className="w-56">
-                <div className="bg-cover bg-center pt-[68.23%] w-full rounded-[20px]" style={{ backgroundImage: `url('${employee.avatar}')` }} />
+                <div className="bg-contain bg-no-repeat bg-center pt-[68.23%] w-full rounded-[20px]" style={{ backgroundImage: `url('${employee.avatar}')` }} />
             </div>
             <div>
                 <div className="text-black text-[22px] font-semibold mb-4">{employee.name}</div>
