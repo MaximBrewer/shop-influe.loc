@@ -64,9 +64,7 @@ export default (props) => {
                             <div className="our-services-icon">
                                 {parse(item.icon ?? ``)}
                             </div>
-                            <p className="our-services-name">
-                                Компьютерная диагностика плоскостопия
-                            </p>
+                            <div className="our-services-name">{parse(item.title ?? ``)}</div>
                         </div>
                         <span className="our-services-btn">Подробнее</span>
                     </Link>)}
