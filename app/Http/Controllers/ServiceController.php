@@ -19,7 +19,6 @@ class ServiceController extends Controller
         return Inertia::render('Services', [
             'pagetitle' => __('Услуги'),
             'banners' => ResourcesServiceBanner::collection(ServiceBanner::all()),
-            'facilities' => ResourcesFacility::collection(Facility::all()),
             'breadcrumbs' => [
                 [
                     'route' => 'home',

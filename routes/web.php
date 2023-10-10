@@ -20,6 +20,7 @@ use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\TerminController;
 use App\Http\Controllers\WriteUsController;
 
 /*
@@ -47,6 +48,8 @@ Route::get('/articles/{post}', [PostsController::class, 'show'])->name('post');
 
 Route::get('/contacts', ContactsController::class)->name('contacts');
 Route::post('/contacts', [ContactsController::class, 'store'])->name('contacts.store');
+
+Route::post('/termins', [TerminController::class, 'store'])->name('termins.store');
 
 Route::get('/catalog', CatalogController::class)->name('catalog');
 Route::get('/catalog/{category}/{subcategory?}/{subsubcategory?}', CategoryController::class)->name('category');

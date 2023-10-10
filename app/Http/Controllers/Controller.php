@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\Category as ResourcesCategory;
+use App\Http\Resources\Facility as ResourcesFacility;
 use App\Http\Resources\Menu as ResourcesMenu;
 use App\Models\Cart;
 use App\Models\Category;
+use App\Models\Facility;
 use App\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -28,6 +30,7 @@ class Controller extends BaseController
 
         $topCategory = Category::whereNull('parent_id')->firstOrFail();
         $categories = ResourcesCategory::collection(Category::where('parent_id', $topCategory->id)->with('children')->get());
+        $facilities = ResourcesFacility::collection(Facility::whereNull('parent_id')->with('children')->get());
 
         $menus = ResourcesMenu::collection(Menu::whereNot('name', 'admin')->get());
         $email = setting('contacts.email');
@@ -43,6 +46,7 @@ class Controller extends BaseController
             'menus',
             'email',
             'categories',
+            'facilities',
             'footeremail',
             'footerphone',
             'headerphone',

@@ -150,7 +150,8 @@ export default (props) => {
                             <div className="orthopedic-block-text">
                                 <p>Ортопедический центр Extra Comfort (лицензия № 000168DM) - лечебное учреждение, оказывающее консультативно-реабилитационные услуги амбулаторного уровня пациентам всех возрастных групп преимущественно с заболеваниями опорно-двигательного аппарата и нервной системы</p>
                                 <p>Консультативные услуги предусматривают осмотр специалистов с использованием компьютерной диагностики позвоночника и стоп на аппаратах: электронный и барометрический оптический подометр и оптический топограф.</p>
-                                <p>Реабилитационные услуги включает назначение и проведение физиопроцедур, массажа, мануальной терапии, кинезотерапии с использованием эффективных методик (Войта терапии, Бобат терапии, Шрот терапии, SEAS, методик по Кальтенборну-Эвенту, PNF), кинезиотейпирования, ортопедической коррекции.</p>
+                                <p>Реабилитационные услуги включает назначение и проведение физиопроцедур, массажа, мануальной терапии, кинезотерапии с использованием эффективных методик (Войта терапии, Бобат терапии, Шрот терапии, SEAS, методик по Кальтенборну-Эвенту, PNF), кинезиотейпирования, ортопедической коррекции.
+                                    Ортопедический центр Extra Comfort является клинической базой Медицинского Университета г. Караганды</p>
                             </div>
                         </div>
                         <div className="block md:w-1/2">
@@ -172,7 +173,7 @@ export default (props) => {
                 <div className="container-outer">
                     <div className="flex justify-center">
                         <div className="rounded-lg w-full max-w-[879px] overflow-hidden">
-                            <iframe className="w-full h-[275px] md:h-[450px]" src={`https://www.youtube.com/embed/${youtube}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            <iframe className="w-full h-[275px] md:h-[450px]" src={`https://www.youtube.com/embed/${youtube}`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen={true}></iframe>
                         </div>
                     </div>
                 </div>

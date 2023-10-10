@@ -12,7 +12,11 @@ import { useLayout } from "@/Contexts/LayoutContext";
 
 export default (props) => {
 
-    const { pagetitle, facilities, banners } = props;
+    const { pagetitle, banners } = props;
+
+    const { facilities } = window.appdata
+
+    console.log(facilities)
 
     const { setModal } = useLayout()
 
@@ -61,7 +65,7 @@ export default (props) => {
                     <h2>Наши услуги</h2>
                 </div>
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
-                    {facilities.data.map((item, index) => <Link href={route('services.show', {
+                    {facilities.map((item, index) => <Link href={route('services.show', {
                         service: item.slug
                     })} key={index} className="our-services-item">
                         <div className="our-services-bg">
