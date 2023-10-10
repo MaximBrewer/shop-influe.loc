@@ -6,14 +6,8 @@ import ImgAbout1 from "@/../images/img-about-1.png"
 
 import Slider from 'react-slick';
 
-import { ArrowLeftIcon, ArrowRightIcon, ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/solid';
-import NoPhoto from '@/Icons/NoPhoto';
-import Cart2 from '@/Icons/Cart2';
-import Star from '@/Icons/Star';
-import ProductTizer from '@/Components/ProductTizer';
+import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/solid';
 import FormAppDoctor from '@/Components/FormAppDoctor';
-import GiftCertificates from '@/Components/GiftCertificates';
-import ChevronDown from '@/Icons/ChevronDown';
 import CallBack from '@/Modals/CallBack';
 import { useLayout } from '@/Contexts/LayoutContext';
 
@@ -44,7 +38,7 @@ function NextArrow(props) {
 
 export default (props) => {
 
-    const { pagetitle, products } = props
+    const { pagetitle, youtube, rewards } = props
 
     const { setModal } = useLayout()
 
@@ -176,14 +170,34 @@ export default (props) => {
             </div>
             <div className="bg-white pb-12">
                 <div className="container-outer">
-                    <GiftCertificates />
+                    <div className="flex justify-center">
+                        <div className="rounded-lg w-full max-w-[879px] overflow-hidden">
+                            <iframe className="w-full h-[275px] md:h-[450px]" src={`https://www.youtube.com/embed/${youtube}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <div className="bg-white pb-24 pt-12">
+                <div className="container-outer">
+                    <div className="text-center text-[32px] font-semibold mb-4">Наши награды</div>
+                    <div className="text-center text-zinc-800 text-[28px] mb-8">Награды ортопедического центра Extra Comfort от Национального рейтинга Казахстана в сфере здравоохранения, которое продемонстрировало превосходные результаты, ведущие к восстановлению здоровья и жизни людей.</div>
+                    <ul className="grid grid-cols-2 lg:grid-cols-4 my-6 gap-3">
+                        {rewards.data.map((item, index) => <li key={index} className="bg-slate-50 rounded-[20px] p-6 pb-12">
+                            <div className="px-4 pb-8 mx-auto max-w-[180px]">
+                                <div className="bg-center bg-contain bg-no-repeat pt-[100%]" style={{ backgroundImage: `url('${item.image}')` }} />
+                            </div>
+                            <div className="text-center text-lg font-bold">{item.title}</div>
+                        </li>)}
+                    </ul>
+                </div>
+            </div>
+
             <div className="bg-white pb-20">
                 <div className="container-outer">
                     <FormAppDoctor />
                 </div>
             </div>
-        </Layout>
+        </Layout >
     );
 }
