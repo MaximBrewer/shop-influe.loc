@@ -58,6 +58,7 @@ class FacilitiesController extends Controller
 
         return Inertia::render('Facility', [
             'pagetitle' => $facility->name,
+            'current' => new ResourcesFacility($subfacility ? $subfacility : $facility),
             'facility' => new ResourcesFacility($facility),
             'subfacility' => $subfacility ? new ResourcesFacility($subfacility) : null,
             'facilities' => $subfacility ? ['data' => []] : ResourcesFacility::collection($facility->children),

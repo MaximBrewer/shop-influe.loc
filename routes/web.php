@@ -19,7 +19,6 @@ use App\Http\Controllers\FacilitiesController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\ReviewController;
-use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TerminController;

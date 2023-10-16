@@ -13,8 +13,7 @@ import FacilityTizer from "@/Components/FacilityTizer";
 
 export default (props) => {
 
-    const { pagetitle, facility, facilities } = props;
-    console.log(facilities)
+    const { pagetitle, current, facility, facilities } = props;
 
     const { setModal } = useLayout()
 
@@ -24,12 +23,12 @@ export default (props) => {
         <Head title={pagetitle} />
         <div className="main-block">
             <div className="main-bg brightness-50">
-                <img src={facility.data.image} alt={facility.data.title} />
+                <img src={current.data.image} alt={current.data.title} />
             </div>
             <div className="container-outer">
                 <div className="main-content flex flex-col justify-center text-center">
-                    <h1 className="main-title">{facility.data.title}</h1>
-                    <p className="main-subtitle">{facility.data.subtitle}</p>
+                    <h1 className="main-title">{current.data.title}</h1>
+                    <p className="main-subtitle">{current.data.subtitle}</p>
                     <a href="#" className="btn-primary fw-700-16-20 py-4 px-6 mt-7 mx-auto" onClick={e => {
                         e.preventDefault()
                         setModal(<CallBack />)
@@ -49,35 +48,35 @@ export default (props) => {
         <div className="massage-info bg-white py-20">
             <div className="container-outer facility-text">
                 <div className="flex flex-col md:flex-row items-stretch gap-5 mb-5">
-                    {facility.data.text1 ? <div className="white-block -gray mb-0 md:w-1/2 facility-text1">
-                        {parse(facility.data.text1 ?? ``)}
+                    {current.data.text1 ? <div className="white-block -gray mb-0 md:w-1/2 facility-text1">
+                        {parse(current.data.text1 ?? ``)}
                     </div> : ``}
                     <div className="flex flex-col gap-5 md:w-1/2">
-                        {facility.data.text2 ? <div className="white-block -gray mb-0  facility-text2">
-                            {parse(facility.data.text2 ?? ``)}
+                        {current.data.text2 ? <div className="white-block -gray mb-0  facility-text2">
+                            {parse(current.data.text2 ?? ``)}
                         </div> : ``}
-                        {facility.data.text3 ? <div className="white-block -gray mb-0  facility-text3">
-                            {parse(facility.data.text3 ?? ``)}
+                        {current.data.text3 ? <div className="white-block -gray mb-0  facility-text3">
+                            {parse(current.data.text3 ?? ``)}
                         </div> : ``}
                     </div>
                 </div>
-                {facility.data.text4 ? <div className="white-block -gray mb-5 facility-text4">
-                    {parse(facility.data.text4 ?? ``)}
+                {current.data.text4 ? <div className="white-block -gray mb-5 facility-text4">
+                    {parse(current.data.text4 ?? ``)}
                 </div> : ``}
-                {facility.data.text5 ? <div className="white-block -gray mb-5 facility-text5">
-                    {parse(facility.data.text5 ?? ``)}
+                {current.data.text5 ? <div className="white-block -gray mb-5 facility-text5">
+                    {parse(current.data.text5 ?? ``)}
                 </div> : ``}
                 <div className="massage-courses mt-10">
                     <div className="flex flex-col md:flex-row items-center md:items-start justify-between mb-10">
-                        {facility.data.text6 ? <div className="grow facility-text6">
-                            {parse(facility.data.text6 ?? ``)}
+                        {current.data.text6 ? <div className="grow facility-text6">
+                            {parse(current.data.text6 ?? ``)}
                         </div> : ``}
                         <div className="max-w-[21.875rem] shrink-0">
-                            <img src={facility.data.text6image} alt="" />
+                            <img src={current.data.text6image} alt="" />
                         </div>
                     </div>
-                    {facility.data.sign1 ? <div className="warning-block">{facility.data.sign1}</div> : ``}
-                    {facility.data.sign2 ? <div className="warning-block">{facility.data.sign2}</div> : ``}
+                    {current.data.sign1 ? <div className="warning-block">{current.data.sign1}</div> : ``}
+                    {current.data.sign2 ? <div className="warning-block">{current.data.sign2}</div> : ``}
                 </div>
             </div>
         </div>

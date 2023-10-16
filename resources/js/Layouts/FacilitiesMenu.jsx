@@ -25,7 +25,11 @@ export default (props) => {
                                             e.preventDefault()
                                             setFacility(item)
                                         }
-                                    }}>
+                                    }}
+                                    href={route('facility', {
+                                        facility: item.slug
+                                    })}
+                                >
                                     {item.title}
                                 </Link>
                             </li>)}
@@ -42,7 +46,11 @@ export default (props) => {
                                                 e.preventDefault()
                                                 setFacility(item)
                                             }
-                                        }}>
+                                        }}
+                                        href={route('facility', {
+                                            facility: item.slug
+                                        })}
+                                    >
                                         {item.title}
                                     </Link>
                                 </h2>
