@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\Reward as ResourcesReward;
+use App\Http\Resources\AboutImage as ResourcesAboutImage;
+use App\Models\AboutImage;
 use App\Models\Reward;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -21,6 +23,7 @@ class AboutController extends Controller
             'pagetitle' => __('About'),
             'youtube' =>  $youtube,
             'rewards' => ResourcesReward::collection(Reward::all()),
+            'aboutImages' => ResourcesAboutImage::collection(AboutImage::all()),
             'breadcrumbs' => [
                 [
                     'route' => 'home',

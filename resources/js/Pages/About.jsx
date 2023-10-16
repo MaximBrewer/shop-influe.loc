@@ -36,42 +36,42 @@ function NextArrow(props) {
     );
 }
 
+var settings = {
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: false,
+    autoplaySpeed: 1200,
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
+    dots: true,
+    vertical: true,
+    centerMode: true,
+    infinite: true,
+    centerPadding: `0px`
+    // responsive: [{
+    //     breakpoint: 992,
+    //     settings: {
+    //         slidesToShow: 3
+    //     }
+    // }, {
+    //     breakpoint: 768,
+    //     settings: {
+    //         slidesToShow: 2
+    //     }
+    // }, {
+    //     breakpoint: 460,
+    //     settings: {
+    //         slidesToShow: 1
+    //     }
+    // }]
+};
+
+
 export default (props) => {
 
-    const { pagetitle, youtube, rewards } = props
+    const { pagetitle, youtube, rewards, aboutImages } = props
 
     const { setModal } = useLayout()
-
-    var settings = {
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        autoplay: false,
-        autoplaySpeed: 1200,
-        prevArrow: <PrevArrow />,
-        nextArrow: <NextArrow />,
-        dots: true,
-        vertical: true,
-        centerMode: true,
-        infinite: true,
-        centerPadding: `0px`
-        // responsive: [{
-        //     breakpoint: 992,
-        //     settings: {
-        //         slidesToShow: 3
-        //     }
-        // }, {
-        //     breakpoint: 768,
-        //     settings: {
-        //         slidesToShow: 2
-        //     }
-        // }, {
-        //     breakpoint: 460,
-        //     settings: {
-        //         slidesToShow: 1
-        //     }
-        // }]
-    };
-
 
     return (
         <Layout {...props}>
@@ -157,9 +157,9 @@ export default (props) => {
                         <div className="block md:w-1/2">
                             <div className="w-[240px] lg:w-[409px]">
                                 <Slider {...settings} className="orthopedic-slider">
-                                    {[0, 0, 0, 0, 0, 0].map((item, index) => <div key={index} className="orthopedic-slide-item">
+                                    {aboutImages.data.map((item, index) => <div key={index} className="orthopedic-slide-item">
                                         <div className="relative">
-                                            <img src={ImgOrthopedic1} alt="" className="w-full block" />
+                                            <img src={item.image} alt="" className="w-full block" />
                                             <div className="top-0 left-0 bottom-0 right-0 absolute backdrop-blur" />
                                         </div>
                                     </div>)}
