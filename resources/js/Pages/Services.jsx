@@ -4,10 +4,10 @@ import { Head, Link } from "@inertiajs/react";
 import ImgMain1 from "@/../images/img-main-1.jpg"
 import FormAppDoctor from "@/Components/FormAppDoctor";
 import Slider from 'react-slick';
-import parse from "html-react-parser"
 import Breadcrumbs from "@/Components/Breadcrumbs";
 import CallBack from "@/Modals/CallBack";
 import { useLayout } from "@/Contexts/LayoutContext";
+import FacilityTizer from "@/Components/FacilityTizer";
 
 
 export default (props) => {
@@ -15,8 +15,6 @@ export default (props) => {
     const { pagetitle, banners } = props;
 
     const { facilities } = window.appdata
-
-    console.log(facilities)
 
     const { setModal } = useLayout()
 
@@ -65,20 +63,7 @@ export default (props) => {
                     <h2>Наши услуги</h2>
                 </div>
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
-                    {facilities.map((item, index) => <Link href={route('services.show', {
-                        service: item.slug
-                    })} key={index} className="our-services-item">
-                        <div className="our-services-bg">
-                            <img src={item.bg} alt="" />
-                        </div>
-                        <div className="flex flex-col justify-start items-center gap-4">
-                            <div className="our-services-icon">
-                                {parse(item.icon ?? ``)}
-                            </div>
-                            <div className="our-services-name">{parse(item.title ?? ``)}</div>
-                        </div>
-                        <span className="our-services-btn">Подробнее</span>
-                    </Link>)}
+                    {facilities.map((item, index) => <FacilityTizer key={index} item={item} />)}
                 </div>
             </div>
         </div>

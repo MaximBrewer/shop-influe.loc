@@ -14,6 +14,7 @@ import CatalogMenu from "./CatalogMenu"
 import MenuItem from "./MenuItem"
 import { useLayout } from "@/Contexts/LayoutContext"
 import CallBack from "@/Modals/CallBack"
+import FacilitiesMenu from "./FacilitiesMenu"
 
 
 export default (props) => {
@@ -24,15 +25,18 @@ export default (props) => {
     const [mmenu, setMmenu] = useState(false)
 
     const [catalogMenu, setCatalogMenu] = useState(false)
+    const [facilitiesMenu, setFacilitiesMenu] = useState(false)
 
     const { setModal } = useLayout()
 
     const catalogMenuRef = useRef(null)
     const catalogButtonRef = useRef(null)
+    const facilitiesMenuRef = useRef(null)
+    const facilitiesButtonRef = useRef(null)
 
     const { post } = useForm({});
 
-    const { cart, shoppage = false, sitenote = `` } = usePage().props
+    const { cart, shoppage = false, servicepage = false, sitenote = `` } = usePage().props
 
     useEffect(() => {
 
@@ -41,7 +45,10 @@ export default (props) => {
     const checkClick = (e) => {
         (catalogMenuRef.current && catalogMenuRef.current.contains(e.target))
             || (catalogButtonRef.current && catalogButtonRef.current.contains(e.target))
-            || setCatalogMenu(false)
+            || setCatalogMenu(false);
+        (facilitiesMenuRef.current && facilitiesMenuRef.current.contains(e.target))
+            || (facilitiesButtonRef.current && facilitiesButtonRef.current.contains(e.target))
+            || setFacilitiesMenu(false)
     }
 
     useEffect(() => {
@@ -120,7 +127,7 @@ export default (props) => {
                             <Link href={route('home')}><img className="logo" src={Logo} alt="Логотип" /></Link>
                         </div>
                     </div>
-                    <div className="flex gap-6 items-center justify-between">
+                    <div className="flex gap-6 items-center justify-end lg:justify-between grow">
                         {shoppage ? <>
                             <button className="catalogue-btn" type="button" ref={catalogButtonRef} onClick={e => setCatalogMenu(prev => !prev)}>
                                 <i className="ic-catalogue-btn"></i>
@@ -132,7 +139,13 @@ export default (props) => {
                                     <Lens className="w-3.5 h-3.5 shrink-0" />
                                 </div>
                             </div>
-                        </> : ``}
+                        </> : servicepage ? <>
+                            <button className="catalogue-btn" type="button" ref={facilitiesButtonRef} onClick={e => setFacilitiesMenu(prev => !prev)}>
+                                <i className="ic-catalogue-btn"></i>
+                                <span>Услуги</span>
+                            </button>
+                            <div></div>
+                        </> : <div></div>}
                         <div className="contact-info-wrapper header-bottom__contact-info-wrapper">
                             <a href={`tel:${headerphone}`} className="contact-info__left">
                                 <div className="header-phone-icon-wrapper center">
@@ -162,6 +175,7 @@ export default (props) => {
             </div> : ``}
         </div>
         {catalogMenu ? <CatalogMenu catalogMenuRef={catalogMenuRef} /> : ``}
+        {facilitiesMenu ? <FacilitiesMenu facilitiesMenuRef={facilitiesMenuRef} /> : ``}
         <div className={`header__mobile ${mmenu ? `is-active` : ``}`}>
             <div className="container-outer">
                 <div className="menu-close" onClick={e => setMmenu(false)}>
@@ -201,5 +215,6 @@ export default (props) => {
                 </div>
             </div>
         </div>
+
     </header>
 }

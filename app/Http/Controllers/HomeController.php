@@ -19,7 +19,7 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return Inertia::render('Home2', [
+        return Inertia::render('Home', [
             'pagetitle' => setting('site.title'),
             'services' => [
                 'title' => setting('services.title_on_main'),
@@ -38,8 +38,8 @@ class HomeController extends Controller
      */
     public function shop(Request $request)
     {
-        return Inertia::render('Home', [
-            'pagetitle' => __('Home'),
+        return Inertia::render('Shop', [
+            'pagetitle' => setting('site.title'),
             'products' => ResourcesProduct::collection(Product::limit(20)->get())
         ]);
     }

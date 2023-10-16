@@ -16,7 +16,9 @@ class Category extends JsonResource
     public function toArray(Request $request): array
     {
         $arr = parent::toArray($request);
-        $arr['image'] = $arr['image'] ? Voyager::image($arr['image']) : "";
+        $arr['icon'] = $arr['icon'] ? Voyager::image($arr['icon']) : "";
+        $arr['icondark'] = $arr['icondark'] ? Voyager::image($arr['icondark']) : "";
+        $arr['bg'] = $arr['bg'] ? Voyager::image($arr['bg']) : "";
         return $arr;
     }
 }

@@ -29,7 +29,6 @@ export default (props) => {
     //         })
     //         .catch((error) => {
     //             setProcessing(false)
-    //             console.log(error)
     //         })
     // }
 

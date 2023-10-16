@@ -4,8 +4,6 @@ export default (props) => {
 
     const { component } = usePage();
 
-    console.log(component)
-
     return <div className="cabinet-panel">
         <ul className="cabinet-panel-list">
             <li>

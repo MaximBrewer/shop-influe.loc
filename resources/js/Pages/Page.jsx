@@ -7,8 +7,6 @@ export default (props) => {
 
     const { pagetitle, page } = props
 
-    console.log(page)
-
     return (
         <Layout {...props}>
             <Head title={pagetitle} />

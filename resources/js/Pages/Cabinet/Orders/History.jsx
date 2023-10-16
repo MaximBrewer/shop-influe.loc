@@ -10,7 +10,6 @@ export default (props) => {
 
     const { orders } = props
 
-    console.log(orders)
     const { numWord, priceFormat, moment } = useLayout();
 
     // const [index, setIndex] = useState(0)
@@ -29,7 +28,6 @@ export default (props) => {
     //         })
     //         .catch((error) => {
     //             setProcessing(false)
-    //             console.log(error)
     //         })
     // }
 

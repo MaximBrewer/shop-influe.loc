@@ -15,10 +15,12 @@ use Illuminate\Support\Facades\Route;
 use TCG\Voyager\Facades\Voyager;
 use App\Http\Controllers\Cabinet;
 use App\Http\Controllers\CallBackController;
+use App\Http\Controllers\FacilitiesController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TerminController;
 use App\Http\Controllers\WriteUsController;
@@ -36,7 +38,6 @@ use App\Http\Controllers\WriteUsController;
 
 Route::get('/', HomeController::class)->name('home');
 
-Route::resource('/services', ServiceController::class)->only(['show', 'index']);
 Route::resource('/company', PageController::class)->only('show');
 
 Route::get('/about', AboutController::class)->name('about');
@@ -51,18 +52,11 @@ Route::post('/contacts', [ContactsController::class, 'store'])->name('contacts.s
 
 Route::post('/termins', [TerminController::class, 'store'])->name('termins.store');
 
-Route::get('/catalog', CatalogController::class)->name('catalog');
-Route::get('/catalog/{category}/{subcategory?}/{subsubcategory?}', CategoryController::class)->name('category');
-Route::get('/product/{product}', ProductController::class)->name('product');
-
 Route::get('/payment', PaymentController::class)->name('payment');
 Route::get('/refund', RefundController::class)->name('refund');
 
 Route::post('/callback', CallBackController::class)->name('callback');
 Route::post('/writeus', WriteUsController::class)->name('writeus');
-// Route::get('/catalog', function () {
-//     return Inertia::render('Catalog');
-// });
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -70,7 +64,18 @@ Route::post('/writeus', WriteUsController::class)->name('writeus');
 //     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 // });
 
+
+Route::middleware('service')->group(function () {
+    Route::get('/services', ServicesController::class)->name('services');
+    Route::get('/services/{facility}/{subfacility?}', FacilitiesController::class)->name('facility');
+});
+
+
 Route::middleware('shop')->group(function () {
+
+    Route::get('/catalog', CatalogController::class)->name('catalog');
+    Route::get('/catalog/{category}/{subcategory?}/{subsubcategory?}', CategoryController::class)->name('category');
+    Route::get('/product/{product}', ProductController::class)->name('product');
 
     Route::get('/shop', [HomeController::class, 'shop'])->name('shop');
 
