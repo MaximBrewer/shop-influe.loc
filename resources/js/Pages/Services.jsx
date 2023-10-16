@@ -83,7 +83,7 @@ export default (props) => {
         {...props}
     >
         <Head title={pagetitle} />
-        {/* <div className="main-block relative">
+        <div className="main-block relative">
             <div className="absolute top-0 w-full flex justify-center text-white pt-6">
                 <Breadcrumbs {...props} inbanner={true} />
             </div>
@@ -115,10 +115,10 @@ export default (props) => {
                     {facilities.map((item, index) => <FacilityTizer key={index} item={item} />)}
                 </div>
             </div>
-        </div> */}
+        </div>
 
         <div className="bg-white">
-            {/* <div className="container-outer">
+            <div className="container-outer">
                 <div className="appointment-doctor py-24 md:mx-20">
                     <div className="appointment-doctor-title">
                         <h2>Рекомендовано записаться на прием:</h2>
@@ -246,7 +246,7 @@ export default (props) => {
                 <div className="pb-16">
                     <FormAppDoctor />
                 </div>
-            </div> */}
+            </div>
             <div className="container-outer">
                 <div className="text-[32px] font-semibold mb-4 text-center">{stattitle}</div>
                 <div className="text-zinc-400 text-[28px] mb-10 text-center">{statsubtitle}</div>
