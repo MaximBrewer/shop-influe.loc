@@ -26,6 +26,10 @@ const styles = {
         color: `#414D55`,
         padding: `0 4px`
     }),
+    placeholder: (baseStyles, state) => ({
+        ...baseStyles,
+        whiteSpace: `nowrap`
+    }),
     menu: (baseStyles, state) => ({
         ...baseStyles,
         minWidth: `12rem`,
@@ -69,7 +73,7 @@ export default (props) => {
                 <p>Оставьте контактные данные, выберите услугу и салон</p>
             </div>
             <form action="" className="form-app-doctor-form" onSubmit={submit}>
-                <div className="grid sm:grid-cols-3 gap-x-3 gap-y-3">
+                <div className="grid sm:grid-cols-3 gap-x-3 gap-y-3 lg:w-[576px] 2xl:w-[768px]">
                     <div>
                         <input type="text"
                             value={data.name}

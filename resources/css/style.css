@@ -1675,7 +1675,7 @@ footer {
 }
 
 .form-app-doctor-content {
-  width: 60%;
+  flex-grow: 1;
 }
 
 .form-app-doctor-title h4 {
@@ -4426,11 +4426,7 @@ footer {
   position: relative;
 }
 
-.team-form-app .form-app-doctor-img {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-}
+.team-form-app .form-app-doctor-img {}
 
 /* ПАРТНЕРЫ */
 .partners-page {
