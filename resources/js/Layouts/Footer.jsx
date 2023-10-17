@@ -27,7 +27,7 @@ export default () => {
                         <li className="footer-navbar__item">
                             <div className="footer-navbar-item__title fw-600-18-22">Услуги</div>
                             <ul className="footer-navbar-item__menu fw-400-18-22">
-                                {menus.find(menu => menu.name === `services`).items.map((item, index) => <li key={index}>
+                                {menus.find(menu => menu.name === `service`).items.map((item, index) => <li key={index}>
                                     <Link href={item.link}>{item.title}</Link>
                                 </li>)}
                             </ul>
@@ -43,7 +43,23 @@ export default () => {
                         <li className="footer-navbar__item">
                             <div className="footer-navbar-item__title fw-600-18-22">Контакты</div>
                             <div className="footer-contacts-wrapper">
-                                <div className="footer-contacts-tel-wrapper">
+                                <div className="mb-5">
+                                    <div className="font-semibold">Филиал на Комиссарова 22:</div>
+                                    <div className="lg:whitespace-nowrap">+7 (778) 276 23 43 (телефон и  WhatsApp)</div>
+                                </div>
+                                <div className="mb-5">
+                                    <div className="font-semibold">Филиал на Бухар Жырау 79:</div>
+                                    <div className="lg:whitespace-nowrap">+7 (778) 276 23 44 (телефон и  WhatsApp)</div>
+                                </div>
+                                <div className="mb-5 flex gap-2">
+                                    <span className="font-semibold">E-mail:</span>
+                                    <span>extracomfort@mail.ru</span>
+                                </div>
+                                <div className="mb-5 flex gap-2">
+                                    <span className="font-semibold">Instagram:</span>
+                                    <span>@extra_comfort</span>
+                                </div>
+                                {/* <div className="footer-contacts-tel-wrapper">
                                     <a href={`tel:${footerphone}`} className="icon-wrapper center">
                                         <img src={Phone} alt="" />
                                     </a>
@@ -52,9 +68,9 @@ export default () => {
                                             <div className="footer-num-wrapper">
                                                 {footerphone}
                                             </div>
-                                            {/* <div className="footer-num-chevron-wrapper center">
+                                            <div className="footer-num-chevron-wrapper center">
                                                 <img src={ChevronDown} alt="" />
-                                            </div> */}
+                                            </div>
                                         </a>
                                         <div className="order-callback purple">
                                             <a href="#" onClick={e => {
@@ -71,7 +87,7 @@ export default () => {
                                     <div className="email-wrapper center fw-400-16-19">
                                         {footeremail}
                                     </div>
-                                </a>
+                                </a> */}
                             </div>
                         </li>
                     </ul>
