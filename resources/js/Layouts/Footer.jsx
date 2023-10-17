@@ -45,19 +45,19 @@ export default () => {
                             <div className="footer-contacts-wrapper">
                                 <div className="mb-5">
                                     <div className="font-semibold">Филиал на Комиссарова 22:</div>
-                                    <div className="lg:whitespace-nowrap">+7 (778) 276 23 43 (телефон и  WhatsApp)</div>
+                                    <div className="lg:whitespace-nowrap">+7 (778) 276 23 43 (телефон и  <a href="https://wa.me/+77782762343" target="_blank" className="inline underline">WhatsApp</a>)</div>
                                 </div>
                                 <div className="mb-5">
                                     <div className="font-semibold">Филиал на Бухар Жырау 79:</div>
-                                    <div className="lg:whitespace-nowrap">+7 (778) 276 23 44 (телефон и  WhatsApp)</div>
+                                    <div className="lg:whitespace-nowrap">+7 (778) 276 23 44 (телефон и  <a href="https://wa.me/+77782762344" target="_blank" className="inline underline">WhatsApp</a>)</div>
                                 </div>
                                 <div className="mb-5 flex gap-2">
                                     <span className="font-semibold">E-mail:</span>
-                                    <span>extracomfort@mail.ru</span>
+                                    <a href="mailto:extracomfort@mail.ru" target="_blank" className="inline underline">extracomfort@mail.ru</a>
                                 </div>
                                 <div className="mb-5 flex gap-2">
                                     <span className="font-semibold">Instagram:</span>
-                                    <span>@extra_comfort</span>
+                                    <a href="https://instagram.com/extra_comfort" target="_blank" className="inline underline">@extra_comfort</a>
                                 </div>
                                 {/* <div className="footer-contacts-tel-wrapper">
                                     <a href={`tel:${footerphone}`} className="icon-wrapper center">
