@@ -4572,7 +4572,9 @@ footer {
   margin-bottom: 0;
 }
 
-.payment__table {
+.payment__table {}
+
+.payment__table table {
   width: 100%;
   margin: 2.25rem 0;
 }

@@ -14,6 +14,7 @@ class DeliveryController extends Controller
     {
         return Inertia::render('Delivery', [
             'pagetitle' => __('Оплата и доставка'),
+            'table' => setting('site.table'),
             'breadcrumbs' => [
                 [
                     'route' => 'home',

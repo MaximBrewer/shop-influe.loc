@@ -5,10 +5,11 @@ import ClockSvg from "../../images/clock.svg"
 import PinSvg from "../../images/pin.svg"
 import Cdek from "../../images/cdek.svg"
 import Post from "../../images/kaz-post.svg"
+import parse from "html-react-parser"
 
 export default (props) => {
 
-    const { pagetitle } = props;
+    const { pagetitle, table } = props;
 
     return <Layout
         {...props}
@@ -50,102 +51,9 @@ export default (props) => {
                             Сроки доставки указаны без учета для приема и без учета выходных дней
                         </div>
                         <div class="payment__table-block">
-                            <table class="payment__table">
-                                <thead>
-                                    <tr>
-                                        <th>Города</th>
-                                        <th>Срок доставки</th>
-                                        <th>Стоимость посылки весом до 2 кг</th>
-                                        <th>При добавлении веса +1 кг</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Астана</td>
-                                        <td>2-3 дня</td>
-                                        <td>3 000 ₸</td>
-                                        <td>300 ₸</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Павлодар</td>
-                                        <td>3-4 дня</td>
-                                        <td>3 000 ₸</td>
-                                        <td>300 ₸</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Кызылорда</td>
-                                        <td>4-5 дней</td>
-                                        <td>3 200 ₸</td>
-                                        <td>400 ₸</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Кызылорда</td>
-                                        <td>4-5 дней</td>
-                                        <td>3 200 ₸</td>
-                                        <td>400 ₸</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Кызылорда</td>
-                                        <td>4-5 дней</td>
-                                        <td>3 200 ₸</td>
-                                        <td>400 ₸</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Кызылорда</td>
-                                        <td>4-5 дней</td>
-                                        <td>3 200 ₸</td>
-                                        <td>400 ₸</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Кызылорда</td>
-                                        <td>4-5 дней</td>
-                                        <td>3 200 ₸</td>
-                                        <td>400 ₸</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Кызылорда</td>
-                                        <td>4-5 дней</td>
-                                        <td>3 200 ₸</td>
-                                        <td>400 ₸</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Кызылорда</td>
-                                        <td>4-5 дней</td>
-                                        <td>3 200 ₸</td>
-                                        <td>400 ₸</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Кызылорда</td>
-                                        <td>4-5 дней</td>
-                                        <td>3 200 ₸</td>
-                                        <td>400 ₸</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Кызылорда</td>
-                                        <td>4-5 дней</td>
-                                        <td>3 200 ₸</td>
-                                        <td>400 ₸</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Кызылорда</td>
-                                        <td>4-5 дней</td>
-                                        <td>3 200 ₸</td>
-                                        <td>400 ₸</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Кызылорда</td>
-                                        <td>4-5 дней</td>
-                                        <td>3 200 ₸</td>
-                                        <td>400 ₸</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Кызылорда</td>
-                                        <td>4-5 дней</td>
-                                        <td>3 200 ₸</td>
-                                        <td>400 ₸</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div class="payment__table">
+                                {parse(table ?? ``)}
+                            </div>
                         </div>
                         <div class="samovyvoz white-block">
                             <div class="info__title payment-info__title fw-600-30-37">
@@ -157,7 +65,7 @@ export default (props) => {
                             <div class="samovyvoz fw-400-16-19">
                                 <div class="samovyvoz__address">
                                     <div class="pin samovyvoz__pin">
-                                        <img src={PinSvg} alt=""/>
+                                        <img src={PinSvg} alt="" />
                                     </div>
                                     <div class="samovyvoz__label">
                                         <p>г. Караганда, ул. Бухар Жырау, 79</p>
@@ -165,7 +73,7 @@ export default (props) => {
                                 </div>
                                 <div class="samovyvoz__working-hours">
                                     <div class="clock-icon samovyvoz__clock-icon">
-                                        <img src={ClockSvg} alt=""/>
+                                        <img src={ClockSvg} alt="" />
                                     </div>
                                     <div class="samovyvoz__label">
                                         <p>График выдачи товара: понедельник - пятница с 9.00 до 18.00, перерыва 12.30-13.3</p>
