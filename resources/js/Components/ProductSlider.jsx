@@ -15,6 +15,7 @@ export default (props) => {
     const settings = {
         asNavFor: nav2,
         dots: false,
+        arrows: false,
         infinite: true,
         speed: 500,
         slidesToShow: 1,
@@ -24,6 +25,7 @@ export default (props) => {
     const thumbsettings = {
         asNavFor: nav1,
         dots: false,
+        arrows: false,
         infinite: true,
         speed: 500,
         slidesToShow: 3,

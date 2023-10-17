@@ -1429,6 +1429,11 @@ footer {
   z-index: 3;
 }
 
+
+.slick-track {
+  display: flex;
+}
+
 .catalogue-breadcrumb-item {
   font-family: var(--mont-ff);
   color: rgba(0, 0, 0, 0.5);
@@ -5590,6 +5595,7 @@ footer {
   .product-slider {
     margin-bottom: 25px;
   }
+
 
   .product-description__card-left {
     flex: 0 0 40%;
