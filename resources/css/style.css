@@ -1432,6 +1432,7 @@ footer {
 
 .slick-track {
   display: flex;
+  min-width: 100%;
 }
 
 .catalogue-breadcrumb-item {
