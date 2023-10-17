@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 use TCG\Voyager\Facades\Voyager;
 use App\Http\Controllers\Cabinet;
 use App\Http\Controllers\CallBackController;
+use App\Http\Controllers\ConsultController;
 use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\FacilitiesController;
 use App\Http\Controllers\GiftsController;
@@ -45,6 +46,7 @@ Route::get('/about', AboutController::class)->name('about');
 Route::get('/team', TeamController::class)->name('team');
 Route::get('/partners', PartnerController::class)->name('partners');
 Route::get('/gifts', GiftsController::class)->name('gifts');
+Route::get('/consult', ConsultController::class)->name('consult');
 
 Route::get('/articles', [PostsController::class, 'index'])->name('articles');
 Route::get('/articles/{post}', [PostsController::class, 'show'])->name('post');
