@@ -16,6 +16,7 @@ use TCG\Voyager\Facades\Voyager;
 use App\Http\Controllers\Cabinet;
 use App\Http\Controllers\CallBackController;
 use App\Http\Controllers\FacilitiesController;
+use App\Http\Controllers\GiftsController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\ReviewController;
@@ -42,6 +43,7 @@ Route::resource('/company', PageController::class)->only('show');
 Route::get('/about', AboutController::class)->name('about');
 Route::get('/team', TeamController::class)->name('team');
 Route::get('/partners', PartnerController::class)->name('partners');
+Route::get('/gifts', GiftsController::class)->name('gifts');
 
 Route::get('/articles', [PostsController::class, 'index'])->name('articles');
 Route::get('/articles/{post}', [PostsController::class, 'show'])->name('post');
