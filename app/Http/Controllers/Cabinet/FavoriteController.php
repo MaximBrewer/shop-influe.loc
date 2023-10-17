@@ -19,6 +19,29 @@ class FavoriteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function index()
+    {
+        $user = User::find(Auth::id());
+        return Inertia::render("Cabinet/Favorites", [
+            'pagetitle' => 'Избранное',
+            'products' => ResourcesProduct::collection($user->favorites()->paginate(12)),
+            'breadcrumbs' => [
+                [
+                    'text' => 'Главная',
+                    'route' => 'home'
+                ],
+                [
+                    'text' => 'Избранное'
+                ]
+            ],
+        ]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function toggle(Request $request)
     {
         $user = User::find(Auth::id());
@@ -33,18 +56,5 @@ class FavoriteController extends Controller
             }
         }
         return redirect()->back();
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function items()
-    {
-        $user = User::find(Auth::id());
-        return Inertia::render("Cabinet/Favorites", [
-            'items' => ResourcesProduct::collection($user->favorites()->paginate(12))
-        ]);
     }
 }

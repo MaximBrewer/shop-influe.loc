@@ -15,6 +15,9 @@ import MenuItem from "./MenuItem"
 import { useLayout } from "@/Contexts/LayoutContext"
 import CallBack from "@/Modals/CallBack"
 import FacilitiesMenu from "./FacilitiesMenu"
+import Profile from "@/Icons/Profile"
+import Heart from "@/Icons/Heart"
+import DangerButton from "@/Components/DangerButton"
 
 
 export default (props) => {
@@ -59,7 +62,7 @@ export default (props) => {
     })
 
     return <header className="header z-50 relative">
-        <div className="header__top fw-300-16-19">
+        <div className="header__top fw-300-16-19 border-b border-white border-opacity-20">
             <div className="container-outer">
 
                 <div className="flex items-center justify-between">
@@ -72,53 +75,81 @@ export default (props) => {
                         <span className="menu-line line-two"></span>
                         <span className="menu-line line-three"></span>
                     </a>
-                    <nav className="header__navbar center">
+                    <nav className="header__navbar center py-3">
                         <ul className="navbar-list">
-                            {menus.find(menu => menu.name === (shoppage ? `shop` : `service`)).items.map((item, index) => <MenuItem key={index} item={item} />)}
+                            {menus.find(menu => menu.name === `common`).items.map((item, index) => <MenuItem key={index} item={item} />)}
                         </ul>
                     </nav>
                     <div className="flex items-center">
-                        {shoppage && cart ? <div className="header__navbar basket-navbar">
+                        {shoppage ? <div className="header__navbar basket-navbar py-3">
                             <ul className="navbar-list">
-                                <li className="navbar-list__item center">
+                                <li className="navbar-list__item center" style={{ marginRight: `.75rem` }}>
+                                    <Link href={route('cabinet.favorites.index')} className="inline-flex items-center">
+                                        <Heart className="w-5 h-5 shrink-0 mr-2.5" />
+                                    </Link>
+                                </li>
+                                {cart ? <li className="navbar-list__item center">
                                     <Link href={route('cart.index')} className="inline-flex items-center">
                                         <Cart className="w-5 h-5 shrink-0 mr-2.5" />
                                         <span className="hidden md:block">Корзина</span>
                                     </Link>
                                     {cart.items.length ? <div className="basket-count">{cart.items.length}</div> : ``}
-                                </li>
+                                </li> : <></>}
                             </ul>
                         </div> : ``}
-                        <div className="header__navbar auth-navbar">
+                        <div className="header__navbar auth-navbar py-3">
                             <div className="flex items-center gap-1">
-                                {auth.user ? <LogOut className="w-5 h-5 shrink-0" /> : <LogIn className="w-5 h-5 shrink-0" />}
-                                <ul className="auth-navbar-list">
-                                    {auth.user ? <>
+                                {auth.user ? <>
+                                    <ul className="auth-navbar-list">
                                         <li className="auth-navbar-list__item">
-                                            <a className={`auth-navbar-link`} href="#" onClick={e => {
+                                            <Link href={route('cabinet.index')} className={`auth-navbar-link flex items-center gap-2`}>
+                                                <Profile className="w-5 h-5 shrink-0" />
+                                                <div className="auth-navbar-list__logout-label center hidden sm:block">Личный кабинет</div>
+                                            </Link>
+                                        </li>
+                                        <li className="auth-navbar-list__item">
+                                            <a className={`auth-navbar-link flex items-center gap-2`} href="#" onClick={e => {
                                                 e.preventDefault();
                                                 post(route('logout'))
                                             }}>
-                                                <div className="auth-navbar-list__logout-label center">Выход</div>
+                                                <LogOut className="w-5 h-5 shrink-0" />
+                                                <div className="auth-navbar-list__logout-label center hidden sm:block">Выход</div>
                                             </a>
                                         </li>
-                                    </> : <>
+                                    </ul>
+                                </> : <>
+                                    <ul className="auth-navbar-list">
                                         <li className="auth-navbar-list__item">
-                                            <Link href={route('login')} className={`auth-navbar-link`}>
+                                            <Link href={route('login')} className={`auth-navbar-link flex items-center gap-2`}>
+                                                <LogIn className="w-5 h-5 shrink-0" />
                                                 <div className="auth-navbar-list__login-label center">Вход</div>
                                             </Link>
                                         </li>
                                         <li className="auth-navbar-list__item center">
                                             <Link href={route('register')} className={`auth-navbar-link`}>Регистрация</Link>
                                         </li>
-                                    </>}
-                                </ul>
+                                    </ul>
+                                </>}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        {shoppage || servicepage ? <div className="header__top fw-300-16-19">
+            <div className="container-outer">
+                <div className="flex items-center justify-between">
+                    <nav className="header__navbar center py-3">
+                        <ul className="navbar-list">
+                            {menus.find(menu => menu.name === (shoppage ? `shop` : `service`)).items.map((item, index) => <MenuItem key={index} item={item} />)}
+                        </ul>
+                    </nav>
+                    <div className="flex items-center">
+                        <Link href={`gifts`} className="py-1.5 bg-amber-500 rounded-full px-6 text-stone-900 text-sm font-bold">Подарочные сертификаты</Link>
+                    </div>
+                </div>
+            </div>
+        </div> : <></>}
         <div className="header__bottom relative">
             <div className="container-outer relative">
                 <div className="header-bottom-inner">

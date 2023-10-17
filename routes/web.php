@@ -54,27 +54,19 @@ Route::post('/contacts', [ContactsController::class, 'store'])->name('contacts.s
 
 Route::post('/termins', [TerminController::class, 'store'])->name('termins.store');
 
-Route::get('/payment', PaymentController::class)->name('payment');
-Route::get('/delivery', DeliveryController::class)->name('delivery');
-Route::get('/refund', RefundController::class)->name('refund');
-
 Route::post('/callback', CallBackController::class)->name('callback');
 Route::post('/writeus', WriteUsController::class)->name('writeus');
-
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
-
 
 Route::middleware('service')->group(function () {
     Route::get('/services', ServicesController::class)->name('services');
     Route::get('/services/{facility}/{subfacility?}', FacilitiesController::class)->name('facility');
 });
 
-
 Route::middleware('shop')->group(function () {
+
+    Route::get('/payment', PaymentController::class)->name('payment');
+    Route::get('/delivery', DeliveryController::class)->name('delivery');
+    Route::get('/refund', RefundController::class)->name('refund');
 
     Route::get('/catalog', CatalogController::class)->name('catalog');
     Route::get('/catalog/{category}/{subcategory?}/{subsubcategory?}', CategoryController::class)->name('category');
@@ -97,38 +89,13 @@ Route::middleware('shop')->group(function () {
             Route::get('/password', Cabinet\PasswordController::class)->name('password');
             Route::put('/profile', [Cabinet\ProfileController::class, 'update'])->name('profile.update');
             Route::get('/profile', Cabinet\ProfileController::class)->name('profile');
-            // Route::post('/delete', [CabinetController::class, 'delete'])->name('delete');
-            // Route::post('/update', [CabinetController::class, 'update'])->name('update');
-            // Route::post('/req', [CabinetController::class, 'req'])->name('req');
-            // Route::post('/shops', [CabinetController::class, 'shops'])->name('shops');
 
-            // Route::any('paybox/getcards', [PayboxController::class, 'getcards'])->name('getcards');
-
-            // Route::get('/profit', [CabinetProfitController::class, 'index'])->name('profit.index');
-
-            // Route::get('/favorites/goods', [Cabinet\FavoriteController::class, 'goods'])->name('favorites.goods');
-            // Route::get('/favorites/users', [Cabinet\FavoriteController::class, 'users'])->name('favorites.users');
-
+            Route::get('/favorites', [Cabinet\FavoriteController::class, 'index'])->name('favorites.index');
             Route::patch('/favorite/toggle', [Cabinet\FavoriteController::class, 'toggle'])->name('favorite.toggle');
-            // Route::patch('/favorite/trucks/toggle', [Cabinet\FavoriteController::class, 'toggleTruck'])->name('favorite.trucks.toggle');
-            // Route::patch('/favorite/users/toggle', [Cabinet\FavoriteController::class, 'toggleUser'])->name('favorite.users.toggle');
 
-            // Route::patch('/orders/{order}/assign', [Cabinet\OrderController::class, 'assign'])->name('orders.assign');
-            // Route::get('/orders/delivered', [Cabinet\OrderController::class, 'delivered'])->name('orders.delivered');
-            // Route::get('/orders/archive', [Cabinet\OrderController::class, 'archive'])->name('orders.archive');
             Route::get('/orders/history', [Cabinet\OrderController::class, 'history'])->name('orders.history');
             Route::get('/orders/thanks', [Cabinet\OrderController::class, 'thanks'])->name('orders.thanks');
             Route::resource('/orders', Cabinet\OrderController::class);
-            // Route::any('/order/{order}/invoice', [Cabinet\OrderController::class, 'invoice'])->name('orders.invoice');
-
-            // Route::get('/purchases/archive', [CabinetPurchaseController::class, 'archive'])->name('purchases.archive');
-            // Route::get('/purchase', [CabinetPurchaseController::class, 'create'])->name('purchases.create');
-            // Route::resource('/purchases', CabinetPurchaseController::class)->except('create');
-            // Route::patch('/purchases/{purchase}/close', [CabinetPurchaseController::class, 'close'])->name('purchases.close');
-
-            // Route::get('/pay', [CabinetController::class, 'pay'])->name('pay');
-            // Route::post('/avatar', [CabinetController::class, 'avatar'])->name('avatar');
-            // Route::post('/logotip', [CabinetController::class, 'logotip'])->name('logotip');
         });
     });
 });
