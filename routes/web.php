@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 use TCG\Voyager\Facades\Voyager;
 use App\Http\Controllers\Cabinet;
 use App\Http\Controllers\CallBackController;
+use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\FacilitiesController;
 use App\Http\Controllers\GiftsController;
 use App\Http\Controllers\PageController;
@@ -54,6 +55,7 @@ Route::post('/contacts', [ContactsController::class, 'store'])->name('contacts.s
 Route::post('/termins', [TerminController::class, 'store'])->name('termins.store');
 
 Route::get('/payment', PaymentController::class)->name('payment');
+Route::get('/delivery', DeliveryController::class)->name('delivery');
 Route::get('/refund', RefundController::class)->name('refund');
 
 Route::post('/callback', CallBackController::class)->name('callback');
