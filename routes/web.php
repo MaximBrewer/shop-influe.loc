@@ -21,6 +21,7 @@ use App\Http\Controllers\FacilitiesController;
 use App\Http\Controllers\GiftsController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\RentController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\TeamController;
@@ -47,6 +48,7 @@ Route::get('/team', TeamController::class)->name('team');
 Route::get('/partners', PartnerController::class)->name('partners');
 Route::get('/gifts', GiftsController::class)->name('gifts');
 Route::get('/consult', ConsultController::class)->name('consult');
+Route::get('/rent', RentController::class)->name('rent');
 
 Route::get('/articles', [PostsController::class, 'index'])->name('articles');
 Route::get('/articles/{post}', [PostsController::class, 'show'])->name('post');
