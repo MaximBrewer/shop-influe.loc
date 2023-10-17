@@ -6,6 +6,7 @@ use App\Http\Resources\Category as ResourcesCategory;
 use App\Http\Resources\Product as ResourcesProduct;
 use App\Http\Resources\Specification as ResourcesSpecification;
 use App\Models\Category;
+use App\Models\Facet;
 use App\Models\Product;
 use App\Models\Specification;
 use Illuminate\Database\Eloquent\Builder;
@@ -46,11 +47,15 @@ class CategoryController extends Controller
             });
         }
 
-        foreach ($request->all() as $fk => $fv) {
-            $products->whereHas('facets',  function (Builder $query) use ($fk, $fv) {
-                $query->where('specification_accounting_id', $fk);
-                $query->whereIn('specification_value', explode(":::", $fv));
-            });
+        $facets = Facet::groupBy('specification_accounting_id')->pluck('specification_accounting_id');
+
+        foreach ($facets as $fk) {
+            if ($fv = $request->get($fk)) {
+                $products->whereHas('facets',  function (Builder $query) use ($fk, $fv) {
+                    $query->where('specification_accounting_id', $fk);
+                    $query->whereIn('specification_value', explode(":::", $fv));
+                });
+            }
         }
 
         $breadcrumbs = [
