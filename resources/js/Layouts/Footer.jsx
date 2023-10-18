@@ -17,7 +17,7 @@ export default () => {
     return <footer>
         <div className="container-outer h-full">
             <div className="footer__outer">
-                <div className="footer__inner">
+                <div className="footer__inner pb-12">
                     <div className="footer__logo-wrapper">
                         <Link href={route('home')}>
                             <img src={LogoVertical} alt="" />
