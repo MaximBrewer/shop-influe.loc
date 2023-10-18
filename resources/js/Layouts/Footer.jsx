@@ -27,7 +27,7 @@ export default () => {
                         <li className="footer-navbar__item">
                             <div className="footer-navbar-item__title fw-600-18-22">Услуги</div>
                             <ul className="footer-navbar-item__menu fw-400-18-22">
-                                {menus.find(menu => menu.name === `service`).items.map((item, index) => <li key={index}>
+                                {menus.find(menu => menu.name === `services`).items.map((item, index) => <li key={index}>
                                     <Link href={item.link}>{item.title}</Link>
                                 </li>)}
                             </ul>
