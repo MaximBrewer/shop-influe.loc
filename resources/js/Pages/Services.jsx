@@ -119,7 +119,7 @@ export default (props) => {
 
         <div className="bg-white">
             <div className="container-outer">
-                <div className="appointment-doctor py-24 md:mx-20">
+                {/* <div className="appointment-doctor py-24 md:mx-20">
                     <div className="appointment-doctor-title">
                         <h2>Рекомендовано записаться на прием:</h2>
                     </div>
@@ -242,7 +242,7 @@ export default (props) => {
                             Будущим мамам
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <div className="pb-16">
                     <FormAppDoctor />
                 </div>

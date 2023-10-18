@@ -78,8 +78,10 @@ export default (props) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="max-w-[42rem] shrink-0 bg-slate-100 rounded-[40px] border border-stone-300">
-                                <img alt="" src={Map} className="block" />
+                            <div className="max-w-[42rem] shrink-0">
+                                <div className="bg-slate-100 rounded-[40px] border border-stone-300 overflow-hidden">
+                                    <img alt="" src={Map} className="block" />
+                                </div>
                             </div>
                             {/* <div className="w-[358px] h-[193px] left-0 top-[321px] absolute justify-start items-start gap-[19px] inline-flex">
                                 <div className="w-12 h-12 p-4 bg-white rounded-[25px] justify-center items-center gap-2.5 flex">
@@ -141,8 +143,10 @@ export default (props) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="max-w-[42rem] shrink-0 bg-slate-100 rounded-[40px] border border-stone-300">
-                                <img alt="" src={Map2} className="block" />
+                            <div className="max-w-[42rem] shrink-0">
+                                <div className="bg-slate-100 rounded-[40px] border border-stone-300 overflow-hidden">
+                                    <img alt="" src={Map2} className="block" />
+                                </div>
                             </div>
                         </div>
                         <div className="text-xl my-8">
